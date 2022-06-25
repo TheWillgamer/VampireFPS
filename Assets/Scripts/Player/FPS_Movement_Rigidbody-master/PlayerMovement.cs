@@ -41,6 +41,9 @@ public class PlayerMovement : MonoBehaviour
     private bool readyToJump = true;
     private float jumpCooldown = 0.25f;
     public float jumpForce = 550f;
+    public int maxWallJump = 1;
+    private int wallJumpCount;
+    public bool touchingWall = false;
 
     //Input
     public float x, y;
@@ -55,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         disableCM = false;
         dead = false;
+        wallJumpCount = maxWallJump;
     }
 
     void Start()
@@ -191,6 +195,23 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+        else if (touchingWall && wallJumpCount>0)
+        {
+            wallJumpCount--;
+
+            //Add jump forces
+            rb.AddForce(Vector2.up * jumpForce * 1.5f);
+            rb.AddForce(normalVector * jumpForce * 0.5f);
+
+            //If jumping while falling, reset y velocity.
+            Vector3 vel = rb.velocity;
+            if (rb.velocity.y < 0.5f)
+                rb.velocity = new Vector3(vel.x, 0, vel.z);
+            else if (rb.velocity.y > 0)
+                rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
     }
 
     private void ResetJump()
@@ -274,6 +295,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private bool cancellingGrounded;
+    private bool cancellingTouching;
 
     /// <summary>
     /// Handle ground detection
@@ -292,9 +314,16 @@ public class PlayerMovement : MonoBehaviour
             if (IsFloor(normal))
             {
                 grounded = true;
+                wallJumpCount = maxWallJump;
                 cancellingGrounded = false;
                 normalVector = normal;
                 CancelInvoke(nameof(StopGrounded));
+            }
+            else
+            {
+                cancellingTouching = false;
+                touchingWall = true;
+                CancelInvoke(nameof(StopTouching));
             }
         }
 
@@ -305,11 +334,19 @@ public class PlayerMovement : MonoBehaviour
             cancellingGrounded = true;
             Invoke(nameof(StopGrounded), Time.deltaTime * delay);
         }
+        if (!cancellingTouching)
+        {
+            cancellingTouching = true;
+            Invoke(nameof(StopTouching), Time.deltaTime * delay);
+        }
     }
 
     private void StopGrounded()
     {
         grounded = false;
     }
-
+    private void StopTouching()
+    {
+        touchingWall = false;
+    }
 }
