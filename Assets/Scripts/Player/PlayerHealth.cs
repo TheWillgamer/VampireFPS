@@ -15,6 +15,8 @@ public class PlayerHealth : MonoBehaviour
     public float tick_cd = 0.1f;
     private float offcd;
 
+    public GameObject gameOverScreen;
+
     void Awake()
     {
         pm = GetComponent<PlayerMovement>();
@@ -46,6 +48,9 @@ public class PlayerHealth : MonoBehaviour
         if (hp <= 0)
         {
             pm.dead = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            gameOverScreen.SetActive(true);
         }
     }
 

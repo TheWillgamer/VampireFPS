@@ -48,7 +48,7 @@ public class AbilityFramework : MonoBehaviour
 
         for (int i = 0; i < length; i++)
         {
-            if (abilityList[i] != null && !pm.dead)
+            if (abilityList[i] != null && !pm.dead && !pm.paused)
             {
                 InputCheck(i);
             }

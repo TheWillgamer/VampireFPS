@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     //Other
     private Rigidbody rb;
     public bool dead;
+    public bool paused;
 
     //Rotation and look
     private float xRotation;
@@ -71,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!dead)
+        if (!dead && !paused)
         {
             MyInput();
             Look();
