@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHitDetection : MonoBehaviour
 {
     [SerializeField] float maxHealth = 100.0f;
     float currentHealth;
 
-    //public Slider slider;
+    public Slider slider;
     private Rigidbody rb;
 
     void Awake()
@@ -19,7 +20,7 @@ public class EnemyHitDetection : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        //slider.value = 1;
+        slider.value = 1;
     }
 
     // Update is called once per frame
@@ -34,22 +35,11 @@ public class EnemyHitDetection : MonoBehaviour
 
         switch (other.tag)
         {
-            case "Melee":
-                if (gameObject.tag != "Player")
-                {
-                    TakeDamage(15f);
-                    direction = transform.position - other.transform.parent.transform.parent.transform.position;
-                    direction.y = 0;
-                    direction.Normalize();
-                    Knockback(400f, 0.1f, direction);
-                }
-                break;
-
-            case "Projectile":
-                TakeDamage(10f);
+            case "PlayerProjectile":
+                TakeDamage(4f);
                 direction = transform.position - other.transform.parent.transform.position;
                 direction.Normalize();
-                Knockback(200f, 0.1f, direction);
+                Knockback(600f, 0, direction);
                 Destroy(other.transform.parent.gameObject);
                 break;
         }
@@ -61,13 +51,14 @@ public class EnemyHitDetection : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            rb.constraints = RigidbodyConstraints.None;
+            rb.mass = 10f;
         }
     }
 
     void UpdateHealth()
     {
-        //slider.value = currentHealth / maxHealth;
+        slider.value = currentHealth / maxHealth;
     }
 
     void Knockback(float amount, float length, Vector3 direction)
