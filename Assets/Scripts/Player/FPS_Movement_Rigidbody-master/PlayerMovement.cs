@@ -178,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (grounded && readyToJump)
+        if (grounded && readyToJump && !dead)
         {
             readyToJump = false;
 
@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-        else if (touchingWall && wallJumpCount>0)
+        else if (touchingWall && wallJumpCount>0 && !dead)
         {
             wallJumpCount--;
 

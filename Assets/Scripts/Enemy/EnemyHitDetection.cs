@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyHitDetection : MonoBehaviour
 {
-    [SerializeField] float maxHealth = 100.0f;
-    float currentHealth;
+    [SerializeField] int maxHealth = 100;
+    int currentHealth;
+    bool alive;
 
-    public Slider slider;
+    public Transform hp_bar;
     private Rigidbody rb;
 
     void Awake()
     {
+        alive = true;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -20,7 +21,6 @@ public class EnemyHitDetection : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        slider.value = 1;
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class EnemyHitDetection : MonoBehaviour
         switch (other.tag)
         {
             case "PlayerProjectile":
-                TakeDamage(4f);
+                TakeDamage(4);
                 direction = transform.position - other.transform.parent.transform.position;
                 direction.Normalize();
                 Knockback(600f, 0, direction);
@@ -45,12 +45,20 @@ public class EnemyHitDetection : MonoBehaviour
         }
     }
 
-    void TakeDamage(float dmg)
+    void TakeDamage(int dmg)
     {
         currentHealth -= dmg;
 
         if (currentHealth <= 0)
         {
+            if (alive)
+            {
+                Destroy(transform.GetChild(1).gameObject);
+                Destroy(transform.GetChild(3).gameObject);
+                GetComponent<RangedAI>().dead = true;
+                alive = false;
+            }
+            currentHealth = 0;
             rb.constraints = RigidbodyConstraints.None;
             rb.mass = 10f;
         }
@@ -58,7 +66,8 @@ public class EnemyHitDetection : MonoBehaviour
 
     void UpdateHealth()
     {
-        slider.value = currentHealth / maxHealth;
+        hp_bar.LookAt(GameObject.FindWithTag("MainCamera").transform.position);
+        hp_bar.localScale = new Vector3((float)currentHealth / maxHealth, 0.1f, 0.1f);
     }
 
     void Knockback(float amount, float length, Vector3 direction)
