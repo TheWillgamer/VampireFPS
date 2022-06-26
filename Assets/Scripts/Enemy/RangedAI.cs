@@ -42,10 +42,14 @@ public class RangedAI : MonoBehaviour
             // fires arrow
             if(offcd < Time.time && Vector3.Distance(transform.position, player.position) < maxRange)
             {
-                Instantiate(proj, rangedSpawn.position, rangedSpawn.rotation);
+                Invoke(nameof(FireArrow), Time.deltaTime * 3f);
                 offcd = Time.time + fireFrequency;
             }
         }
     }
 
+    private void FireArrow()
+    {
+        Instantiate(proj, rangedSpawn.position, rangedSpawn.rotation);
+    }
 }

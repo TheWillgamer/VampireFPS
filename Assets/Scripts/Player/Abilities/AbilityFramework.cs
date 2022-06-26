@@ -12,13 +12,17 @@ public class AbilityFramework : MonoBehaviour
     private bool[] input;
     public Transform[] icons;
 
+    private float basicatktimer = 0f;       // temp variable to fix animations
+
     protected PlayerMovement pm;    // to disable abilities when player is dead
     protected PlayerHealth ph;      // blood cost for abilities
+    public Animator anim;
 
     void Awake()
     {
         pm = GetComponent<PlayerMovement>();
         ph = GetComponent<PlayerHealth>();
+        basicatktimer = Time.time;
     }
 
     void Start()
@@ -46,6 +50,14 @@ public class AbilityFramework : MonoBehaviour
         input[1] = Input.GetButtonDown("Fire2");
         input[2] = Input.GetButtonDown("Fire3");
 
+        anim.SetBool("shooting", input[0] && !pm.dead && !pm.paused);
+
+        // when fire button is first used
+        if (Input.GetButtonDown("Fire1"))
+        {
+            basicatktimer = Time.time + .3f;
+        }
+
         for (int i = 0; i < length; i++)
         {
             if (abilityList[i] != null && !pm.dead && !pm.paused)
@@ -62,17 +74,34 @@ public class AbilityFramework : MonoBehaviour
         {
             if (input[i])
             {
-                abilityList[i].UseAbility();
-                ph.TakeDamage(abilityList[i].bloodCost);
-
-                if (abilityList[i].charges == abilityList[i].maxCharges)
+                if (i == 0 && Time.time > basicatktimer)
                 {
-                    offcd[i] = Time.time + abilityList[i].cd;
-                }
+                    abilityList[i].UseAbility();
+                    ph.TakeDamage(abilityList[i].bloodCost);
 
-                abilityList[i].charges -= 1;
-                
-                //icons[i].GetChild(4).GetChild(1).GetComponent<Text>().text = abilityList[i].charges.ToString();
+                    if (abilityList[i].charges == abilityList[i].maxCharges)
+                    {
+                        offcd[i] = Time.time + abilityList[i].cd;
+                    }
+
+                    abilityList[i].charges -= 1;
+
+                    //icons[i].GetChild(4).GetChild(1).GetComponent<Text>().text = abilityList[i].charges.ToString();
+                }
+                if (i == 2)
+                {
+                    abilityList[i].UseAbility();
+                    ph.TakeDamage(abilityList[i].bloodCost);
+
+                    if (abilityList[i].charges == abilityList[i].maxCharges)
+                    {
+                        offcd[i] = Time.time + abilityList[i].cd;
+                    }
+
+                    abilityList[i].charges -= 1;
+
+                    //icons[i].GetChild(4).GetChild(1).GetComponent<Text>().text = abilityList[i].charges.ToString();
+                }
             }
         }
 

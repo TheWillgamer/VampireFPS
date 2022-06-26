@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
 
+    public Animator anim;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -91,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
                 crouching = true;
             }
         }
+        anim.SetBool("moving", !crouching && rb.velocity.magnitude > 0.05f);
     }
 
     /// <summary>
