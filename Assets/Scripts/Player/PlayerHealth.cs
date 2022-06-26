@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public Transform hpMeter;
 
     protected PlayerMovement pm;
+    private Rigidbody rb;
 
     // Blood ticking (decreases blood over time)
     public float tick_cd = 0.1f;
@@ -20,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         pm = GetComponent<PlayerMovement>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Start is called before the first frame update
@@ -57,5 +59,28 @@ public class PlayerHealth : MonoBehaviour
     private void UpdateUI()
     {
         hpMeter.GetComponent<Image>().fillAmount = (float)hp / maxHealth;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Vector3 direction;
+
+        switch (other.tag)
+        {
+            case "EnemyProjectile":
+                TakeDamage(150);
+                direction = transform.position - other.transform.parent.transform.position;
+                direction.Normalize();
+                Knockback(600f, direction);
+                Destroy(other.transform.parent.gameObject);
+                break;
+        }
+    }
+
+    void Knockback(float amount, Vector3 direction)
+    {
+        float startTime = Time.time;
+
+        rb.AddForce(direction * amount + transform.up * amount);
     }
 }
