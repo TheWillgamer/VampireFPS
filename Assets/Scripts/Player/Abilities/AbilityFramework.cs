@@ -85,7 +85,7 @@ public class AbilityFramework : MonoBehaviour
 
         if (abilityList[i].charges < abilityList[i].maxCharges)
         {
-            icons[i].GetChild(0).GetComponent<Image>().fillAmount = (offcd[i] - Time.time) / abilityList[i].cd;
+            icons[i].GetChild(1).GetComponent<Image>().fillAmount = (offcd[i] - Time.time) / abilityList[i].cd;
         }
     }
 

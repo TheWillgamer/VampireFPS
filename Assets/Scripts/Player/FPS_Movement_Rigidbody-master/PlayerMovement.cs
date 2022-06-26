@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public bool grounded;
     public bool disableCM;
     public LayerMask whatIsGround;
+    public float airMovementMultiplier = 0.5f;
 
     public float counterMovement = 0.175f;
     private float threshold = 0.01f;
@@ -165,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         // Movement in air
         if (!grounded)
         {
-            multiplier = 0.5f;
+            multiplier = airMovementMultiplier;
             multiplierV = 0.5f;
         }
 
