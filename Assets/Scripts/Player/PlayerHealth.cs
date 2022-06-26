@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     private int hp;  //keeps track of player health
     public int maxHealth = 2000;
     public Transform hpMeter;
+    public Image dmgScreen;
 
     protected PlayerMovement pm;
     private Rigidbody rb;
@@ -54,6 +55,8 @@ public class PlayerHealth : MonoBehaviour
             Cursor.visible = true;
             gameOverScreen.SetActive(true);
         }
+        if (hp > maxHealth)
+            hp = maxHealth;
     }
 
     private void UpdateUI()
@@ -72,6 +75,7 @@ public class PlayerHealth : MonoBehaviour
                 direction = transform.position - other.transform.parent.transform.position;
                 direction.Normalize();
                 Knockback(600f, direction);
+                StartCoroutine(Fade());
                 Destroy(other.transform.parent.gameObject);
                 break;
         }
@@ -82,5 +86,16 @@ public class PlayerHealth : MonoBehaviour
         float startTime = Time.time;
 
         rb.AddForce(direction * amount + transform.up * amount);
+    }
+
+    IEnumerator Fade()
+    {
+        Color c = dmgScreen.color;
+        for (float alpha = .2f; alpha >= 0; alpha -= 0.001f)
+        {
+            c.a = alpha;
+            dmgScreen.color = c;
+            yield return null;
+        }
     }
 }

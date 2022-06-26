@@ -10,11 +10,14 @@ public class EnemyHitDetection : MonoBehaviour
 
     public Transform hp_bar;
     private Rigidbody rb;
+    private PlayerHealth ph;
+    public int lifestealAmt;
 
     void Awake()
     {
         alive = true;
         rb = GetComponent<Rigidbody>();
+        ph = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
     }
 
     // Start is called before the first frame update
@@ -61,6 +64,10 @@ public class EnemyHitDetection : MonoBehaviour
             currentHealth = 0;
             rb.constraints = RigidbodyConstraints.None;
             rb.mass = 10f;
+        }
+        else
+        {
+            ph.TakeDamage(-lifestealAmt);
         }
     }
 

@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (!crouching)
+            if (!crouching && dead)
             {
                 StartCrouch();
                 crouching = true;

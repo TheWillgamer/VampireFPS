@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
         transform.position += transform.forward * Time.deltaTime * speed;
         if (Time.time > deathTime)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }
