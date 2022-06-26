@@ -13,6 +13,7 @@ public class RangedAI : MonoBehaviour
 
     public float fireFrequency = 1f;
     private float offcd;
+    public float maxRange = 30f;
     [SerializeField] Transform proj;
     [SerializeField] Transform rangedSpawn;
 
@@ -39,7 +40,7 @@ public class RangedAI : MonoBehaviour
             cbow.rotation = Quaternion.Slerp(cbow.rotation, newRotation2, Time.deltaTime * verRotSpeed);
 
             // fires arrow
-            if(offcd < Time.time)
+            if(offcd < Time.time && Vector3.Distance(transform.position, player.position) < maxRange)
             {
                 Instantiate(proj, rangedSpawn.position, rangedSpawn.rotation);
                 offcd = Time.time + fireFrequency;

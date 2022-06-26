@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxWallJump = 1;
     private int wallJumpCount;
     public bool touchingWall = false;
+    public float jumpResetDelay = 6f;
 
     //Input
     public float x, y;
@@ -328,16 +329,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Invoke ground/wall cancel, since we can't check normals with CollisionExit
-        float delay = 3f;
         if (!cancellingGrounded)
         {
             cancellingGrounded = true;
-            Invoke(nameof(StopGrounded), Time.deltaTime * delay);
+            Invoke(nameof(StopGrounded), Time.deltaTime * jumpResetDelay);
         }
         if (!cancellingTouching)
         {
             cancellingTouching = true;
-            Invoke(nameof(StopTouching), Time.deltaTime * delay);
+            Invoke(nameof(StopTouching), Time.deltaTime * jumpResetDelay);
         }
     }
 
