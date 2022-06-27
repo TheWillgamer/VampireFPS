@@ -17,6 +17,9 @@ public class RangedAI : MonoBehaviour
     [SerializeField] Transform proj;
     [SerializeField] Transform rangedSpawn;
 
+    public AudioSource tense;
+    public AudioSource fire;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,7 @@ public class RangedAI : MonoBehaviour
             if(offcd < Time.time && Vector3.Distance(transform.position, player.position) < maxRange)
             {
                 Invoke(nameof(FireArrow), Time.deltaTime * 3f);
+                tense.Play();
                 offcd = Time.time + fireFrequency;
             }
         }
@@ -51,5 +55,6 @@ public class RangedAI : MonoBehaviour
     private void FireArrow()
     {
         Instantiate(proj, rangedSpawn.position, rangedSpawn.rotation);
+        fire.Play();
     }
 }

@@ -7,6 +7,7 @@ public class PauseScript : MonoBehaviour
 {
     public GameObject pauseScreen;
     public Transform player;
+    public AudioSource footsteps;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +25,7 @@ public class PauseScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
+        footsteps.Pause();
     }
     public void ResumeGame()
     {
@@ -32,6 +34,7 @@ public class PauseScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
+        footsteps.Play();
     }
     public void RestartLevel()
     {

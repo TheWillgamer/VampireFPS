@@ -5,6 +5,7 @@ public class Dash : Ability
 {
     public float dashSpeed = 2000f;
     public float dashTime = 0.1f;
+    public AudioSource sound;
 
     public override void UseAbility()
     {
@@ -12,6 +13,7 @@ public class Dash : Ability
         //ps.canLook = false;
         //ps.canMove = false;
         //ps.SwitchToThird();
+        sound.Play(0);
 
         if (pm.y == 0 && pm.x == 0)
         {

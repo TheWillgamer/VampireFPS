@@ -57,12 +57,21 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator anim;
 
+    //Audio
+    public AudioSource Step;
+    private bool stepping;
+    public AudioSource Jumping;
+    public AudioSource Slide;
+    private bool sliding;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         disableCM = false;
         dead = false;
         wallJumpCount = maxWallJump;
+        stepping = false;
+        sliding = false;
     }
 
     void Start()
@@ -93,7 +102,29 @@ public class PlayerMovement : MonoBehaviour
                 crouching = true;
             }
         }
-        anim.SetBool("moving", !crouching && rb.velocity.magnitude > 0.05f);
+        if (!crouching && rb.velocity.magnitude > 4f)
+        {
+            if (!stepping && grounded)
+            {
+                Step.Play(0);
+                stepping = true;
+            }
+            else if(stepping && !grounded)
+            {
+                Step.Stop();
+                stepping = false;
+            }
+            anim.SetBool("moving", true);
+        }
+        else
+        {
+            if (stepping)
+            {
+                Step.Stop();
+                stepping = false;
+            }
+            anim.SetBool("moving", false);
+        }
     }
 
     /// <summary>
@@ -111,6 +142,11 @@ public class PlayerMovement : MonoBehaviour
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
+        if(!sliding && grounded && Input.GetKey(KeyCode.LeftControl))
+        {
+            Slide.Play(0);
+            sliding = true;
+        }
     }
 
     private void StartCrouch()
@@ -130,6 +166,8 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.localScale = playerScale;
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        Slide.Stop();
+        sliding = false;
     }
 
     private void Movement()
@@ -183,13 +221,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (grounded && readyToJump && !dead)
+        if (grounded && readyToJump && !dead && !crouching)
         {
             readyToJump = false;
 
             //Add jump forces
             rb.AddForce(Vector2.up * jumpForce * 1.5f);
             rb.AddForce(normalVector * jumpForce * 0.5f);
+
+            //Audio
+            Jumping.Play(0);
+            Step.Stop();
+            stepping = false;
 
             //If jumping while falling, reset y velocity.
             Vector3 vel = rb.velocity;
@@ -207,6 +250,9 @@ public class PlayerMovement : MonoBehaviour
             //Add jump forces
             rb.AddForce(Vector2.up * jumpForce * 1.5f);
             rb.AddForce(normalVector * jumpForce * 0.5f);
+
+            //Audio
+            Jumping.Play(0);
 
             //If jumping while falling, reset y velocity.
             Vector3 vel = rb.velocity;

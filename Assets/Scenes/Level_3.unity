@@ -649,7 +649,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-248664
+  m_Name: pb_Mesh98300
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3303,7 +3303,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-274602
+  m_Name: pb_Mesh98532
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5507,7 +5507,7 @@ GameObject:
   - component: {fileID: 318964987}
   - component: {fileID: 318964990}
   - component: {fileID: 318964989}
-  - component: {fileID: 318964988}
+  - component: {fileID: 318964991}
   m_Layer: 6
   m_Name: Bookshelf (2)
   m_TagString: Untagged
@@ -5530,22 +5530,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &318964988
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318964986}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &318964989
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5596,6 +5580,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318964986}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &318964991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318964986}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.778988, y: 6.479018, z: 3.5890098}
+  m_Center: {x: 0.12527704, y: 3.207766, z: 0}
 --- !u!1 &328208767
 GameObject:
   m_ObjectHideFlags: 0
@@ -6209,7 +6206,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-326988
+  m_Name: pb_Mesh98390
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6373,7 +6370,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-290992
+  m_Name: pb_Mesh98102
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6874,7 +6871,7 @@ GameObject:
   - component: {fileID: 502386268}
   - component: {fileID: 502386271}
   - component: {fileID: 502386270}
-  - component: {fileID: 502386269}
+  - component: {fileID: 502386272}
   m_Layer: 6
   m_Name: Bookshelf (8)
   m_TagString: Untagged
@@ -6897,22 +6894,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 86.096, z: 0}
---- !u!54 &502386269
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502386267}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &502386270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6963,13 +6944,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502386267}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &502386272
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502386267}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.77899, y: 6.479018, z: 3.5890107}
+  m_Center: {x: 0.12503292, y: 3.207766, z: -0.00012207055}
 --- !u!43 &529169553
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-254384
+  m_Name: pb_Mesh98044
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7507,7 +7501,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-292048
+  m_Name: pb_Mesh98230
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8591,7 +8585,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-288814
+  m_Name: pb_Mesh97830
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8755,7 +8749,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-206564
+  m_Name: pb_Mesh97992
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9467,7 +9461,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-324428
+  m_Name: pb_Mesh97752
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9692,7 +9686,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-364954
+  m_Name: pb_Mesh98632
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9861,7 +9855,7 @@ GameObject:
   - component: {fileID: 771184219}
   - component: {fileID: 771184222}
   - component: {fileID: 771184221}
-  - component: {fileID: 771184220}
+  - component: {fileID: 771184223}
   m_Layer: 6
   m_Name: Bookshelf (15)
   m_TagString: Untagged
@@ -9884,22 +9878,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 182.949, z: 0}
---- !u!54 &771184220
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771184218}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &771184221
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9950,6 +9928,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771184218}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &771184223
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771184218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.778986, y: 6.479018, z: 3.5890095}
+  m_Center: {x: 0.12503289, y: 3.207766, z: 0}
 --- !u!1 &780282106
 GameObject:
   m_ObjectHideFlags: 0
@@ -9961,7 +9952,7 @@ GameObject:
   - component: {fileID: 780282107}
   - component: {fileID: 780282110}
   - component: {fileID: 780282109}
-  - component: {fileID: 780282108}
+  - component: {fileID: 780282111}
   m_Layer: 6
   m_Name: Bookshelf (7)
   m_TagString: Untagged
@@ -9984,22 +9975,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 86.096, z: 0}
---- !u!54 &780282108
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 780282106}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &780282109
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10050,6 +10025,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780282106}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &780282111
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780282106}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.77899, y: 6.479018, z: 3.5890107}
+  m_Center: {x: 0.12503292, y: 3.207766, z: -2.3289193e-10}
 --- !u!1 &791545442
 GameObject:
   m_ObjectHideFlags: 0
@@ -10430,7 +10418,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh71378
+  m_Name: pb_Mesh98456
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10599,7 +10587,7 @@ GameObject:
   - component: {fileID: 799017758}
   - component: {fileID: 799017761}
   - component: {fileID: 799017760}
-  - component: {fileID: 799017759}
+  - component: {fileID: 799017762}
   m_Layer: 6
   m_Name: Bookshelf (9)
   m_TagString: Untagged
@@ -10622,22 +10610,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 86.096, z: 0}
---- !u!54 &799017759
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799017757}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &799017760
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10688,13 +10660,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799017757}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &799017762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799017757}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.77899, y: 6.479018, z: 3.5890107}
+  m_Center: {x: 0.12503292, y: 3.207766, z: 0.00012207008}
 --- !u!43 &856728672
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-295686
+  m_Name: pb_Mesh98260
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17397,7 +17382,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-98872
+  m_Name: pb_Mesh98418
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17561,7 +17546,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-291532
+  m_Name: pb_Mesh98590
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17730,7 +17715,7 @@ GameObject:
   - component: {fileID: 1154128904}
   - component: {fileID: 1154128907}
   - component: {fileID: 1154128906}
-  - component: {fileID: 1154128905}
+  - component: {fileID: 1154128908}
   m_Layer: 6
   m_Name: Bookshelf (14)
   m_TagString: Untagged
@@ -17753,22 +17738,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 182.949, z: 0}
---- !u!54 &1154128905
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154128903}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &1154128906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17819,13 +17788,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154128903}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &1154128908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154128903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.778986, y: 6.479018, z: 3.5890095}
+  m_Center: {x: 0.12503289, y: 3.207766, z: 0}
 --- !u!43 &1192732999
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-275190
+  m_Name: pb_Mesh97944
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17989,7 +17971,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-255156
+  m_Name: pb_Mesh98212
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18293,91 +18275,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221659526}
   m_Mesh: {fileID: -5420149580168298667, guid: efa8d85a70e99334590aefc922face1e, type: 3}
---- !u!1001 &1223913072
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -255.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 73.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -559.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984892, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040009984893, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_Name
-      value: PlayerAndUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040446720962, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040446720962, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.14150941
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040446720962, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.13212737
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040446720962, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.12615697
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040506900522, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -111.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040506900522, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 766616040506900522, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -45.7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b1f6de7c8897bda4980791dc2b6b8e3d, type: 3}
 --- !u!1 &1251153609
 GameObject:
   m_ObjectHideFlags: 0
@@ -19194,7 +19091,7 @@ GameObject:
   - component: {fileID: 1299778689}
   - component: {fileID: 1299778692}
   - component: {fileID: 1299778691}
-  - component: {fileID: 1299778690}
+  - component: {fileID: 1299778693}
   m_Layer: 6
   m_Name: Bookshelf (1)
   m_TagString: Untagged
@@ -19217,22 +19114,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1299778690
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299778688}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &1299778691
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19283,6 +19164,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299778688}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &1299778693
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299778688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.778988, y: 6.479018, z: 3.5890098}
+  m_Center: {x: 0.12478876, y: 3.207766, z: 0}
 --- !u!1 &1300878841
 GameObject:
   m_ObjectHideFlags: 0
@@ -19986,7 +19880,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-274868
+  m_Name: pb_Mesh97864
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20524,7 +20418,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-357498
+  m_Name: pb_Mesh97802
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20925,7 +20819,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-275464
+  m_Name: pb_Mesh97732
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21148,6 +21042,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 159f555a6ea00164b9e4bbdcc965abc3, type: 3}
+--- !u!1001 &1484606776
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7736701735432866437, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -111.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701735432866437, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701735432866437, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -45.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638930, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_Name
+      value: PlayerPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -255.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 73.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -559.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701736008638931, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5dedd03a6af614548868623722df0810, type: 3}
 --- !u!1 &1501695722
 GameObject:
   m_ObjectHideFlags: 0
@@ -21159,7 +21122,7 @@ GameObject:
   - component: {fileID: 1501695723}
   - component: {fileID: 1501695726}
   - component: {fileID: 1501695725}
-  - component: {fileID: 1501695724}
+  - component: {fileID: 1501695727}
   m_Layer: 6
   m_Name: Bookshelf (6)
   m_TagString: Untagged
@@ -21182,22 +21145,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 86.096, z: 0}
---- !u!54 &1501695724
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501695722}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &1501695725
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21248,6 +21195,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501695722}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &1501695727
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501695722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.77899, y: 6.479018, z: 3.5890107}
+  m_Center: {x: 0.124544635, y: 3.207766, z: -2.3289193e-10}
 --- !u!1 &1522512921
 GameObject:
   m_ObjectHideFlags: 0
@@ -21259,7 +21219,7 @@ GameObject:
   - component: {fileID: 1522512922}
   - component: {fileID: 1522512925}
   - component: {fileID: 1522512924}
-  - component: {fileID: 1522512923}
+  - component: {fileID: 1522512926}
   m_Layer: 6
   m_Name: Bookshelf (3)
   m_TagString: Untagged
@@ -21282,22 +21242,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1522512923
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522512921}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &1522512924
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21348,13 +21292,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522512921}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &1522512926
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522512921}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.778988, y: 6.479018, z: 3.5890098}
+  m_Center: {x: 0.1250329, y: 3.207766, z: 0}
 --- !u!43 &1550839578
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-291746
+  m_Name: pb_Mesh98120
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21518,7 +21475,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-127396
+  m_Name: pb_Mesh98608
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22130,7 +22087,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh71358
+  m_Name: pb_Mesh98076
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22733,7 +22690,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-240202
+  m_Name: pb_Mesh97788
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23571,7 +23528,7 @@ GameObject:
   - component: {fileID: 1758721173}
   - component: {fileID: 1758721176}
   - component: {fileID: 1758721175}
-  - component: {fileID: 1758721174}
+  - component: {fileID: 1758721177}
   m_Layer: 6
   m_Name: Bookshelf (10)
   m_TagString: Untagged
@@ -23594,22 +23551,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 86.096, z: 0}
---- !u!54 &1758721174
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1758721172}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &1758721175
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23660,6 +23601,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758721172}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &1758721177
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758721172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.77899, y: 6.479018, z: 3.5890107}
+  m_Center: {x: 0.12503292, y: 3.207766, z: -2.3289193e-10}
 --- !u!1 &1768775836
 GameObject:
   m_ObjectHideFlags: 0
@@ -24583,7 +24537,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-255290
+  m_Name: pb_Mesh98484
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25293,7 +25247,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-207956
+  m_Name: pb_Mesh97702
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25462,7 +25416,6 @@ GameObject:
   - component: {fileID: 1874574082}
   - component: {fileID: 1874574085}
   - component: {fileID: 1874574084}
-  - component: {fileID: 1874574083}
   - component: {fileID: 1874574086}
   m_Layer: 6
   m_Name: Bookshelf (12)
@@ -25486,22 +25439,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 182.949, z: 0}
---- !u!54 &1874574083
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874574081}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &1874574084
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25552,8 +25489,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874574081}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
---- !u!64 &1874574086
-MeshCollider:
+--- !u!65 &1874574086
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -25562,10 +25499,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 18.778986, y: 6.479018, z: 3.5890095}
+  m_Center: {x: 0.12503289, y: 3.207766, z: 0.00012207031}
 --- !u!1 &1892089413
 GameObject:
   m_ObjectHideFlags: 0
@@ -25577,7 +25513,7 @@ GameObject:
   - component: {fileID: 1892089414}
   - component: {fileID: 1892089417}
   - component: {fileID: 1892089416}
-  - component: {fileID: 1892089415}
+  - component: {fileID: 1892089418}
   m_Layer: 6
   m_Name: Bookshelf (13)
   m_TagString: Untagged
@@ -25600,22 +25536,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 182.949, z: 0}
---- !u!54 &1892089415
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892089413}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &1892089416
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25666,6 +25586,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892089413}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &1892089418
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892089413}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.778986, y: 6.479018, z: 3.5890095}
+  m_Center: {x: 0.12503289, y: 3.207766, z: 0.00012207031}
 --- !u!1 &1924674097
 GameObject:
   m_ObjectHideFlags: 0
@@ -26140,7 +26073,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-357820
+  m_Name: pb_Mesh97924
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26575,7 +26508,7 @@ GameObject:
   - component: {fileID: 1993678373}
   - component: {fileID: 1993678376}
   - component: {fileID: 1993678375}
-  - component: {fileID: 1993678374}
+  - component: {fileID: 1993678377}
   m_Layer: 6
   m_Name: Bookshelf (5)
   m_TagString: Untagged
@@ -26598,22 +26531,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 86.096, z: 0}
---- !u!54 &1993678374
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993678372}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &1993678375
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26664,6 +26581,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993678372}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &1993678377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993678372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.77899, y: 6.479018, z: 3.5890107}
+  m_Center: {x: 0.124544635, y: 3.207766, z: -0.00012207055}
 --- !u!1001 &1999086509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26797,7 +26727,7 @@ GameObject:
   - component: {fileID: 2028561707}
   - component: {fileID: 2028561710}
   - component: {fileID: 2028561709}
-  - component: {fileID: 2028561708}
+  - component: {fileID: 2028561711}
   m_Layer: 0
   m_Name: Bookshelf (11)
   m_TagString: Untagged
@@ -26820,22 +26750,6 @@ Transform:
   m_Father: {fileID: 7536067457057904986}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 86.096, z: 0}
---- !u!54 &2028561708
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028561706}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!23 &2028561709
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26886,6 +26800,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028561706}
   m_Mesh: {fileID: -6072044538983993093, guid: efa8d85a70e99334590aefc922face1e, type: 3}
+--- !u!65 &2028561711
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028561706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.77899, y: 6.479018, z: 3.5890107}
+  m_Center: {x: 0.12503292, y: 3.207766, z: 0.00012207008}
 --- !u!1 &2073920258
 GameObject:
   m_ObjectHideFlags: 0
@@ -37101,7 +37028,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-254998
+  m_Name: pb_Mesh97770
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37265,7 +37192,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-291898
+  m_Name: pb_Mesh97970
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37434,7 +37361,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-98096
+  m_Name: pb_Mesh98164
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

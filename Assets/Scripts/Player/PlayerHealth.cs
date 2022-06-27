@@ -19,10 +19,16 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject gameOverScreen;
 
+    //Audio
+    public AudioSource hit;
+    public AudioSource dead;
+    private bool deadPlayed;        // so that death audio doesn't play twice
+
     void Awake()
     {
         pm = GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody>();
+        deadPlayed = false;
     }
 
     // Start is called before the first frame update
@@ -54,6 +60,11 @@ public class PlayerHealth : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             gameOverScreen.SetActive(true);
+            if (!deadPlayed)
+            {
+                dead.Play(0);
+                deadPlayed = true;
+            }
         }
         if (hp > maxHealth)
             hp = maxHealth;
@@ -72,6 +83,7 @@ public class PlayerHealth : MonoBehaviour
         {
             case "EnemyProjectile":
                 TakeDamage(150);
+                hit.Play(0);
                 direction = transform.position - other.transform.parent.transform.position;
                 direction.Normalize();
                 Knockback(600f, direction);

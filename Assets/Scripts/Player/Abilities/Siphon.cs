@@ -11,6 +11,7 @@ public class Siphon : MonoBehaviour
     private bool canSiphon;
     public int siphonAmount;        // how much healing
     public Animator anim;
+    public AudioSource sound;
 
     void Awake()
     {
@@ -32,6 +33,7 @@ public class Siphon : MonoBehaviour
         if (canSiphon && Input.GetButtonDown("Fire2"))
         {
             anim.SetTrigger("siphoning");
+            sound.Play(0);
             Destroy(hit.collider.transform.parent.gameObject);
             GetComponent<PlayerHealth>().TakeDamage(-siphonAmount);
         }
