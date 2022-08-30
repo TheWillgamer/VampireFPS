@@ -3529,6 +3529,7 @@ GameObject:
   - component: {fileID: 7736701735432866495}
   - component: {fileID: 7736701735432866493}
   - component: {fileID: 7736701735432866492}
+  - component: {fileID: 2044468992673540685}
   - component: {fileID: 7736701735432866491}
   - component: {fileID: 2864033645147955027}
   m_Layer: 0
@@ -3652,12 +3653,12 @@ MonoBehaviour:
   orientation: {fileID: 7736701735777465720}
   dead: 0
   paused: 0
-  moveSpeed: 5000
+  moveSpeed: 8000
   maxSpeed: 20
   grounded: 0
   disableCM: 0
   disableAR: 0
-  airMovementMultiplier: 0.7
+  airMovementMultiplier: 0.8
   counterMovement: 0.175
   airReduceAmt: 0.2
   maxSlopeAngle: 35
@@ -3707,6 +3708,7 @@ MonoBehaviour:
   - {fileID: 7736701735025275158}
   - {fileID: 0}
   - {fileID: 7736701735833553166}
+  - {fileID: 7736701735833553166}
   anim: {fileID: 7736701734994471686}
 --- !u!114 &7736701735432866493
 MonoBehaviour:
@@ -3748,6 +3750,26 @@ MonoBehaviour:
   dashSpeed: 5000
   dashTime: 0.15
   sound: {fileID: 7736701735055426848}
+--- !u!114 &2044468992673540685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736701735432866436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2cb7997b44d8747be311f647bf2a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 2
+  cd: 2
+  charges: 1
+  maxCharges: 1
+  bloodCost: 50
+  dashSpeed: 3500
+  activateTime: 0.3
+  sound: {fileID: 0}
 --- !u!114 &7736701735432866491
 MonoBehaviour:
   m_ObjectHideFlags: 0

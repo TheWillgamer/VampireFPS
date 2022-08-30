@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class AbilityFramework : MonoBehaviour
 {
-    private int length = 3;
+    private int length = 4;
 
     // keeps track of cooldowns and inputs for each ability
     private Ability[] abilityList;
@@ -40,6 +40,7 @@ public class AbilityFramework : MonoBehaviour
 
         AssignAbility(gameObject.GetComponent<BasicAttack>(), 0);
         AssignAbility(gameObject.GetComponent<Dash>(), 2);
+        AssignAbility(gameObject.GetComponent<Blast>(), 3);
     }
 
     // Update is called once per frame
@@ -49,6 +50,7 @@ public class AbilityFramework : MonoBehaviour
         input[0] = Input.GetButton("Fire1");
         input[1] = Input.GetButtonDown("Fire2");
         input[2] = Input.GetButtonDown("Fire3");
+        input[3] = Input.GetButtonDown("Fire4");
 
         anim.SetBool("shooting", input[0] && !pm.dead && !pm.paused);
 
@@ -88,7 +90,7 @@ public class AbilityFramework : MonoBehaviour
 
                     //icons[i].GetChild(4).GetChild(1).GetComponent<Text>().text = abilityList[i].charges.ToString();
                 }
-                if (i == 2)
+                if (i == 2 || i == 3)
                 {
                     abilityList[i].UseAbility();
                     ph.TakeDamage(abilityList[i].bloodCost);
