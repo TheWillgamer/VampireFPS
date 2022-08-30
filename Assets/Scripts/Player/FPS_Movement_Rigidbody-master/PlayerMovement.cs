@@ -305,11 +305,11 @@ public class PlayerMovement : MonoBehaviour
         //Counter movement
         if ((x > 0 && mag.x < 0) || (x < 0 && mag.x > 0))
         {
-            rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * airReduceAmt);
+            rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * x * airReduceAmt);
         }
         if ((y > 0 && mag.y < 0) || (y < 0 && mag.y > 0))
         {
-            rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * airReduceAmt);
+            rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * y * airReduceAmt);
         }
     }
 
