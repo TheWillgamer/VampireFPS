@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 2000;
     public Transform hpMeter;
     public Image dmgScreen;
+    private bool won;
 
     protected PlayerMovement pm;
     private Rigidbody rb;
@@ -18,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     private float offcd;
 
     public GameObject gameOverScreen;
+    public GameObject victoryScreen;
 
     //Audio
     public AudioSource hit;
@@ -29,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody>();
         deadPlayed = false;
+        won = false;
     }
 
     // Start is called before the first frame update
@@ -45,6 +48,14 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(1);
             offcd = Time.time + tick_cd;
         }
+
+        // when player wins
+        if (won)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            victoryScreen.SetActive(true);
+        }
     }
 
     // Reduces hp based on the parameter amount
@@ -54,7 +65,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateUI();
 
         // Player dies if they take too much dmg
-        if (hp <= 0)
+        if (hp <= 0 && !won)
         {
             pm.dead = true;
             Cursor.lockState = CursorLockMode.None;
@@ -89,6 +100,13 @@ public class PlayerHealth : MonoBehaviour
                 Knockback(600f, direction);
                 StartCoroutine(Fade());
                 Destroy(other.transform.parent.gameObject);
+                break;
+            case "Killbox":
+                if(!won)
+                    TakeDamage(2000);
+                break;
+            case "Winbox":
+                won = true;
                 break;
         }
     }

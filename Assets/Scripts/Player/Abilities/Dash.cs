@@ -10,6 +10,7 @@ public class Dash : Ability
     public override void UseAbility()
     {
         pm.disableCM = true;
+        pm.disableAR = true;
         //ps.canLook = false;
         //ps.canMove = false;
         //ps.SwitchToThird();
@@ -32,8 +33,9 @@ public class Dash : Ability
 
     void EndDash()
     {
-        rb.velocity = rb.velocity / 5;
+        rb.velocity = rb.velocity / 3;
 
         pm.disableCM = false;
+        pm.disableAR = false;
     }
 }

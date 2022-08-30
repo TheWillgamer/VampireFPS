@@ -24,11 +24,12 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 4500;
     public float maxSpeed = 20;
     public bool grounded;
-    public bool disableCM;
-    public LayerMask whatIsGround;
+    public bool disableCM;      //Disable counter-movement
+    public bool disableAR;      //Disable air-reduction
     public float airMovementMultiplier = 0.5f;
 
     public float counterMovement = 0.175f;
+    public float airReduceAmt = .01f;
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
 
@@ -42,9 +43,6 @@ public class PlayerMovement : MonoBehaviour
     private bool readyToJump = true;
     private float jumpCooldown = 0.25f;
     public float jumpForce = 550f;
-    public int maxWallJump = 1;
-    private int wallJumpCount;
-    public bool touchingWall = false;
     public float jumpResetDelay = 6f;
 
     //Input
@@ -68,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         disableCM = false;
+        disableAR = false;
         dead = false;
-        wallJumpCount = maxWallJump;
         stepping = false;
         sliding = false;
     }
@@ -173,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         //Extra gravity
-        rb.AddForce(Vector3.down * Time.deltaTime * 10);
+        rb.AddForce(Vector3.down * Time.deltaTime * 3000);
 
         //Find actual velocity relative to where player is looking
         Vector2 mag = FindVelRelativeToLook();
@@ -181,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Counteract sliding and sloppy movement
         CounterMovement(x, y, mag);
+        AirReduction(x, y, mag);
 
         //If holding jump && ready to jump, then jump
         if (readyToJump && jumping) Jump();
@@ -191,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         //If sliding down a ramp, add force down so player stays grounded and also builds speed
         if (crouching && grounded && readyToJump)
         {
-            rb.AddForce(Vector3.down * Time.deltaTime * 3000);
+            rb.AddForce(Vector3.down * Time.deltaTime * 500);
             return;
         }
 
@@ -233,26 +232,6 @@ public class PlayerMovement : MonoBehaviour
             Jumping.Play(0);
             Step.Stop();
             stepping = false;
-
-            //If jumping while falling, reset y velocity.
-            Vector3 vel = rb.velocity;
-            if (rb.velocity.y < 0.5f)
-                rb.velocity = new Vector3(vel.x, 0, vel.z);
-            else if (rb.velocity.y > 0)
-                rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
-
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-        else if (touchingWall && wallJumpCount>0 && !dead)
-        {
-            wallJumpCount--;
-
-            //Add jump forces
-            rb.AddForce(Vector2.up * jumpForce * 1.5f);
-            rb.AddForce(normalVector * jumpForce * 0.5f);
-
-            //Audio
-            Jumping.Play(0);
 
             //If jumping while falling, reset y velocity.
             Vector3 vel = rb.velocity;
@@ -319,6 +298,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void AirReduction(float x, float y, Vector2 mag)
+    {
+        if (grounded || disableAR) return;
+
+        //Counter movement
+        if ((x > 0 && mag.x < 0) || (x < 0 && mag.x > 0))
+        {
+            rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * airReduceAmt);
+        }
+        if ((y > 0 && mag.y < 0) || (y < 0 && mag.y > 0))
+        {
+            rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * airReduceAmt);
+        }
+    }
+
     /// <summary>
     /// Find the velocity relative to where the player is looking
     /// Useful for vectors calculations regarding movement and limiting movement
@@ -339,64 +333,13 @@ public class PlayerMovement : MonoBehaviour
         return new Vector2(xMag, yMag);
     }
 
-    private bool IsFloor(Vector3 v)
+    private void OnTriggerStay(Collider other)
     {
-        float angle = Vector3.Angle(Vector3.up, v);
-        return angle < maxSlopeAngle;
+        grounded = true;
     }
 
-    private bool cancellingGrounded;
-    private bool cancellingTouching;
-
-    /// <summary>
-    /// Handle ground detection
-    /// </summary>
-    private void OnCollisionStay(Collision other)
-    {
-        //Make sure we are only checking for walkable layers
-        int layer = other.gameObject.layer;
-        if (whatIsGround != (whatIsGround | (1 << layer))) return;
-
-        //Iterate through every collision in a physics update
-        for (int i = 0; i < other.contactCount; i++)
-        {
-            Vector3 normal = other.contacts[i].normal;
-            //FLOOR
-            if (IsFloor(normal))
-            {
-                grounded = true;
-                wallJumpCount = maxWallJump;
-                cancellingGrounded = false;
-                normalVector = normal;
-                CancelInvoke(nameof(StopGrounded));
-            }
-            else
-            {
-                cancellingTouching = false;
-                touchingWall = true;
-                CancelInvoke(nameof(StopTouching));
-            }
-        }
-
-        //Invoke ground/wall cancel, since we can't check normals with CollisionExit
-        if (!cancellingGrounded)
-        {
-            cancellingGrounded = true;
-            Invoke(nameof(StopGrounded), Time.deltaTime * jumpResetDelay);
-        }
-        if (!cancellingTouching)
-        {
-            cancellingTouching = true;
-            Invoke(nameof(StopTouching), Time.deltaTime * jumpResetDelay);
-        }
-    }
-
-    private void StopGrounded()
+    private void OnTriggerExit(Collider other)
     {
         grounded = false;
-    }
-    private void StopTouching()
-    {
-        touchingWall = false;
     }
 }
