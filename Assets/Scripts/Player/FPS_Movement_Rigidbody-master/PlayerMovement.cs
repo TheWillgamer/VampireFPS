@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float counterMovement = 0.175f;
     public float airReduceAmt = .01f;
+    public float extraGravity = 3000f;
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
 
@@ -171,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         //Extra gravity
-        rb.AddForce(Vector3.down * Time.deltaTime * 3000);
+        rb.AddForce(Vector3.down * Time.deltaTime * extraGravity);
 
         //Find actual velocity relative to where player is looking
         Vector2 mag = FindVelRelativeToLook();
