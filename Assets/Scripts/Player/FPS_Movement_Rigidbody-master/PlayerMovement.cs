@@ -43,7 +43,9 @@ public class PlayerMovement : MonoBehaviour
     //Jumping
     private bool readyToJump = true;
     private float jumpCooldown = 0.25f;
+    private int jumpCharge = 1;
     public float jumpForce = 550f;
+    public float secondJumpForce = 550f;
     public float jumpResetDelay = 6f;
 
     //Input
@@ -221,13 +223,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (grounded && readyToJump && !dead && !crouching)
+        if ((grounded || jumpCharge > 0) && readyToJump && !dead && !crouching)
         {
             readyToJump = false;
 
             //Add jump forces
-            rb.AddForce(Vector2.up * jumpForce * 1.5f);
-            rb.AddForce(normalVector * jumpForce * 0.5f);
+            if (grounded)
+            {
+                rb.AddForce(Vector2.up * jumpForce * 1.5f);
+                rb.AddForce(normalVector * jumpForce * 0.5f);
+            }
+            else
+            {
+                rb.AddForce(Vector2.up * secondJumpForce * 2f);
+                jumpCharge--;
+            }
 
             //Audio
             Jumping.Play(0);
@@ -336,7 +346,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        grounded = true;
+        if (other.tag == "Ground" || other.tag == "Enemy")
+        {
+            grounded = true;
+            jumpCharge = 1;
+        }
     }
 
     private void OnTriggerExit(Collider other)
