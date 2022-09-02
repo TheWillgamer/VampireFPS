@@ -76,21 +76,7 @@ public class AbilityFramework : MonoBehaviour
         {
             if (input[i])
             {
-                if (i == 0 && Time.time > basicatktimer)
-                {
-                    abilityList[i].UseAbility();
-                    ph.TakeDamage(abilityList[i].bloodCost);
-
-                    if (abilityList[i].charges == abilityList[i].maxCharges)
-                    {
-                        offcd[i] = Time.time + abilityList[i].cd;
-                    }
-
-                    abilityList[i].charges -= 1;
-
-                    //icons[i].GetChild(4).GetChild(1).GetComponent<Text>().text = abilityList[i].charges.ToString();
-                }
-                if (i == 2 || i == 3)
+                if ((i == 0 && Time.time > basicatktimer) || i > 1)
                 {
                     abilityList[i].UseAbility();
                     ph.TakeDamage(abilityList[i].bloodCost);
