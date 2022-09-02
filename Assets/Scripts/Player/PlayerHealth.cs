@@ -93,7 +93,7 @@ public class PlayerHealth : MonoBehaviour
         switch (other.tag)
         {
             case "EnemyProjectile":
-                TakeDamage(150);
+                TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
                 hit.Play(0);
                 direction = transform.position - other.transform.parent.transform.position;
                 direction.Normalize();

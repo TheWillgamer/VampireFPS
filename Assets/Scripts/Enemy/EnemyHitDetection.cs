@@ -39,7 +39,7 @@ public class EnemyHitDetection : MonoBehaviour
         switch (other.tag)
         {
             case "PlayerProjectile":
-                TakeDamage(4);
+                TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
                 direction = transform.position - other.transform.parent.transform.position;
                 direction.Normalize();
                 Knockback(600f, 0, direction);
