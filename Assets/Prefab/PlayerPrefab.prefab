@@ -3095,7 +3095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -810, y: -359.99997}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7736701735018575744
@@ -3151,7 +3151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7736701735025275158
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3171,7 +3171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -920, y: -390}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7736701735039780482
@@ -3719,6 +3719,7 @@ GameObject:
   - component: {fileID: 7736701735432866490}
   - component: {fileID: 7736701735432866495}
   - component: {fileID: 7736701735432866493}
+  - component: {fileID: 2658163648580710865}
   - component: {fileID: 7736701735432866492}
   - component: {fileID: 2044468992673540685}
   - component: {fileID: 7736701735432866491}
@@ -3899,7 +3900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icons:
   - {fileID: 7736701735025275158}
-  - {fileID: 0}
+  - {fileID: 7736701735025275158}
   - {fileID: 7736701735833553166}
   - {fileID: 2557081022732703007}
   anim: {fileID: 7736701734994471686}
@@ -3923,6 +3924,28 @@ MonoBehaviour:
   rangedAttack: {fileID: 3079862118213235695, guid: 25d33d8db444adf40b3ff44029531139, type: 3}
   rangedSpawn: {fileID: 7736701735075191157}
   sound: {fileID: 7736701734796940566}
+--- !u!114 &2658163648580710865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736701735432866436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc49f01cd2128340be242666071b2cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 1
+  cd: 5
+  charges: 1
+  maxCharges: 1
+  bloodCost: 20
+  rangedAttack: {fileID: 3079862118213235695, guid: 25d33d8db444adf40b3ff44029531139, type: 3}
+  rangedSpawn: {fileID: 7736701735075191157}
+  sound: {fileID: 7736701734796940566}
+  minsize: 5
+  maxsize: 5
 --- !u!114 &7736701735432866492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5638,8 +5661,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -950, y: -400}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7736701736027965468
 CanvasRenderer:
@@ -5669,12 +5692,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 39dce5d2b8709a24aa506298bbe60663, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0

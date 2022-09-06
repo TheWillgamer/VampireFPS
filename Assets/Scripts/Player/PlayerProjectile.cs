@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
     [SerializeField] float speed = 30.0f;
     [SerializeField] float aliveTime = 5.0f;
@@ -37,6 +37,8 @@ public class Projectile : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
         {
+            if (hit.transform.gameObject.tag == "Enemy")
+                hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
             Destroy(transform.parent.gameObject);
         }
 

@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3312248789594400485}
   - component: {fileID: 6961548254945309308}
   - component: {fileID: 911033685457660143}
-  - component: {fileID: 7683550423382727283}
+  - component: {fileID: 3303232056400704657}
   m_Layer: 0
   m_Name: Blood Shot
   m_TagString: PlayerProjectile
@@ -130,7 +130,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.38473368
   m_Center: {x: -0.00000047683716, y: 0.37445784, z: -0.000000014901161}
---- !u!114 &7683550423382727283
+--- !u!114 &3303232056400704657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7986657989203509846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9de2a4f735e2a44a97cc0134634af7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2eed5f066ac01e045b142d27d058e6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70

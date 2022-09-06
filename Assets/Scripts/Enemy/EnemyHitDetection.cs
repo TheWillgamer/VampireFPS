@@ -32,23 +32,7 @@ public class EnemyHitDetection : MonoBehaviour
         UpdateHealth();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Vector3 direction;
-
-        switch (other.tag)
-        {
-            case "PlayerProjectile":
-                TakeDamage(other.gameObject.GetComponent<Projectile>().damage);
-                direction = transform.position - other.transform.parent.transform.position;
-                direction.Normalize();
-                Knockback(600f, 0, direction);
-                Destroy(other.transform.parent.gameObject);
-                break;
-        }
-    }
-
-    void TakeDamage(int dmg)
+    public void TakeDamage(int dmg)
     {
         currentHealth -= dmg;
 

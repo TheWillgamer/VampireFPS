@@ -39,6 +39,7 @@ public class AbilityFramework : MonoBehaviour
         }
 
         AssignAbility(gameObject.GetComponent<BasicAttack>(), 0);
+        AssignAbility(gameObject.GetComponent<ChargedAttack>(), 1);
         AssignAbility(gameObject.GetComponent<Dash>(), 2);
         AssignAbility(gameObject.GetComponent<Blast>(), 3);
     }
@@ -76,7 +77,7 @@ public class AbilityFramework : MonoBehaviour
         {
             if (input[i])
             {
-                if ((i == 0 && Time.time > basicatktimer) || i > 1)
+                if ((i == 0 && Time.time > basicatktimer) || i > 0)
                 {
                     abilityList[i].UseAbility();
                     ph.TakeDamage(abilityList[i].bloodCost);
