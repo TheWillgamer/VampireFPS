@@ -17,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     //Rotation and look
     private float xRotation;
-    private float sensitivity = 50f;
-    private float sensMultiplier = 1f;
+    private float sensitivity;
+
+
 
     //Movement
     public float moveSpeed = 4500;
@@ -67,6 +68,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        }
         rb = GetComponent<Rigidbody>();
         disableCM = false;
         disableAR = false;
@@ -263,8 +268,8 @@ public class PlayerMovement : MonoBehaviour
     private float desiredX;
     private void Look()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime;
 
         //Find current look rotation
         Vector3 rot = playerCam.transform.localRotation.eulerAngles;
