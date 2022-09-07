@@ -61,10 +61,10 @@ public class EnemyHitDetection : MonoBehaviour
         hp_bar.localScale = new Vector3((float)currentHealth / maxHealth, 0.1f, 0.1f);
     }
 
-    void Knockback(float amount, float length, Vector3 direction)
+    public void Knockback(float amount, Vector3 direction)
     {
         float startTime = Time.time;
 
-        rb.AddForce(direction * amount + transform.up * amount);
+        rb.AddForce(direction * amount);
     }
 }
