@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8802841846075385431}
   - component: {fileID: 4230268050299300340}
   - component: {fileID: 6163877092669804482}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4857,7 +4857,7 @@ GameObject:
   - component: {fileID: 6961548254945309308}
   - component: {fileID: 911033685457660143}
   - component: {fileID: 3303232056400704657}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Blood Shot
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
@@ -4958,3 +4958,5 @@ MonoBehaviour:
   speed: 150
   aliveTime: 5
   damage: 7
+  start: {fileID: 0}
+  end: {x: 0, y: 0, z: 0}
