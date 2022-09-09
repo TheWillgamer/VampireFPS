@@ -58,7 +58,7 @@ public class AbilityFramework : MonoBehaviour
         // when fire button is first used
         if (Input.GetButtonDown("Fire1"))
         {
-            basicatktimer = Time.time + .1f;
+            basicatktimer = Time.time + 0f;
         }
 
         for (int i = 0; i < length; i++)
