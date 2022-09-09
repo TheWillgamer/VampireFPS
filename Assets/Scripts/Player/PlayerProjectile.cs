@@ -44,12 +44,22 @@ public class PlayerProjectile : MonoBehaviour
             RaycastHit hit;
             // Does the ray intersect any walls
 
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
+            if (Physics.SphereCast(transform.position, _colliderRadius, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
             {
                 if (hit.transform.gameObject.tag == "Enemy")
+                {
                     hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
-                Invoke("DestroyProjectile", 1.5f);
-                active = false;
+                    Invoke("DestroyProjectile", 1.5f);
+                    active = false;
+                }
+            }
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
+            {
+                if (hit.transform.gameObject.tag != "Enemy")
+                {
+                    Invoke("DestroyProjectile", 1.5f);
+                    active = false;
+                }
             }
 
             transform.position += transform.forward * travelDistance;
