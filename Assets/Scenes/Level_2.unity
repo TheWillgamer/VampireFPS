@@ -10696,6 +10696,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7736701734796940566, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_Pitch
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701734796940566, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736701734796940566, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f194d2755e3e91b4f896331dfeef0008, type: 3}
+    - target: {fileID: 7736701734796940566, guid: 5dedd03a6af614548868623722df0810, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7736701735075191157, guid: 5dedd03a6af614548868623722df0810, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.87
@@ -10734,7 +10750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7736701735432866493, guid: 5dedd03a6af614548868623722df0810, type: 3}
       propertyPath: cd
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7736701735504802157, guid: 5dedd03a6af614548868623722df0810, type: 3}
       propertyPath: m_ClearFlags
