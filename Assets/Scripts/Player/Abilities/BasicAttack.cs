@@ -5,11 +5,25 @@ using UnityEngine;
 public class BasicAttack : Ability
 {
     [SerializeField] Transform rangedAttack;
-    [SerializeField] Transform rangedSpawn;
+    [SerializeField] Transform rangedSpawn_l;
+    [SerializeField] Transform rangedSpawn_r;
     public AudioSource sound;
+    private bool left = false;
 
     public override void UseAbility()
     {
+        Transform rangedSpawn;
+        if (left)
+        {
+            rangedSpawn = rangedSpawn_l;
+            left = false;
+        }
+        else
+        {
+            rangedSpawn = rangedSpawn_r;
+            left = true;
+        }
+
         PlayerProjectile proj = Instantiate(rangedAttack, rangedSpawn.position, rangedSpawn.rotation).GetChild(0).GetComponent<PlayerProjectile>();
         proj.start = rangedSpawn;
 

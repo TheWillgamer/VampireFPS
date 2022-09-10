@@ -23,6 +23,8 @@ public class PlayerProjectile : MonoBehaviour
 
         transform.position = start.position;
         transform.LookAt(end);
+
+        MoveProjectile();
     }
 
     // Update is called once per frame
@@ -35,35 +37,40 @@ public class PlayerProjectile : MonoBehaviour
 
         if (active)
         {
-            //Determine how far object should travel this frame.
-            float travelDistance = (speed * Time.deltaTime);
-            //Set trace distance to be travel distance + collider radius.
-            float traceDistance = travelDistance + _colliderRadius;
-
-            //Explode bullet if it goes through the wall
-            RaycastHit hit;
-            // Does the ray intersect any walls
-
-            if (Physics.SphereCast(transform.position, _colliderRadius, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
-            {
-                if (hit.transform.gameObject.tag == "Enemy")
-                {
-                    hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
-                    Invoke("DestroyProjectile", 1.5f);
-                    active = false;
-                }
-            }
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
-            {
-                if (hit.transform.gameObject.tag != "Enemy")
-                {
-                    Invoke("DestroyProjectile", 1.5f);
-                    active = false;
-                }
-            }
-
-            transform.position += transform.forward * travelDistance;
+            MoveProjectile();
         }
+    }
+
+    void MoveProjectile()
+    {
+        //Determine how far object should travel this frame.
+        float travelDistance = (speed * Time.deltaTime);
+        //Set trace distance to be travel distance + collider radius.
+        float traceDistance = travelDistance + _colliderRadius;
+
+        //Explode bullet if it goes through the wall
+        RaycastHit hit;
+        // Does the ray intersect any walls
+
+        if (Physics.SphereCast(transform.position, _colliderRadius, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
+        {
+            if (hit.transform.gameObject.tag == "Enemy")
+            {
+                hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
+                Invoke("DestroyProjectile", 1.5f);
+                active = false;
+            }
+        }
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
+        {
+            if (hit.transform.gameObject.tag != "Enemy")
+            {
+                Invoke("DestroyProjectile", 1.5f);
+                active = false;
+            }
+        }
+
+        transform.position += transform.forward * travelDistance;
     }
 
     void DestroyProjectile()
