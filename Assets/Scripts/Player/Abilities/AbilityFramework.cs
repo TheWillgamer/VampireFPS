@@ -39,7 +39,7 @@ public class AbilityFramework : MonoBehaviour
         }
 
         AssignAbility(gameObject.GetComponent<BasicAttack>(), 0);
-        AssignAbility(gameObject.GetComponent<Beam>(), 1);
+        AssignAbility(gameObject.GetComponent<ChargedAttack>(), 1);
         AssignAbility(gameObject.GetComponent<Dash>(), 2);
         AssignAbility(gameObject.GetComponent<Blast>(), 3);
     }

@@ -3719,7 +3719,7 @@ GameObject:
   - component: {fileID: 7736701735432866490}
   - component: {fileID: 7736701735432866495}
   - component: {fileID: 7736701735432866493}
-  - component: {fileID: 4190840329529258341}
+  - component: {fileID: 8078027479688621311}
   - component: {fileID: 7736701735432866492}
   - component: {fileID: 2044468992673540685}
   - component: {fileID: 7736701735432866491}
@@ -3923,7 +3923,7 @@ MonoBehaviour:
   bloodCost: 10
   rangedAttack: {fileID: 3079862118213235695, guid: 25d33d8db444adf40b3ff44029531139, type: 3}
   sound: {fileID: 7736701734796940566}
---- !u!114 &4190840329529258341
+--- !u!114 &8078027479688621311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3932,20 +3932,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7736701735432866436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 401f969ec372b4548ae427828604404b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fc49f01cd2128340be242666071b2cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 1
-  cd: 1
+  cd: 5
   charges: 1
   maxCharges: 3
   bloodCost: 3
-  dashSpeed: 1250
-  radius: 2
-  maxRange: 10000
-  damage: 200
-  knockback: 50000
+  rangedAttack: {fileID: 3079862118213235695, guid: 2595dd5ca34f1024f91ba16788e3572c, type: 3}
+  rangedSpawn: {fileID: 0}
   sound: {fileID: 0}
+  chargeValue: 0
+  minsize: 0
+  maxsize: 0
 --- !u!114 &7736701735432866492
 MonoBehaviour:
   m_ObjectHideFlags: 0
