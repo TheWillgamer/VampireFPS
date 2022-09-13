@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class ChargedPlayerProjectile : MonoBehaviour
 {
-    [SerializeField] float force = 30.0f;
     [SerializeField] float aliveTime = 5.0f;
 
     public int minDamage = 5;
     public int maxDamage = 5;
 
+    public float minSpeed = 30.0f;
+    public float maxSpeed = 30.0f;
+
     public float minKnockback = 10000f;
     public float maxKnockback = 10000f;
+
+    public float playerMinKnockback = 300f;
+    public float playerMaxKnockback = 300f;
 
     float deathTime;
     private Rigidbody rb;
     private float _colliderRadius;
     private float radius;
+    private bool active;
 
     public float extraGravity = 3000f;
     public float chargeValue;
@@ -29,20 +35,61 @@ public class ChargedPlayerProjectile : MonoBehaviour
         _colliderRadius = sc.radius;
 
         radius = _colliderRadius + 10f;
+        active = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    // Update is called once per frame
+    void Update()
     {
-        if (other.tag == "Enemy" || other.tag == "Ground")
+        if (Time.time > deathTime)
         {
-            Explode();
+            Destroy(transform.parent.gameObject);
+        }
+
+        if (active)
+        {
+            MoveProjectile();
         }
     }
 
-    public void Launch()
+    void MoveProjectile()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * force, ForceMode.Impulse);
+        //Determine how far object should travel this frame.
+        float travelDistance = (minSpeed * Time.deltaTime);
+        //Set trace distance to be travel distance + collider radius.
+        float traceDistance = travelDistance + _colliderRadius;
+
+        //Explode bullet if it goes through the wall
+        RaycastHit hit;
+        // Does the ray intersect any walls
+
+        if (Physics.SphereCast(transform.position, _colliderRadius, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
+        {
+            if (hit.transform.gameObject.tag == "Enemy")
+            {
+                transform.position = hit.point;
+                Explode();
+                Invoke("DestroyProjectile", 1.5f);
+                active = false;
+            }
+        }
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
+        {
+            if (hit.transform.gameObject.tag != "Enemy")
+            {
+                transform.position = hit.point;
+                Explode();
+                Invoke("DestroyProjectile", 1.5f);
+                active = false;
+            }
+        }
+
+        transform.position += transform.forward * travelDistance;
+    }
+
+    void DestroyProjectile()
+    {
+        Destroy(transform.parent.gameObject);
     }
 
     private void Explode()
@@ -55,24 +102,15 @@ public class ChargedPlayerProjectile : MonoBehaviour
                 ehd.TakeDamage(minDamage + (int)(chargeValue * (maxDamage - minDamage)));
                 ehd.Knockback(minKnockback + chargeValue * (maxKnockback - minKnockback), (col.transform.position - transform.position).normalized);
             }
+            else if(col.tag == "Player")
+            {
+                // Calculate Angle Between the collision point and the player
+                Vector3 dir = col.transform.position - transform.position;
+                // And finally we add force in the direction of dir and multiply it by force.
+                // This will push back the player
+                col.gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * (playerMinKnockback + chargeValue * (playerMaxKnockback - playerMinKnockback)));
+            }
         }
         Destroy(transform.parent.gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Extra gravity
-        rb.AddForce(Vector3.down * Time.deltaTime * extraGravity);
-
-        if (Time.time > deathTime)
-        {
-            Destroy(transform.parent.gameObject);
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

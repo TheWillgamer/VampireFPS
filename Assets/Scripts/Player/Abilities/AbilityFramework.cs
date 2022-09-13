@@ -49,7 +49,7 @@ public class AbilityFramework : MonoBehaviour
     {
         // ability is activated;
         input[0] = Input.GetButton("Fire1");
-        input[1] = Input.GetButtonDown("Fire2");
+        input[1] = Input.GetButtonUp("Fire2");
         input[2] = Input.GetButtonDown("Fire3");
         input[3] = Input.GetButtonDown("Fire4");
 

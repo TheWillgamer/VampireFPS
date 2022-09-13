@@ -159,7 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89be9da4ad4ed0442b1b004b641feb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 50
   aliveTime: 20
-  damage: 15
+  minDamage: 5
+  maxDamage: 5
+  minSpeed: 200
+  maxSpeed: 200
+  minKnockback: 10000
+  maxKnockback: 10000
+  playerMinKnockback: 1500
+  playerMaxKnockback: 1500
   extraGravity: 1000
+  chargeValue: 0
