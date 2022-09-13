@@ -10,8 +10,6 @@ public class PlayerProjectile : MonoBehaviour
     float deathTime;
     private float _colliderRadius;
     private bool active;
-    public Transform start;     // Where the projectile spawns
-    public Vector3 end;       // Where the projectile ends
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +18,6 @@ public class PlayerProjectile : MonoBehaviour
         SphereCollider sc = GetComponent<SphereCollider>();
         _colliderRadius = sc.radius;
         active = true;
-
-        transform.position = start.position;
-        transform.LookAt(end);
 
         MoveProjectile();
     }
