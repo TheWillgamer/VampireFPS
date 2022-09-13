@@ -1484,7 +1484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: -10}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7736701734303429836
@@ -2355,10 +2355,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f1b3b40582cf2d742b595c75b4bb2c66, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f194d2755e3e91b4f896331dfeef0008, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.02
-  m_Pitch: 2
+  m_Volume: 0.1
+  m_Pitch: 0.75
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3853,7 +3853,7 @@ MonoBehaviour:
   airMovementMultiplier: 0.8
   counterMovement: 0.175
   airReduceAmt: 0.2
-  extraGravity: 3000
+  extraGravity: 2200
   maxSlopeAngle: 35
   slideForce: 600
   slideCounterMovement: 0.08
@@ -3917,7 +3917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 1
-  cd: 0.2
+  cd: 0.22
   charges: 1
   maxCharges: 1
   bloodCost: 10
@@ -3986,8 +3986,8 @@ MonoBehaviour:
   activateTime: 0.3
   blastPoint: {fileID: 2894598573385347633}
   radius: 3
-  minDamage: 15
-  maxDamage: 40
+  minDamage: 100
+  maxDamage: 200
   minKnockback: 5000
   maxKnockback: 10000
   sound: {fileID: 0}
@@ -4017,7 +4017,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7736701735432866436}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.55
   m_Height: 1.9
@@ -4335,8 +4335,8 @@ Camera:
   m_GameObject: {fileID: 7736701735504802159}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.49056602, g: 0.14578141, b: 0.14578141, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
