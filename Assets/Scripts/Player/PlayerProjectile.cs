@@ -11,6 +11,7 @@ public class PlayerProjectile : MonoBehaviour
     private float _colliderRadius;
     private bool active;
     public GameObject deathParticles;
+    public GameObject hitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,7 @@ public class PlayerProjectile : MonoBehaviour
                 hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
                 Debug.Log(hit.normal);
                 Instantiate(deathParticles, hit.point, Quaternion.LookRotation(hit.normal));
+                Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Invoke("DestroyProjectile", 1.5f);
                 active = false;
             }
@@ -63,6 +65,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             if (hit.transform.gameObject.tag != "Enemy")
             {
+                Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Invoke("DestroyProjectile", 1.5f);
                 active = false;
             }
