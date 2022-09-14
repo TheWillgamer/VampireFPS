@@ -6,12 +6,16 @@ using UnityEngine.ParticleSystemJobs;
 public class ParticleCollector : MonoBehaviour
 {
     ParticleSystem ps;
+    GameObject player;
+    public int healAmt = 1;     // how much each particle heals
 
     List <ParticleSystem.Particle> particles = new List<ParticleSystem.Particle>();
 
     private void Start()
     {
+        player = GameObject.FindWithTag("Player");
         ps = GetComponent<ParticleSystem>();
+        ps.trigger.AddCollider(player.GetComponent<CapsuleCollider>());
     }
 
     private void OnParticleTrigger()
@@ -22,7 +26,7 @@ public class ParticleCollector : MonoBehaviour
         {
             ParticleSystem.Particle p = particles[i];
             p.remainingLifetime = 0;
-            Debug.Log("We collected 1 particles");
+            player.GetComponent<PlayerHealth>().TakeDamage(-healAmt);
             particles[i] = p;
 
         }
