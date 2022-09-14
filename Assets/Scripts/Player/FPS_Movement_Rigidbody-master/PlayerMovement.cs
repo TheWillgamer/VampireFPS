@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 550f;
     public float secondJumpForce = 550f;
     public float jumpResetDelay = 6f;
+    public float wallJumpModifier = 1.5f;
 
     //Input
     public float x, y;
@@ -234,8 +235,11 @@ public class PlayerMovement : MonoBehaviour
             //Add jump forces
             if (grounded)
             {
-                rb.AddForce(Vector2.up * jumpForce * 1.3f);
-                rb.AddForce(normalVector * jumpForce * 0.7f);
+                rb.AddForce(Vector2.up * jumpForce * 1.5f);
+                if(Vector3.Angle(Vector2.up, normalVector) > 35)
+                    rb.AddForce(normalVector * jumpForce * wallJumpModifier);
+                else
+                    rb.AddForce(normalVector * jumpForce * 0.5f);
             }
             else
             {
