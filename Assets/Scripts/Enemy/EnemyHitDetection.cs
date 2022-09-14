@@ -52,10 +52,6 @@ public class EnemyHitDetection : MonoBehaviour
             }
             currentHealth = 0;
         }
-        else
-        {
-            ph.TakeDamage(-lifestealAmt);
-        }
     }
 
     void UpdateHealth()
