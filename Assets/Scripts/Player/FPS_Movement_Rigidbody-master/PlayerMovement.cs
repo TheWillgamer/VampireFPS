@@ -55,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
 
     //Sliding
     private Vector3 normalVector = Vector3.up;
-    private Vector3 wallNormalVector;
 
     public Animator anim;
 
@@ -115,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
                 Step.Play(0);
                 stepping = true;
             }
-            else if(stepping && !grounded)
+            else if (stepping && !grounded)
             {
                 Step.Stop();
                 stepping = false;
@@ -148,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
-        if(!sliding && grounded && Input.GetKey(KeyCode.LeftControl))
+        if (!sliding && grounded && Input.GetKey(KeyCode.LeftControl))
         {
             Slide.Play(0);
             sliding = true;
@@ -235,8 +234,8 @@ public class PlayerMovement : MonoBehaviour
             //Add jump forces
             if (grounded)
             {
-                rb.AddForce(Vector2.up * jumpForce * 1.5f);
-                rb.AddForce(normalVector * jumpForce * 0.5f);
+                rb.AddForce(Vector2.up * jumpForce * 1.3f);
+                rb.AddForce(normalVector * jumpForce * 0.7f);
             }
             else
             {
@@ -361,5 +360,16 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         grounded = false;
+    }
+
+    // Allows player to jump away from wall
+    private void OnCollisionStay(Collision other)
+    {
+        //Iterate through every collision in a physics update
+        for (int i = 0; i < other.contactCount; i++)
+        {
+            normalVector = other.contacts[i].normal;
+        }
+        Debug.Log(normalVector);
     }
 }
