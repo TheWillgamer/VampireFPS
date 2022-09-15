@@ -375,6 +375,5 @@ public class PlayerMovement : MonoBehaviour
         {
             normalVector = other.contacts[i].normal;
         }
-        Debug.Log(normalVector);
     }
 }

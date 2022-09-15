@@ -4249,6 +4249,7 @@ GameObject:
   - component: {fileID: 2044468992673540685}
   - component: {fileID: 2864033645147955027}
   - component: {fileID: 1768055200}
+  - component: {fileID: 8737453131795872503}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -5006,6 +5007,19 @@ ParticleSystemForceField:
         m_RotationOrder: 4
     m_MultiplyDragByParticleSize: 1
     m_MultiplyDragByParticleVelocity: 1
+--- !u!114 &8737453131795872503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736701735432866436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd641459daba3ea418a1b6113f20923d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipped: {fileID: 0}
 --- !u!1 &7736701735461634441
 GameObject:
   m_ObjectHideFlags: 0

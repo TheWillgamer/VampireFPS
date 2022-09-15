@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class t_Brick : MonoBehaviour
 {
     [SerializeField] float speed = 30.0f;
     [SerializeField] float aliveTime = 5.0f;
@@ -29,7 +29,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (Time.time > deathTime)
         {
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
         }
 
         if (active)
@@ -55,7 +55,7 @@ public class PlayerProjectile : MonoBehaviour
             {
                 hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
                 Instantiate(deathParticles, hit.point, Quaternion.LookRotation(hit.normal));
-                Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                //Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Invoke("DestroyProjectile", 1.5f);
                 active = false;
             }
@@ -75,6 +75,6 @@ public class PlayerProjectile : MonoBehaviour
 
     void DestroyProjectile()
     {
-        Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
     }
 }
