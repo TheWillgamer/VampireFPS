@@ -416,7 +416,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -488,21 +488,25 @@ MonoBehaviour:
   maxSpeed: 18
   grounded: 0
   disableCM: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
+  disableAR: 0
   airMovementMultiplier: 0.7
   counterMovement: 0.175
+  airReduceAmt: 0.01
+  extraGravity: 3000
   maxSlopeAngle: 35
   slideForce: 600
   slideCounterMovement: 0.08
   jumpForce: 550
-  maxWallJump: 1
-  touchingWall: 0
+  secondJumpForce: 550
   jumpResetDelay: 10
+  wallJumpUpModifier: 1.5
+  wallJumpModifier: 1.5
   x: 0
   y: 0
   anim: {fileID: 6755529713803585912}
+  Step: {fileID: 0}
+  Jumping: {fileID: 0}
+  Slide: {fileID: 0}
 --- !u!114 &6755529712148826308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +524,9 @@ MonoBehaviour:
   dmgScreen: {fileID: 6755529713387383893}
   tick_cd: 0.1
   gameOverScreen: {fileID: 6755529712657079339}
+  victoryScreen: {fileID: 0}
+  hit: {fileID: 0}
+  dead: {fileID: 0}
 --- !u!114 &6755529712148826305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +562,7 @@ MonoBehaviour:
   maxCharges: 1
   bloodCost: 10
   rangedAttack: {fileID: 3079862118213235695, guid: 25d33d8db444adf40b3ff44029531139, type: 3}
-  rangedSpawn: {fileID: 6755529713720728331}
+  sound: {fileID: 0}
 --- !u!114 &6755529712148826306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,6 +582,7 @@ MonoBehaviour:
   bloodCost: 50
   dashSpeed: 5000
   dashTime: 0.15
+  sound: {fileID: 0}
 --- !u!114 &6755529712148826309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +600,7 @@ MonoBehaviour:
   siphonText: {fileID: 6755529712153081627}
   siphonAmount: 300
   anim: {fileID: 6755529713803585912}
+  sound: {fileID: 0}
 --- !u!1 &6755529712153081627
 GameObject:
   m_ObjectHideFlags: 0
@@ -3382,6 +3391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 6755529712299859454}
   player: {fileID: 6755529712148826363}
+  footsteps: {fileID: 0}
 --- !u!1 &6755529713803585907
 GameObject:
   m_ObjectHideFlags: 0

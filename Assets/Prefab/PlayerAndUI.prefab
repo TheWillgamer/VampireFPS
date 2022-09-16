@@ -1031,7 +1031,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1103,19 +1103,25 @@ MonoBehaviour:
   maxSpeed: 20
   grounded: 0
   disableCM: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
+  disableAR: 0
+  airMovementMultiplier: 0.5
   counterMovement: 0.175
+  airReduceAmt: 0.01
+  extraGravity: 3000
   maxSlopeAngle: 35
   slideForce: 600
   slideCounterMovement: 0.08
   jumpForce: 550
-  maxWallJump: 1
-  touchingWall: 0
+  secondJumpForce: 550
   jumpResetDelay: 10
+  wallJumpUpModifier: 1.5
+  wallJumpModifier: 1.5
   x: 0
   y: 0
+  anim: {fileID: 0}
+  Step: {fileID: 0}
+  Jumping: {fileID: 0}
+  Slide: {fileID: 0}
 --- !u!114 &766616040506900501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,6 +1139,9 @@ MonoBehaviour:
   dmgScreen: {fileID: 766616041415550084}
   tick_cd: 0.2
   gameOverScreen: {fileID: 766616039998362874}
+  victoryScreen: {fileID: 0}
+  hit: {fileID: 0}
+  dead: {fileID: 0}
 --- !u!114 &766616040506900496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,6 +1158,7 @@ MonoBehaviour:
   - {fileID: 766616041174105017}
   - {fileID: 0}
   - {fileID: 766616040373863329}
+  anim: {fileID: 0}
 --- !u!114 &766616040506900498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,7 +1177,7 @@ MonoBehaviour:
   maxCharges: 1
   bloodCost: 10
   rangedAttack: {fileID: 3079862118213235695, guid: 25d33d8db444adf40b3ff44029531139, type: 3}
-  rangedSpawn: {fileID: 766616041090847706}
+  sound: {fileID: 0}
 --- !u!114 &766616040506900499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1187,6 +1197,7 @@ MonoBehaviour:
   bloodCost: 50
   dashSpeed: 5000
   dashTime: 0.15
+  sound: {fileID: 0}
 --- !u!114 &766616040506900500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,6 +1214,8 @@ MonoBehaviour:
   siphonDistance: 3
   siphonText: {fileID: 766616040511029194}
   siphonAmount: 300
+  anim: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!1 &766616040511029194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,6 +2027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 766616040355878191}
   player: {fileID: 766616040506900522}
+  footsteps: {fileID: 0}
 --- !u!1 &766616041090847707
 GameObject:
   m_ObjectHideFlags: 0

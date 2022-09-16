@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1442934, g: 0.06653614, b: 0.08936967, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -538,10 +538,37 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: e04be998d717248f8bde6d98b4038eb6, type: 3}
 --- !u!4 &49811392 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: e04be998d717248f8bde6d98b4038eb6,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e04be998d717248f8bde6d98b4038eb6, type: 3}
   m_PrefabInstance: {fileID: 49811391}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &145347195
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/FogPlus
+  m_Shader: {fileID: 4800000, guid: 39ef0b8c9be96494d9f8b2f2c54a28c5, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +658,7 @@ Transform:
   m_LocalRotation: {x: -0.7537587, y: -0.21504672, z: 0.08803062, w: -0.61469775}
   m_LocalPosition: {x: -0.41, y: 3.69, z: 0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -668,6 +696,7 @@ Transform:
   m_LocalRotation: {x: 0.085789144, y: 0.05443555, z: -0.038105268, w: 0.9940951}
   m_LocalPosition: {x: 10.47, y: 1.65, z: -19.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 839522998}
   m_RootOrder: 0
@@ -991,8 +1020,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: bdf908190a7ed4fe7b6dfd69e04f6f28, type: 3}
 --- !u!4 &767776258 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: bdf908190a7ed4fe7b6dfd69e04f6f28,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 400000, guid: bdf908190a7ed4fe7b6dfd69e04f6f28, type: 3}
   m_PrefabInstance: {fileID: 767776257}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &839522997
@@ -1021,47 +1049,23 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.8497298, y: 0.06073904, z: 1.2611618}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 539992168}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1447928821
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/FogPlus
-  m_Shader: {fileID: 4800000, guid: 39ef0b8c9be96494d9f8b2f2c54a28c5, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!21 &1457351415
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hidden/FogPlus
   m_Shader: {fileID: 4800000, guid: 39ef0b8c9be96494d9f8b2f2c54a28c5, type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -1075,6 +1079,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats: []
     m_Colors: []
   m_BuildTextureStacks: []
@@ -1104,6 +1109,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 49811392}
   - {fileID: 1701686397}
@@ -1422,6 +1428,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a3db3b79b2f8247a5841bba15cfe0736, type: 2}
+    - target: {fileID: 2300026, guid: e04be998d717248f8bde6d98b4038eb6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 2300028, guid: e04be998d717248f8bde6d98b4038eb6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1522,8 +1532,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: e04be998d717248f8bde6d98b4038eb6, type: 3}
 --- !u!4 &1701686397 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: e04be998d717248f8bde6d98b4038eb6,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e04be998d717248f8bde6d98b4038eb6, type: 3}
   m_PrefabInstance: {fileID: 1701686396}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1716296989
@@ -1556,6 +1565,7 @@ Transform:
   m_LocalRotation: {x: 0.085789144, y: 0.05443555, z: -0.038105268, w: 0.9940951}
   m_LocalPosition: {x: 8.49, y: 1.94, z: -19.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1641,7 +1651,7 @@ MonoBehaviour:
   heightFogIntensity: 1
   useHeightFogOnSky: 0
   distanceHeightBlend: 0.5
-  material: {fileID: 1447928821}
+  material: {fileID: 145347195}
 --- !u!81 &1716296992
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1740,6 +1750,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.3650208, y: 0.62419224, z: -9.282731}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1545205523}
   m_Father: {fileID: 0}
@@ -1747,14 +1758,17 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &2016767247
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hidden/OutlinePlus
   m_Shader: {fileID: 4800000, guid: f0e778543e4d8a34295b7995426495da, type: 3}
-  m_ShaderKeywords: OUTLINE_USE_DEPTH OUTLINE_USE_NORMALS
+  m_ValidKeywords:
+  - OUTLINE_USE_DEPTH
+  - OUTLINE_USE_NORMALS
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -1768,6 +1782,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats: []
     m_Colors: []
   m_BuildTextureStacks: []
