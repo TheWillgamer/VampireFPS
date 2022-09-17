@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 919014137583807817}
   - component: {fileID: 919014137583807816}
-  - component: {fileID: 919014137583807819}
+  - component: {fileID: 8157479318289589537}
   m_Layer: 0
   m_Name: SpeedPad
   m_TagString: Untagged
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &919014137583807819
+--- !u!114 &8157479318289589537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +55,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 919014137583807818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8f2ee3fb6750b94c98b7eef926ba656, type: 3}
+  m_Script: {fileID: 11500000, guid: 141d8523de7b727488b64f4487dc1948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 100
+  moveSpeed: 8000
+  maxSpeed: 20
