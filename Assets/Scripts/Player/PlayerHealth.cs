@@ -111,11 +111,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Knockback(float amount, Vector3 direction)
+    public void Knockback(float amount, Vector3 direction)
     {
-        float startTime = Time.time;
-
-        rb.AddForce(direction * amount + transform.up * amount);
+        rb.AddForce(direction * amount + transform.up * amount / 4);
     }
 
     IEnumerator Fade()
