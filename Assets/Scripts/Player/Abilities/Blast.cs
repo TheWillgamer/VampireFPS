@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Blast : Ability
 {
+    public float movementReductionMultiplier = 0.2f;
     public float dashSpeed = 2000f;
     public float activateTime = 0.1f;
 
@@ -28,6 +29,7 @@ public class Blast : Ability
 
     void Activate()
     {
+        rb.velocity = rb.velocity * movementReductionMultiplier;
         rb.AddForce(-pm.playerCam.transform.forward * dashSpeed);
         reach = (blastPoint.position - transform.position).magnitude;
 

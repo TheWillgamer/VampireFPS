@@ -51,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpUpModifier = 1.5f;
     public float wallJumpModifier = 1.5f;
 
+    //GroundPound
+    public float poundSpeed = 40;
+
     //Input
     public float x, y;
     bool jumping, sprinting, crouching;
@@ -142,12 +145,19 @@ public class PlayerMovement : MonoBehaviour
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
         jumping = Input.GetButton("Jump");
-        crouching = Input.GetKey(KeyCode.LeftControl);
+        //crouching = Input.GetKey(KeyCode.LeftControl);
 
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
-            StartCrouch();
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            if(grounded)
+                StartCrouch();
+            else
+            {
+                rb.velocity = new Vector3(0, -poundSpeed, 0);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl) && crouching)
             StopCrouch();
         if (!sliding && grounded && Input.GetKey(KeyCode.LeftControl))
         {
@@ -158,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartCrouch()
     {
+        crouching = true;
         transform.localScale = crouchScale;
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         if (rb.velocity.magnitude > 0.5f)
@@ -171,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopCrouch()
     {
+        crouching = false;
         transform.localScale = playerScale;
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         Slide.Stop();

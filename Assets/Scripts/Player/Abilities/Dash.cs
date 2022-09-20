@@ -16,6 +16,8 @@ public class Dash : Ability
         //ps.SwitchToThird();
         sound.Play(0);
 
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
         if (pm.y == 0 && pm.x == 0)
         {
             rb.AddForce(orientation.transform.forward * dashSpeed);

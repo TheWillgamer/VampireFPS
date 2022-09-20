@@ -25,11 +25,6 @@ public class Sawblade : MonoBehaviour
         offcd = Time.time;
         disabled = false;
     }
-    
-    void Update()
-    {
-        Debug.Log(playerLoc.position);
-    }
 
     void OnTriggerStay(Collider other)
     {

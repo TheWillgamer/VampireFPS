@@ -4388,8 +4388,9 @@ MonoBehaviour:
   jumpForce: 1000
   secondJumpForce: 800
   jumpResetDelay: 10
-  wallJumpUpModifier: 1.5
+  wallJumpUpModifier: 1.9
   wallJumpModifier: 1.5
+  downSpeed: 50
   x: 0
   y: 0
   anim: {fileID: 7736701734994471686}
@@ -4490,6 +4491,7 @@ MonoBehaviour:
   charges: 1
   maxCharges: 1
   bloodCost: 50
+  movementReductionMultiplier: 0.2
   dashSpeed: 2300
   activateTime: 0.3
   blastPoint: {fileID: 2894598573385347633}
