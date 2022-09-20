@@ -9,13 +9,26 @@ public class Sawblade : MonoBehaviour
     [SerializeField] private float knockback;
     private float offcd;
     private PlayerHealth ph;
+    private Rigidbody rb;
+    private Transform playerLoc;
     private bool disabled;
+
+    private Transform start;
+    [SerializeField] private Transform end;
 
     void Start()
     {
-        ph = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        GameObject player = GameObject.FindWithTag("Player");
+        ph = player.GetComponent<PlayerHealth>();
+        rb = player.GetComponent<Rigidbody>();
+        playerLoc = player.transform;
         offcd = Time.time;
         disabled = false;
+    }
+    
+    void Update()
+    {
+        Debug.Log(playerLoc.position);
     }
 
     void OnTriggerStay(Collider other)
@@ -23,7 +36,10 @@ public class Sawblade : MonoBehaviour
         if (!disabled && Time.time > offcd && other.tag == "Player")
         {
             ph.TakeDamage(damage);
-            ph.Knockback(knockback, (other.transform.position - transform.position).normalized);
+            Vector3 direction = playerLoc.position - transform.position;
+            direction = new Vector3(direction.x, 0, direction.z);
+            rb.velocity = Vector3.zero;
+            rb.AddForce(direction.normalized * knockback + transform.up * knockback / 2);
             offcd = Time.time + cd;
         }
     }
