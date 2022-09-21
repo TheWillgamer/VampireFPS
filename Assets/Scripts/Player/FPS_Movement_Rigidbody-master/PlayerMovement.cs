@@ -365,27 +365,37 @@ public class PlayerMovement : MonoBehaviour
         return new Vector2(xMag, yMag);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Ground" || other.tag == "Enemy")
-        {
-            grounded = true;
-            jumpCharge = 1;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision other)
     {
         grounded = false;
+    }
+
+    private bool IsFloor(Vector3 v)
+    {
+        float angle = Vector3.Angle(Vector3.up, v);
+        return angle < 95;
     }
 
     // Allows player to jump away from wall
     private void OnCollisionStay(Collision other)
     {
-        //Iterate through every collision in a physics update
-        for (int i = 0; i < other.contactCount; i++)
+        if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Enemy")
         {
-            normalVector = other.contacts[i].normal;
+            for (int i = 0; i < other.contactCount; i++)
+            {
+                Vector3 normal = other.contacts[i].normal;
+                //FLOOR
+                if (IsFloor(normal))
+                {
+                    grounded = true;
+                    normalVector = normal;
+                    jumpCharge = 1;
+                }
+            }
+            
         }
+
     }
+
+    
 }
