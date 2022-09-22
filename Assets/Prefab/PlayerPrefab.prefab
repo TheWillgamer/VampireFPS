@@ -1456,7 +1456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6164808829342722572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 15}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4493,8 +4493,10 @@ MonoBehaviour:
   movementReductionMultiplier: 0.5
   dashSpeed: 3500
   activateTime: 0.3
+  blastEffect: {fileID: 1571783785209145467, guid: d53b3b2a53269c04f9b86cc7f41730ed, type: 3}
   blastPoint: {fileID: 2894598573385347633}
   radius: 3
+  range: 15
   minDamage: 100
   maxDamage: 200
   minKnockback: 5000
