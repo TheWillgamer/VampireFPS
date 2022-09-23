@@ -25,13 +25,17 @@ public class RigidBodyWallCheck : MonoBehaviour
         //Set trace distance to be travel distance + collider radius.
         float traceDistance = travelDistance + _colliderRadius;
 
+        // only checks for walls
+        int layerMask = 1 << 6;
+
         //Explode bullet if it goes through the wall
         RaycastHit hit;
         // Does the ray intersect any walls
 
-        if (Physics.SphereCast(playerCam.position, _colliderRadius, velocity, out hit, traceDistance))
+        if (velocity.magnitude > 30f && Physics.SphereCast(playerCam.position, _colliderRadius, velocity, out hit, traceDistance, layerMask))
         {
             rb.velocity = rb.velocity / 5;
+            Debug.Log("HI");
         }
     }
 }

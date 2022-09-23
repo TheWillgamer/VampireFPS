@@ -19,11 +19,12 @@ public class Blast : Ability
     public float minKnockback = 10000f;
     public float maxKnockback = 10000f;
 
-    public AudioSource sound;
+    public AudioSource chargeSound;
+    public AudioSource shootSound;
 
     public override void UseAbility()
     {
-        //sound.Play(0);
+        //chargeSound.Play(0);
 
         Invoke(nameof(Activate), activateTime);
     }
@@ -31,6 +32,7 @@ public class Blast : Ability
     void Activate()
     {
         Instantiate(blastEffect, blastPoint.position, blastPoint.rotation);
+        shootSound.Play(0);
 
         rb.velocity = rb.velocity * movementReductionMultiplier;
         rb.AddForce(-pm.playerCam.transform.forward * dashSpeed);
