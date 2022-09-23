@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 9028180370556281260}
   - component: {fileID: 9028180370556281261}
   - component: {fileID: 9028180370556281298}
+  - component: {fileID: 3154677712402486989}
   m_Layer: 0
   m_Name: DamagingObject
   m_TagString: Untagged
@@ -175,10 +176,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62b1679b7d703a4c92d5ca914c12080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 17
   damage: 100
   cd: 1
   knockback: 1500
+--- !u!114 &3154677712402486989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028180370556281299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06beb0026ab811641bb52364b343813c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 17
   points:
   - {fileID: 9028180370598390135}
   - {fileID: 9028180370282677300}

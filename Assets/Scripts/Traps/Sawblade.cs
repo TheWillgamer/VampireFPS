@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Sawblade : MonoBehaviour
 {
-    [SerializeField] private int speed;
     [SerializeField] private int damage;
     [SerializeField] private float cd;
     [SerializeField] private float knockback;
@@ -13,9 +12,6 @@ public class Sawblade : MonoBehaviour
     private Rigidbody rb;
     private Transform playerLoc;
     private bool disabled;
-    private int next_point;     // where the sawblade is traveling to
-
-    [SerializeField] private Transform[] points;        // points in the path of the sawblade
 
     void Start()
     {
@@ -25,7 +21,6 @@ public class Sawblade : MonoBehaviour
         playerLoc = player.transform;
         offcd = Time.time;
         disabled = false;
-        next_point = 0;
     }
 
     void OnTriggerStay(Collider other)
@@ -39,17 +34,5 @@ public class Sawblade : MonoBehaviour
             rb.AddForce(direction.normalized * knockback + transform.up * knockback / 2);
             offcd = Time.time + cd;
         }
-    }
-
-    void Update()
-    {
-        if(transform.position == points[next_point].position)
-        {
-            next_point++;
-            if (next_point >= points.Length)
-                next_point = 0;
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position, points[next_point].position, speed * Time.deltaTime);
     }
 }
