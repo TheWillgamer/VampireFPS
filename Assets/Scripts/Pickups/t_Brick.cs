@@ -64,7 +64,7 @@ public class t_Brick : MonoBehaviour
         {
             if (hit.transform.gameObject.tag != "Enemy")
             {
-                Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                //Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Invoke("DestroyProjectile", 1.5f);
                 active = false;
             }
