@@ -34,8 +34,7 @@ public class RigidBodyWallCheck : MonoBehaviour
 
         if (velocity.magnitude > 30f && Physics.SphereCast(playerCam.position, _colliderRadius, velocity, out hit, traceDistance, layerMask))
         {
-            rb.velocity = rb.velocity / 5;
-            Debug.Log("HI");
+            rb.velocity = rb.velocity / 10;
         }
     }
 }
