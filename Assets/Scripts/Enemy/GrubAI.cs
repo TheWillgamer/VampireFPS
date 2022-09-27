@@ -42,7 +42,6 @@ public class GrubAI : MonoBehaviour
                 {
                     attacking = true;
                     timer = Time.time + attackDelay;
-                    Debug.Log("sss");
                 }
 
                 // Movement
