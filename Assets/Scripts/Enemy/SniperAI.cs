@@ -27,6 +27,17 @@ public class SniperAI : MonoBehaviour
         {
             relLoc.y = 0;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(relLoc, Vector3.up), turnSpeed * Time.deltaTime);
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
+            {
+                attacking = true;
+                timer = Time.time + attackDelay;
+            }
+            else
+            {
+
+            }
         }
     }
 }
