@@ -16,20 +16,22 @@ public class MoveAlongSplineRigidbody : MonoBehaviour
     {
         next_point = 0;
         rb = GetComponent<Rigidbody>();
+        rb.velocity = (points[next_point].position - transform.position).normalized * speed;
     }
 
     void Update()
     {
-        if ((transform.position - points[next_point].position).magnitude < .01f)
+        if ((transform.position - points[next_point].position).magnitude < .5f)
         {
             next_point++;
             if (next_point >= points.Length)
                 next_point = 0;
+            rb.velocity = (points[next_point].position - transform.position).normalized * speed;
         }
 
-        rb.velocity = points[next_point].position - transform.position;
+        //rb.velocity = (points[next_point].position - transform.position).normalized * speed * Time.deltaTime;
 
         //transform.position = Vector3.MoveTowards(transform.position, points[next_point].position, speed * Time.deltaTime);
-        Debug.Log(rb.velocity);
+        Debug.Log((transform.position - points[next_point].position).magnitude);
     }
 }
