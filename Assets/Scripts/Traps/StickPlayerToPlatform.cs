@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class StickPlayerToPlatform : MonoBehaviour
 {
-    void OnCollisionEnter(Collision other)
+    void OnCollisionStay(Collision other)
     {
-        if(other.collider.tag == "Player")
-        {
-            other.collider.transform.SetParent(transform);
-        }
-    }
-    void OnCollisionExit(Collision other)
-    {
-        other.collider.transform.SetParent(null);
+        other.gameObject.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity;
     }
 }

@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public bool dead;
     public bool paused;
+    public bool onMovingPlatform;
 
     //Rotation and look
     private float xRotation;
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         dead = false;
         stepping = false;
         sliding = false;
+        onMovingPlatform = true;
     }
 
     void Start()
