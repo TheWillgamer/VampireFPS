@@ -9,7 +9,6 @@ public class StickPlayerToPlatform : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             PlayerMovement pm = other.gameObject.GetComponent<PlayerMovement>();
-            //other.gameObject.GetComponent<Rigidbody>().velocity = other.gameObject.GetComponent<Rigidbody>().velocity;
             pm.prb = GetComponent<Rigidbody>();
             pm.onMovingPlatform = true;
         }
