@@ -4374,6 +4374,7 @@ MonoBehaviour:
   dead: 0
   paused: 0
   onMovingPlatform: 0
+  prb: {fileID: 0}
   moveSpeed: 8000
   maxSpeed: 20
   grounded: 0
@@ -4383,6 +4384,7 @@ MonoBehaviour:
   counterMovement: 0.175
   airReduceAmt: 0.2
   extraGravity: 2200
+  threshold: 0.05
   maxSlopeAngle: 35
   slideForce: 600
   slideCounterMovement: 0.08

@@ -28,10 +28,5 @@ public class MoveAlongSplineRigidbody : MonoBehaviour
                 next_point = 0;
             rb.velocity = (points[next_point].position - transform.position).normalized * speed;
         }
-
-        //rb.velocity = (points[next_point].position - transform.position).normalized * speed * Time.deltaTime;
-
-        //transform.position = Vector3.MoveTowards(transform.position, points[next_point].position, speed * Time.deltaTime);
-        Debug.Log((transform.position - points[next_point].position).magnitude);
     }
 }

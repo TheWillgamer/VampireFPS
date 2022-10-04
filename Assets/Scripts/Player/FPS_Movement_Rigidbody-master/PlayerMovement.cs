@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public bool dead;
     public bool paused;
     public bool onMovingPlatform;
+    public Rigidbody prb;       // rigidbody of the moving platform
 
     //Rotation and look
     private float xRotation;
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     public float counterMovement = 0.175f;
     public float airReduceAmt = .01f;
     public float extraGravity = 3000f;
-    private float threshold = 0.01f;
+    public float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
 
     //Crouch & Slide
@@ -83,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         dead = false;
         stepping = false;
         sliding = false;
-        onMovingPlatform = true;
+        onMovingPlatform = false;
     }
 
     void Start()
@@ -200,8 +201,16 @@ public class PlayerMovement : MonoBehaviour
         Vector2 mag = FindVelRelativeToLook();
         float xMag = mag.x, yMag = mag.y;
 
+        //Find velocity of the moving platform relative to where player is looking
+        Vector2 pmag;       // mag for platform
+        if (onMovingPlatform)
+            pmag = FindPlatformVelRelativeToLook();
+        else
+            pmag = Vector2.zero;
+        float xPmag = pmag.x, yPmag = pmag.y;
+
         //Counteract sliding and sloppy movement
-        CounterMovement(x, y, mag);
+        CounterMovement(x, y, mag - pmag);
         AirReduction(x, y, mag);
 
         //If holding jump && ready to jump, then jump
@@ -218,10 +227,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //If speed is larger than maxspeed, cancel out the input so you don't go over max speed
-        if (x > 0 && xMag > maxSpeed) x = 0;
-        if (x < 0 && xMag < -maxSpeed) x = 0;
-        if (y > 0 && yMag > maxSpeed) y = 0;
-        if (y < 0 && yMag < -maxSpeed) y = 0;
+        if (x > 0 && xMag - xPmag > maxSpeed) x = 0;
+        if (x < 0 && xMag - xPmag < -maxSpeed) x = 0;
+        if (y > 0 && yMag - yPmag > maxSpeed) y = 0;
+        if (y < 0 && yMag - yPmag < -maxSpeed) y = 0;
 
         //Some multipliers
         float multiplier = 1f, multiplierV = 1f;
@@ -312,7 +321,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
             return;
         }
-
+        
         //Counter movement
         if (Math.Abs(mag.x) > threshold && Math.Abs(x) < 0.05f || (mag.x < -threshold && x > 0) || (mag.x > threshold && x < 0))
         {
@@ -324,12 +333,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Limit diagonal running. This will also cause a full stop if sliding fast and un-crouching, so not optimal.
-        if (Mathf.Sqrt((Mathf.Pow(rb.velocity.x, 2) + Mathf.Pow(rb.velocity.z, 2))) > maxSpeed)
-        {
-            float fallspeed = rb.velocity.y;
-            Vector3 n = rb.velocity.normalized * maxSpeed;
-            rb.velocity = new Vector3(n.x, fallspeed, n.z);
-        }
+        //if (Mathf.Sqrt((Mathf.Pow(rb.velocity.x, 2) + Mathf.Pow(rb.velocity.z, 2))) > maxSpeed)
+        //{
+        //    float fallspeed = rb.velocity.y;
+        //    Vector3 n = rb.velocity.normalized * maxSpeed;
+        //    rb.velocity = new Vector3(n.x, fallspeed, n.z);
+        //}
     }
 
     private void AirReduction(float x, float y, Vector2 mag)
@@ -361,6 +370,21 @@ public class PlayerMovement : MonoBehaviour
         float v = 90 - u;
 
         float magnitue = rb.velocity.magnitude;
+        float yMag = magnitue * Mathf.Cos(u * Mathf.Deg2Rad);
+        float xMag = magnitue * Mathf.Cos(v * Mathf.Deg2Rad);
+
+        return new Vector2(xMag, yMag);
+    }
+
+    public Vector2 FindPlatformVelRelativeToLook()
+    {
+        float lookAngle = orientation.transform.eulerAngles.y;
+        float moveAngle = Mathf.Atan2(prb.velocity.x, prb.velocity.z) * Mathf.Rad2Deg;
+
+        float u = Mathf.DeltaAngle(lookAngle, moveAngle);
+        float v = 90 - u;
+
+        float magnitue = prb.velocity.magnitude;
         float yMag = magnitue * Mathf.Cos(u * Mathf.Deg2Rad);
         float xMag = magnitue * Mathf.Cos(v * Mathf.Deg2Rad);
 

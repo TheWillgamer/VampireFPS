@@ -8,16 +8,18 @@ public class StickPlayerToPlatform : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Rigidbody>().velocity = other.gameObject.GetComponent<Rigidbody>().velocity;
-            other.gameObject.GetComponent<PlayerMovement>().disableCM = true;
+            PlayerMovement pm = other.gameObject.GetComponent<PlayerMovement>();
+            //other.gameObject.GetComponent<Rigidbody>().velocity = other.gameObject.GetComponent<Rigidbody>().velocity;
+            pm.prb = GetComponent<Rigidbody>();
+            pm.onMovingPlatform = true;
         }
     }
     void OnCollisionExit(Collision other)
     {
         if (other.gameObject.tag == "Player")
         {
-            //other.gameObject.GetComponent<Rigidbody>().velocity = other.gameObject.GetComponent<Rigidbody>().velocity - GetComponent<Rigidbody>().velocity;
-            other.gameObject.GetComponent<PlayerMovement>().disableCM = false;
+            PlayerMovement pm = other.gameObject.GetComponent<PlayerMovement>();
+            pm.onMovingPlatform = false;
         }
     }
 }
