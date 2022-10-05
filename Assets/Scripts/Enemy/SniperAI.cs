@@ -10,6 +10,7 @@ public class SniperAI : MonoBehaviour
     private Transform player;
     private bool active;
     LineRenderer lr;
+    Vector3[] points;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class SniperAI : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         active = true;
         lr = GetComponent<LineRenderer>();
+        points = new Vector3[2];
     }
 
     // Update is called once per frame
@@ -31,14 +33,12 @@ public class SniperAI : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
             {
-                Vector3[] points = new Vector3[2];
                 points[0] = transform.position;
-                points[1] = hit.point;
+                points[1] = hit.point + transform.forward * 1f;
                 lr.SetPositions(points);
             }
             else
             {
-                Vector3[] points = new Vector3[2];
                 points[0] = transform.position;
                 points[1] = transform.position + transform.forward * attackRange;
                 lr.SetPositions(points);
