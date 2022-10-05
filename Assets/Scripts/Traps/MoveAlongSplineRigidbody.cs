@@ -21,7 +21,7 @@ public class MoveAlongSplineRigidbody : MonoBehaviour
 
     void Update()
     {
-        if ((transform.position - points[next_point].position).magnitude < .5f)
+        if ((transform.position - points[next_point].position).magnitude < 1f)
         {
             next_point++;
             if (next_point >= points.Length)
