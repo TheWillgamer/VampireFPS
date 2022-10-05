@@ -23,7 +23,6 @@ public class TurnTowardsPlayer : MonoBehaviour
         
         if(active && relLoc.magnitude < alertRadius)
         {
-            relLoc.y = 0;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(relLoc, Vector3.up), turnSpeed * Time.deltaTime);
         }
     }
