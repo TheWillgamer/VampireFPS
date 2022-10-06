@@ -13,8 +13,6 @@ public class EnemyHitDetection : MonoBehaviour
     private PlayerHealth ph;
     public int lifestealAmt;
 
-    public GameObject deathParticles;
-
     void Awake()
     {
         alive = true;
@@ -32,20 +30,10 @@ public class EnemyHitDetection : MonoBehaviour
     {
         currentHealth -= dmg;
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && alive)
         {
-            Destroy(gameObject);
-            //if (alive)
-            //{
-            //    Destroy(transform.GetChild(1).gameObject);
-            //    Destroy(transform.GetChild(3).gameObject);
-            //    GetComponent<RangedAI>().dead = true;
-            //    alive = false;
-            //    Instantiate(deathParticles, transform.position, Quaternion.identity);
-            //    rb.constraints = RigidbodyConstraints.None;
-            //    rb.mass = 10f;
-            //}
-            //currentHealth = 0;
+            GetComponent<EnemyAI>().Death();
+            alive = false;
         }
     }
 

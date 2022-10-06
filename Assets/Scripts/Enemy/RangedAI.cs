@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedAI : MonoBehaviour
+public class RangedAI : EnemyAI
 {
     private Transform player;
     public Transform cbow;
@@ -10,6 +10,7 @@ public class RangedAI : MonoBehaviour
     public float horRotSpeed;      // how fast enemies rotate towards the player horizontally
     public float verRotSpeed;      // how fast the crossbow rotates towards the player vertically
     public bool dead;
+    public GameObject deathParticles;
 
     public float fireFrequency = 1f;
     private float offcd;
@@ -19,6 +20,7 @@ public class RangedAI : MonoBehaviour
 
     public AudioSource tense;
     public AudioSource fire;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class RangedAI : MonoBehaviour
         offcd = Time.time + fireFrequency;
         dead = false;
         player = GameObject.FindWithTag("Player").transform;
+        rb = GetComponent<Rigidbody>();
     }
     
     void Update()
@@ -56,5 +59,14 @@ public class RangedAI : MonoBehaviour
     {
         Instantiate(proj, rangedSpawn.position, rangedSpawn.rotation);
         fire.Play();
+    }
+
+    public override void Death()
+    {
+        dead = true;
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.mass = 10f;
+        Destroy(transform.GetChild(1).gameObject);
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperAI : MonoBehaviour
+public class SniperAI : EnemyAI
 {
     [SerializeField] private float turnSpeed;   // how fast enemy turns towards the player
     [SerializeField] private float alertRadius;

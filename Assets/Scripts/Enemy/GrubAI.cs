@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrubAI : MonoBehaviour
+public class GrubAI : EnemyAI
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
