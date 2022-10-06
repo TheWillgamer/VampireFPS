@@ -32,6 +32,7 @@ public class MoveAlongSplineRigidbody : MonoBehaviour
             {
                 offcd = Time.time + wait;
                 startwait = true;
+                rb.velocity = Vector3.zero;
             }
             if(Time.time > offcd)
             {
