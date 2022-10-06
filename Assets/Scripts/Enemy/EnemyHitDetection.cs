@@ -8,7 +8,7 @@ public class EnemyHitDetection : MonoBehaviour
     int currentHealth;
     bool alive;
 
-    public Transform hp_bar;
+    //public Transform hp_bar;
     private Rigidbody rb;
     private PlayerHealth ph;
     public int lifestealAmt;
@@ -28,37 +28,32 @@ public class EnemyHitDetection : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateHealth();
-    }
-
     public void TakeDamage(int dmg)
     {
         currentHealth -= dmg;
 
         if (currentHealth <= 0)
         {
-            if (alive)
-            {
-                Destroy(transform.GetChild(1).gameObject);
-                Destroy(transform.GetChild(3).gameObject);
-                GetComponent<RangedAI>().dead = true;
-                alive = false;
-                Instantiate(deathParticles, transform.position, Quaternion.identity);
-                rb.constraints = RigidbodyConstraints.None;
-                rb.mass = 10f;
-            }
-            currentHealth = 0;
+            Destroy(gameObject);
+            //if (alive)
+            //{
+            //    Destroy(transform.GetChild(1).gameObject);
+            //    Destroy(transform.GetChild(3).gameObject);
+            //    GetComponent<RangedAI>().dead = true;
+            //    alive = false;
+            //    Instantiate(deathParticles, transform.position, Quaternion.identity);
+            //    rb.constraints = RigidbodyConstraints.None;
+            //    rb.mass = 10f;
+            //}
+            //currentHealth = 0;
         }
     }
 
-    void UpdateHealth()
-    {
-        hp_bar.LookAt(GameObject.FindWithTag("MainCamera").transform.position);
-        hp_bar.localScale = new Vector3((float)currentHealth / maxHealth, 0.1f, 0.1f);
-    }
+    //void UpdateHealth()
+    //{
+    //    hp_bar.LookAt(GameObject.FindWithTag("MainCamera").transform.position);
+    //    hp_bar.localScale = new Vector3((float)currentHealth / maxHealth, 0.1f, 0.1f);
+    //}
 
     public void Knockback(float amount, Vector3 direction)
     {

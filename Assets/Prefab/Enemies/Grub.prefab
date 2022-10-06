@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 9029178521802902604}
   - component: {fileID: 9029178521802902614}
   - component: {fileID: 9029178521802902615}
+  - component: {fileID: 4902165835933373016}
   m_Layer: 7
   m_Name: Grub
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,3 +147,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingObject: {fileID: 601039733278947264, guid: 1cca33a88acdf0f43a5406e1110b40ad, type: 3}
+--- !u!114 &4902165835933373016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9029178521802902607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719238b3515c2124e8ed561b6d8dd580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  hp_bar: {fileID: 0}
+  lifestealAmt: 0
+  deathParticles: {fileID: 0}
