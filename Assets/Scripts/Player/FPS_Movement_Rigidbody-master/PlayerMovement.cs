@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 crouching = true;
             }
         }
-        if (!crouching && rb.velocity.magnitude > 4f)
+        if (!crouching && ((!onMovingPlatform && rb.velocity.magnitude > 4f) || (onMovingPlatform && (rb.velocity - prb.velocity).magnitude > 4f)))
         {
             if (!stepping && grounded)
             {
@@ -148,7 +148,6 @@ public class PlayerMovement : MonoBehaviour
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
         jumping = Input.GetButton("Jump");
-        //crouching = Input.GetKey(KeyCode.LeftControl);
 
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
