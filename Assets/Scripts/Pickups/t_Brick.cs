@@ -55,26 +55,19 @@ public class t_Brick : MonoBehaviour
             {
                 hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
                 Instantiate(deathParticles, hit.point, Quaternion.LookRotation(hit.normal));
-                //Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                Invoke("DestroyProjectile", 1.5f);
-                active = false;
+                Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(gameObject);
             }
         }
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
         {
             if (hit.transform.gameObject.tag != "Enemy")
             {
-                //Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                Invoke("DestroyProjectile", 1.5f);
-                active = false;
+                Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(gameObject);
             }
         }
 
         transform.position += transform.forward * travelDistance;
-    }
-
-    void DestroyProjectile()
-    {
-        Destroy(gameObject);
     }
 }

@@ -17,6 +17,8 @@ public class GrubAI : EnemyAI
     private float timer;            // for attack to initiate
     private bool attacking;         // attack has started
 
+    [SerializeField] private GameObject grubExplosion;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +37,9 @@ public class GrubAI : EnemyAI
 
         if (active && relLoc.magnitude < alertRadius && !falling)
         {
-            if (!attacking)     
+            if (!attacking)
             {
-                
+
                 if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
                 {
                     attacking = true;
@@ -64,5 +66,11 @@ public class GrubAI : EnemyAI
         {
             falling = true;
         }
+    }
+
+    public override void Death()
+    {
+        Instantiate(grubExplosion, transform.position, transform.rotation);
+        base.Death();
     }
 }

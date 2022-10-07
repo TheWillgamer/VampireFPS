@@ -134,6 +134,7 @@ MonoBehaviour:
   alertRadius: 15
   attackDelay: 2
   attackRange: 3
+  grubExplosion: {fileID: 4987810841699435982, guid: 7a3e646c54c3c1c48a29821b5af5abb3, type: 3}
 --- !u!114 &9029178521802902615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +161,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
-  hp_bar: {fileID: 0}
   lifestealAmt: 0
-  deathParticles: {fileID: 0}

@@ -10,6 +10,9 @@ public class Throw : MonoBehaviour
     [SerializeField] private float grabDistance;
     [SerializeField] private GameObject grabText;
 
+    public AudioSource Grabs;
+    public AudioSource Throws;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,7 @@ public class Throw : MonoBehaviour
             if(pressed)
             {
                 equipped.UseItem();
+                Throws.Play(0);
                 equipped = null;
             }
         }
@@ -41,6 +45,7 @@ public class Throw : MonoBehaviour
                 canGrab = true;
                 if (pressed)
                 {
+                    Grabs.Play(0);
                     GameObject grabbed = hit.collider.gameObject;
                     equipped = Instantiate(grabbed.GetComponent<Grabbable>().holdingObject, transform.position, transform.rotation).GetComponent<Throwable>();
                     Destroy(grabbed);
