@@ -219,13 +219,12 @@ public class PlayerMovement : MonoBehaviour
         //If sliding down a ramp, add force down so player stays grounded and also builds speed
         if (crouching && grounded && readyToJump)
         {
-            Debug.Log(rb.velocity.magnitude);
             if (!sliding && rb.velocity.magnitude > 3.5f)
             {
                 Slide.Play(0);
                 sliding = true;
             }
-            if (sliding && rb.velocity.magnitude < 3.5f)
+            if (sliding && rb.velocity.magnitude < 3f)
             {
                 Slide.Stop();
                 sliding = false;
