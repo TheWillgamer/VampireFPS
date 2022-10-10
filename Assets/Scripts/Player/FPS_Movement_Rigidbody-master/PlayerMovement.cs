@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public float slideCounterMovement = 0.2f;
     private Vector3 normalVector = Vector3.up;
     public float slidePerameter = 3f;
-    public float crouchSpeed = 4500f;
+    public float crouchMovementMultiplier = 0.4f;
     public float crouchMaxSpeed = 8f;
 
     //Jumping
@@ -174,11 +174,6 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         if (rb.velocity.magnitude > 0.5f)
         {
-            if (grounded)
-            {
-                Slide.Play(0);
-                sliding = true;
-            }
             rb.AddForce(orientation.transform.forward * slideForce);
         }
     }
@@ -224,10 +219,16 @@ public class PlayerMovement : MonoBehaviour
         //If sliding down a ramp, add force down so player stays grounded and also builds speed
         if (crouching && grounded && readyToJump)
         {
-            if (!sliding && rb.velocity.magnitude > 0.5f)
+            Debug.Log(rb.velocity.magnitude);
+            if (!sliding && rb.velocity.magnitude > 3.5f)
             {
                 Slide.Play(0);
                 sliding = true;
+            }
+            if (sliding && rb.velocity.magnitude < 3.5f)
+            {
+                Slide.Stop();
+                sliding = false;
             }
             rb.AddForce(Vector3.down * Time.deltaTime * 800);
         }
@@ -251,19 +252,11 @@ public class PlayerMovement : MonoBehaviour
             }
             multiplier = airMovementMultiplier;
         }
+        else if (crouching)
+            multiplier = crouchMovementMultiplier;
 
-        // Movement while sliding
-        if (grounded && crouching)
-        {
-            rb.AddForce(orientation.transform.forward * y * crouchSpeed * Time.deltaTime);
-            rb.AddForce(orientation.transform.right * x * crouchSpeed * Time.deltaTime);
-        }
-        //Apply forces to move player
-        else
-        {
-            rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier);
-            rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
-        }
+        rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier);
+        rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
     }
 
     private void Jump()
