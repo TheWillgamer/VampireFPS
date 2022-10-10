@@ -42,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 playerScale;
     public float slideForce = 400;
     public float slideCounterMovement = 0.2f;
+    private Vector3 normalVector = Vector3.up;
+    public float slidePerameter = 3f;
+    public float crouchSpeed = 4500f;
+    public float crouchMaxSpeed = 8f;
 
     //Jumping
     private bool readyToJump = true;
@@ -59,9 +63,6 @@ public class PlayerMovement : MonoBehaviour
     //Input
     public float x, y;
     bool jumping, sprinting, crouching;
-
-    //Sliding
-    private Vector3 normalVector = Vector3.up;
 
     public Animator anim;
 
@@ -152,7 +153,10 @@ public class PlayerMovement : MonoBehaviour
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            if(grounded)
+            // only checks for walls
+            int layerMask = 1 << 6;
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, slidePerameter, layerMask))
                 StartCrouch();
             else
             {
@@ -161,11 +165,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.LeftControl) && crouching)
             StopCrouch();
-        if (!sliding && grounded && Input.GetKey(KeyCode.LeftControl))
-        {
-            Slide.Play(0);
-            sliding = true;
-        }
     }
 
     private void StartCrouch()
@@ -177,8 +176,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (grounded)
             {
-                rb.AddForce(orientation.transform.forward * slideForce);
+                Slide.Play(0);
+                sliding = true;
             }
+            rb.AddForce(orientation.transform.forward * slideForce);
         }
     }
 
@@ -187,8 +188,6 @@ public class PlayerMovement : MonoBehaviour
         crouching = false;
         transform.localScale = playerScale;
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-        Slide.Stop();
-        sliding = false;
     }
 
     private void Movement()
@@ -216,13 +215,21 @@ public class PlayerMovement : MonoBehaviour
         if (readyToJump && jumping) Jump();
 
         //Set max speed
-        float maxSpeed = this.maxSpeed;
+        float maxSpeed;
+        if (!crouching)
+            maxSpeed = this.maxSpeed;
+        else
+            maxSpeed = this.crouchMaxSpeed;
 
         //If sliding down a ramp, add force down so player stays grounded and also builds speed
         if (crouching && grounded && readyToJump)
         {
-            rb.AddForce(Vector3.down * Time.deltaTime * 500);
-            return;
+            if (!sliding && rb.velocity.magnitude > 0.5f)
+            {
+                Slide.Play(0);
+                sliding = true;
+            }
+            rb.AddForce(Vector3.down * Time.deltaTime * 800);
         }
 
         //If speed is larger than maxspeed, cancel out the input so you don't go over max speed
@@ -232,21 +239,31 @@ public class PlayerMovement : MonoBehaviour
         if (y < 0 && yMag - yPmag < -maxSpeed) y = 0;
 
         //Some multipliers
-        float multiplier = 1f, multiplierV = 1f;
+        float multiplier = 1f;
 
         // Movement in air
         if (!grounded)
         {
+            if (sliding)
+            {
+                Slide.Stop();
+                sliding = false;
+            }
             multiplier = airMovementMultiplier;
-            multiplierV = 0.5f;
         }
 
         // Movement while sliding
-        if (grounded && crouching) multiplierV = 0f;
-
+        if (grounded && crouching)
+        {
+            rb.AddForce(orientation.transform.forward * y * crouchSpeed * Time.deltaTime);
+            rb.AddForce(orientation.transform.right * x * crouchSpeed * Time.deltaTime);
+        }
         //Apply forces to move player
-        rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
-        rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+        else
+        {
+            rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier);
+            rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+        }
     }
 
     private void Jump()

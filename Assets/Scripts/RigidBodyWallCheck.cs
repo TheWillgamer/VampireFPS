@@ -27,16 +27,14 @@ public class RigidBodyWallCheck : MonoBehaviour
 
         // only checks for walls
         int layerMask = 1 << 6;
-
-        //Explode bullet if it goes through the wall
         RaycastHit hit;
-        // Does the ray intersect any walls
 
+        // Does the ray intersect any walls
         if (velocity.magnitude > 5f && Physics.SphereCast(playerCam.position, _colliderRadius, velocity, out hit, traceDistance, layerMask))
         {
             if(velocity.magnitude > 30f && hit.collider.tag == "Destructible")
             {
-                rb.velocity = rb.velocity / 2;
+                rb.velocity = 2 * rb.velocity / 3;
                 hit.collider.gameObject.GetComponent<DestructibleWall>().Destroy();
             }
             else

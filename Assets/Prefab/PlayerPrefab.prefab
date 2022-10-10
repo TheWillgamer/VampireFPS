@@ -4642,8 +4642,11 @@ MonoBehaviour:
   extraGravity: 2200
   threshold: 0.05
   maxSlopeAngle: 35
-  slideForce: 600
+  slideForce: 800
   slideCounterMovement: 0.08
+  slidePerameter: 3
+  crouchSpeed: 2500
+  crouchMaxSpeed: 2
   jumpForce: 1000
   secondJumpForce: 800
   jumpResetDelay: 10
