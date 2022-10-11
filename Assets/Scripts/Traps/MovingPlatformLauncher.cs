@@ -7,6 +7,7 @@ public class MovingPlatformLauncher : MonoBehaviour
     [SerializeField] private float launchSpeed;
     [SerializeField] private float resetSpeed;
     [SerializeField] private float wait;      // How long to wait before resetting
+    [SerializeField] private bool launcher;   // If the platform will launch the player
     [SerializeField] private Transform endPoint;
 
     private Transform playerLoc;
@@ -35,7 +36,9 @@ public class MovingPlatformLauncher : MonoBehaviour
         {
             if (!startwait)
             {
-                pm.disableCM = true;
+                if (launcher)       // allows player to be launched
+                    pm.disableCM = true;
+
                 offcd = Time.time + wait;
                 startwait = true;
                 rb.velocity = Vector3.zero;
@@ -60,13 +63,16 @@ public class MovingPlatformLauncher : MonoBehaviour
         if (readyToLaunch && other.gameObject.tag == "Player")
         {
             rb.velocity = (endPoint.position - transform.position).normalized * launchSpeed;
-            other.gameObject.GetComponent<Rigidbody>().velocity += (endPoint.position - transform.position).normalized * launchSpeed;
+
+            if (launcher)       // Increases player velocity if launcher
+                other.gameObject.GetComponent<Rigidbody>().velocity += (endPoint.position - transform.position).normalized * launchSpeed;
+
             readyToLaunch = false;
         }
     }
     void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.tag == "Player")
+        if (launcher && other.gameObject.tag == "Player")
         {
             pm.disableCM = false;
         }
