@@ -6,9 +6,11 @@ public class SniperAI : EnemyAI
 {
     [SerializeField] private float alertRadius;
     [SerializeField] private float attackRange;
+    [SerializeField] private float attackChargeTime;
     [SerializeField] private Transform laserStart;
     private Transform player;
     private bool active;
+    private float charge;
     LineRenderer lr;
     Vector3[] points;
 
@@ -19,6 +21,7 @@ public class SniperAI : EnemyAI
         active = true;
         lr = GetComponent<LineRenderer>();
         points = new Vector3[2];
+        charge = 0;
     }
 
     // Update is called once per frame
@@ -35,9 +38,19 @@ public class SniperAI : EnemyAI
             {
                 points[0] = laserStart.position;
                 if (hit.collider.tag == "Player")
-                    points[1] = player.transform.position - transform.forward * .2f;
+                {
+                    charge += Time.deltaTime;
+                    if (charge > attackChargeTime)
+                        Fire();
+                    lr.endWidth = 1f - charge / attackChargeTime;
+                    points[1] = player.transform.position - transform.forward * .4f;
+                }
                 else
+                {
+                    charge = 0;
                     points[1] = hit.point;
+                }
+                    
                 lr.SetPositions(points);
             }
             else
@@ -47,5 +60,9 @@ public class SniperAI : EnemyAI
                 lr.SetPositions(points);
             }
         }
+    }
+    void Fire()
+    {
+        charge = 0;
     }
 }

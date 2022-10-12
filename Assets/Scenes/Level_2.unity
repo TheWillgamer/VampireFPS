@@ -18914,15 +18914,6 @@ LineRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.17080745
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1.2344258
-        outSlope: 1.2344258
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.11490685
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -18975,9 +18966,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9e836e6c393ac43a4babd7fd3862dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 150
   alertRadius: 100
   attackRange: 100
+  attackChargeTime: 2
+  laserStart: {fileID: 571929165}
 --- !u!114 &1310185455
 MonoBehaviour:
   m_ObjectHideFlags: 0
