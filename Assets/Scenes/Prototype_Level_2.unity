@@ -579,10 +579,10 @@ GameObject:
   - component: {fileID: 34866066}
   - component: {fileID: 34866065}
   - component: {fileID: 34866064}
-  - component: {fileID: 34866063}
   - component: {fileID: 34866062}
   - component: {fileID: 34866061}
   - component: {fileID: 34866060}
+  - component: {fileID: 34866069}
   m_Layer: 6
   m_Name: Cube (7)
   m_TagString: Ground
@@ -631,23 +631,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 16.418957, y: 1.1478958, z: 13.814496}
   m_Center: {x: 8.198544, y: 0.5739479, z: -12.901266}
---- !u!114 &34866063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34866059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28cee9f2c8355944db90dc942b53a26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 28
-  wait: 0.7
-  points:
-  - {fileID: 522878894}
-  - {fileID: 946373712}
 --- !u!33 &34866064
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -957,6 +940,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &34866069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34866059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a8d445fd9591f4c8b1dde0fa330fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  launchSpeed: 28
+  resetSpeed: 10
+  wait: 1
+  launcher: 0
+  endPoint: {fileID: 946373712}
 --- !u!1 &68550484
 GameObject:
   m_ObjectHideFlags: 0
@@ -7875,7 +7875,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30862
+  m_Name: pb_Mesh47698
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16962,10 +16962,10 @@ GameObject:
   - component: {fileID: 1536589903}
   - component: {fileID: 1536589902}
   - component: {fileID: 1536589901}
-  - component: {fileID: 1536589900}
   - component: {fileID: 1536589899}
   - component: {fileID: 1536589898}
   - component: {fileID: 1536589906}
+  - component: {fileID: 1536589907}
   m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Ground
@@ -17002,23 +17002,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 16.418957, y: 1.1478958, z: 13.814496}
   m_Center: {x: 8.198544, y: 0.5739479, z: -12.901266}
---- !u!114 &1536589900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536589897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28cee9f2c8355944db90dc942b53a26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 28
-  wait: 0.7
-  points:
-  - {fileID: 162597696}
-  - {fileID: 166999197}
 --- !u!33 &1536589901
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -17321,7 +17304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536589897}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 18.6, y: -34.6, z: -14.3}
+  m_LocalPosition: {x: 4.77, y: -34.6, z: -14.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17340,6 +17323,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5592d6e86e392d47b8345f3cb955e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1536589907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536589897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a8d445fd9591f4c8b1dde0fa330fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  launchSpeed: 28
+  resetSpeed: 10
+  wait: 1
+  launcher: 0
+  endPoint: {fileID: 166999197}
 --- !u!1 &1553376306
 GameObject:
   m_ObjectHideFlags: 0
@@ -18820,7 +18820,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30494
+  m_Name: pb_Mesh47302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
