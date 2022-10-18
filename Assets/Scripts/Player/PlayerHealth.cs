@@ -111,6 +111,14 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void ProjectileHit(int damage, Vector3 direction, float knockback)
+    {
+        TakeDamage(damage);
+        hit.Play(0);
+        rb.AddForce(direction * knockback + transform.up * knockback / 4);
+        StartCoroutine(Fade());
+    }
+
     public void Knockback(float amount, Vector3 direction)
     {
         rb.AddForce(direction * amount + transform.up * amount / 4);
