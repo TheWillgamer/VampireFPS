@@ -18,6 +18,7 @@ public class MovingPlatformLauncher : MonoBehaviour
     private bool startwait;
     private bool readyToLaunch;     // when platform first reaches the point
     private bool resetting;
+    private bool launched;          // keeps track if the player was launched
     private float prevMag;          // magnitude of the last time the platform was moving
 
     void Start()
@@ -27,18 +28,23 @@ public class MovingPlatformLauncher : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         offcd = Time.time;
         readyToLaunch = true;
+        resetting = false;
         prevMag = Mathf.Infinity;
+        launched = false;
     }
 
     void Update()
     {
-        if (!resetting && (transform.position - endPoint.position).magnitude > prevMag)
+        if (!resetting && (transform.position - endPoint.position).magnitude > prevMag && prevMag < 10f)
         {
             if (!startwait)
             {
-                if (launcher)       // allows player to be launched
+                if (launcher && !launched)       // allows player to be launched{
+                {
                     pm.disableCM = true;
-
+                    launched = true;
+                }
+                    
                 offcd = Time.time + wait;
                 startwait = true;
                 rb.velocity = Vector3.zero;
@@ -53,6 +59,7 @@ public class MovingPlatformLauncher : MonoBehaviour
         if (resetting && (transform.position - startPoint).magnitude < 1f)
         {
             resetting = false;
+            launched = false;
             readyToLaunch = true;
         }
         prevMag = (transform.position - endPoint.position).magnitude;
@@ -62,12 +69,11 @@ public class MovingPlatformLauncher : MonoBehaviour
     {
         if (readyToLaunch && other.gameObject.tag == "Player")
         {
+            readyToLaunch = false;
             rb.velocity = (endPoint.position - transform.position).normalized * launchSpeed;
 
             if (launcher)       // Increases player velocity if launcher
-                other.gameObject.GetComponent<Rigidbody>().velocity += (endPoint.position - transform.position).normalized * launchSpeed;
-
-            readyToLaunch = false;
+                other.gameObject.GetComponent<Rigidbody>().velocity += rb.velocity;
         }
     }
     void OnCollisionExit(Collision other)
