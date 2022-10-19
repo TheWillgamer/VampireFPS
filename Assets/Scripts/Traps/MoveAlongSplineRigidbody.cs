@@ -12,6 +12,7 @@ public class MoveAlongSplineRigidbody : MonoBehaviour
     private Rigidbody rb;
     private float offcd;
     private bool startwait;     // when platform first reaches the point
+    private float prevMag;          // magnitude of the last time the platform was moving
 
     [SerializeField] private Transform[] points;        // points in the path of the sawblade
 
@@ -21,27 +22,30 @@ public class MoveAlongSplineRigidbody : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.velocity = (points[next_point].position - transform.position).normalized * speed;
         offcd = Time.time;
+        prevMag = Mathf.Infinity;
         startwait = false;
     }
 
     void Update()
     {
-        if ((transform.position - points[next_point].position).magnitude < 1f)
+        if ((points[next_point].position - transform.position).magnitude > prevMag && prevMag < 10f)
         {
             if (!startwait)
             {
                 offcd = Time.time + wait;
                 startwait = true;
                 rb.velocity = Vector3.zero;
-            }
-            if(Time.time > offcd)
-            {
+
                 next_point++;
                 if (next_point >= points.Length)
                     next_point = 0;
-                rb.velocity = (points[next_point].position - transform.position).normalized * speed;
-                startwait = false;
             }
         }
+        if (startwait && Time.time > offcd)
+        {
+            rb.velocity = (points[next_point].position - transform.position).normalized * speed;
+            startwait = false;
+        }
+        prevMag = (points[next_point].position - transform.position).magnitude;
     }
 }
