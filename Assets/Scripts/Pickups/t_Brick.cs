@@ -6,6 +6,7 @@ public class t_Brick : MonoBehaviour
 {
     [SerializeField] float speed = 30.0f;
     [SerializeField] float aliveTime = 5.0f;
+    [SerializeField] float spinSpeed = 5.0f;
     public int damage = 5;
     float deathTime;
     private float _colliderRadius;
