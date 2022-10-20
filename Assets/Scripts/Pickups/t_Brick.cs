@@ -70,5 +70,6 @@ public class t_Brick : MonoBehaviour
         }
 
         transform.position += transform.forward * travelDistance;
+        transform.GetChild(0).Rotate(spinSpeed * Time.deltaTime, -spinSpeed * Time.deltaTime / 1.5f, 0f, Space.Self);
     }
 }
