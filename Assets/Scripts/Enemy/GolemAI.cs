@@ -9,6 +9,10 @@ public class GolemAI : EnemyAI
     [SerializeField] private float alertRadius;     // how fast enemy turns towards the player
     [SerializeField] private float attackDelay;
     [SerializeField] private float attackRange;
+    [SerializeField] private float rangedAttackForce;
+    [SerializeField] private float rangedAttackUpForce;
+    [SerializeField] private Transform boulder;
+    [SerializeField] private Transform boulderSpawn;
     private Transform player;
     private bool active;
     private bool falling;
@@ -56,7 +60,7 @@ public class GolemAI : EnemyAI
             }
             else if (Time.time > timer)
             {
-                Debug.Log("attack");
+                RangedAttack();
                 attacking = false;
             }
         }
@@ -78,5 +82,21 @@ public class GolemAI : EnemyAI
     {
         if (other.tag == "Ground")
             canMove = false;
+    }
+
+    void Attack()
+    {
+        RaycastHit hit;
+        int layerMask = 1 << 3;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange, layerMask))
+        {
+            hit.transform.gameObject.GetComponent<PlayerHealth>().ProjectileHit(200, transform.forward, 10000f);
+        }
+    }
+
+    void RangedAttack()
+    {
+        Transform b = Instantiate(boulder, boulderSpawn.position, Quaternion.identity);
+        b.GetComponent<Rigidbody>().AddForce((player.position - transform.position).normalized * rangedAttackForce + Vector3.up * rangedAttackUpForce, ForceMode.Impulse);
     }
 }

@@ -21246,7 +21246,8 @@ Transform:
   m_LocalPosition: {x: -29.67, y: 99.76, z: 33.03}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1714222063}
   m_Father: {fileID: 0}
   m_RootOrder: 93
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21265,8 +21266,12 @@ MonoBehaviour:
   moveSpeed: 5
   turnSpeed: 80
   alertRadius: 20
-  attackDelay: 2
-  attackRange: 2
+  attackDelay: 0.5
+  attackRange: 20
+  rangedAttackForce: 120
+  rangedAttackUpForce: 100
+  boulder: {fileID: 5981952311793313315, guid: 123355a5e3c381244892555c78c33348, type: 3}
+  boulderSpawn: {fileID: 1714222063}
 --- !u!54 &1477794989
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27418,6 +27423,37 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
+--- !u!1 &1714222062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1714222063}
+  m_Layer: 0
+  m_Name: boulderSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1714222063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714222062}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.408, z: 1.015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1477794987}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1717276679
 GameObject:
   m_ObjectHideFlags: 0

@@ -124,7 +124,7 @@ public class PlayerHealth : MonoBehaviour
         rb.AddForce(direction * amount + transform.up * amount / 4);
     }
 
-    IEnumerator Fade()
+    public IEnumerator Fade()
     {
         Color c = dmgScreen.color;
         for (float alpha = .2f; alpha >= 0; alpha -= 0.001f)
