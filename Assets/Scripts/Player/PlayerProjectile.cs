@@ -62,7 +62,7 @@ public class PlayerProjectile : MonoBehaviour
         }
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
         {
-            if (hit.transform.gameObject.tag != "Enemy")
+            if (hit.transform.gameObject.tag != "Enemy" && hit.transform.gameObject.tag != "Player")
             {
                 Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Invoke("DestroyProjectile", 1.5f);
