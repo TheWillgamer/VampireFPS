@@ -6,11 +6,16 @@ public class GolemAI : EnemyAI
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
+    [SerializeField] private float attackingTurnSpeed;
     [SerializeField] private float alertRadius;     // how fast enemy turns towards the player
     [SerializeField] private float attackDelay;
     [SerializeField] private float attackRange;
+    [SerializeField] private float rangedAttackDelay;
+    [SerializeField] private float rangedAttackRange;
     [SerializeField] private float rangedAttackForce;
     [SerializeField] private float rangedAttackUpForce;
+    [SerializeField] private float rangedAttackAngle;
+    [SerializeField] private Transform damageBox;
     [SerializeField] private Transform boulder;
     [SerializeField] private Transform boulderSpawn;
     private Transform player;
@@ -20,6 +25,7 @@ public class GolemAI : EnemyAI
     private float extraGravity = 2000;
     private float timer;            // for attack to initiate
     private bool attacking;         // attack has started
+    private bool ranged;         // attack has started
 
     private bool canMove;           // there is space in front of the enemy to move
 
@@ -31,6 +37,7 @@ public class GolemAI : EnemyAI
         rb = GetComponent<Rigidbody>();
         active = true;
         canMove = true;
+        ranged = false;
     }
 
     // Update is called once per frame
@@ -56,12 +63,31 @@ public class GolemAI : EnemyAI
                 relLoc.y = 0;
                 if (canMove)
                     transform.position = transform.position + transform.forward * moveSpeed * Time.deltaTime;
+                else if (!attacking)    // Checks if it can do a ranged attack
+                {
+                    Vector3 relativePoint = transform.InverseTransformPoint(player.position);
+                    if (relativePoint.x > -rangedAttackAngle && relativePoint.x < rangedAttackAngle && relativePoint.z > 0)
+                    {
+                        attacking = true;
+                        ranged = true;
+                        timer = Time.time + rangedAttackDelay;
+                    }
+                }
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(relLoc, Vector3.up), turnSpeed * Time.deltaTime);
             }
             else if (Time.time > timer)
             {
-                RangedAttack();
+                if (ranged)
+                    RangedAttack();
+                else
+                    Attack();
                 attacking = false;
+                ranged = false;
+            }
+            else
+            {
+                relLoc.y = 0;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(relLoc, Vector3.up), attackingTurnSpeed * Time.deltaTime);
             }
         }
     }
@@ -86,11 +112,15 @@ public class GolemAI : EnemyAI
 
     void Attack()
     {
-        RaycastHit hit;
         int layerMask = 1 << 3;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange, layerMask))
+        Collider[] hitColliders = Physics.OverlapBox(damageBox.position, damageBox.localScale / 2, Quaternion.identity, layerMask);
+
+        int i = 0;
+        while (i < hitColliders.Length)
         {
-            hit.transform.gameObject.GetComponent<PlayerHealth>().ProjectileHit(200, transform.forward, 10000f);
+            if (hitColliders[i].tag == "Player")
+                hitColliders[i].transform.gameObject.GetComponent<PlayerHealth>().ProjectileHit(200, transform.forward, 10000f);
+            i++;
         }
     }
 
@@ -98,5 +128,12 @@ public class GolemAI : EnemyAI
     {
         Transform b = Instantiate(boulder, boulderSpawn.position, Quaternion.identity);
         b.GetComponent<Rigidbody>().AddForce((player.position - transform.position).normalized * rangedAttackForce + Vector3.up * rangedAttackUpForce, ForceMode.Impulse);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        Gizmos.DrawWireCube(damageBox.position, damageBox.localScale / 2);
     }
 }
