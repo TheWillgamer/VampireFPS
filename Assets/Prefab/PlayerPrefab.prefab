@@ -4504,6 +4504,7 @@ GameObject:
   - component: {fileID: 7736701735432866493}
   - component: {fileID: 7736701735432866492}
   - component: {fileID: 2044468992673540685}
+  - component: {fileID: 1428250141647939739}
   - component: {fileID: 1768055200}
   - component: {fileID: 8737453131795872503}
   - component: {fileID: 7306288288531991779}
@@ -4767,6 +4768,36 @@ MonoBehaviour:
   maxKnockback: 10000
   chargeSound: {fileID: 0}
   shootSound: {fileID: 7736701735177526274}
+--- !u!114 &1428250141647939739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736701735432866436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494c60b8654ace84886cd3b94d77538f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 0
+  cd: 5
+  charges: 1
+  maxCharges: 3
+  bloodCost: 3
+  movementReductionMultiplier: 0.2
+  dashSpeed: 2000
+  activateTime: 0.1
+  blastEffect: {fileID: 0}
+  blastPoint: {fileID: 0}
+  radius: 0
+  range: 0
+  minDamage: 5
+  maxDamage: 5
+  minKnockback: 10000
+  maxKnockback: 10000
+  chargeSound: {fileID: 0}
+  shootSound: {fileID: 0}
 --- !u!330 &1768055200
 ParticleSystemForceField:
   m_ObjectHideFlags: 0
