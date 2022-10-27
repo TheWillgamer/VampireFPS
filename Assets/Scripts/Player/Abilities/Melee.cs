@@ -17,7 +17,7 @@ public class Melee : Ability
         Transform swipe = Instantiate(swipeEffect, swipePoint.position, swipePoint.rotation);
         swipe.SetParent(swipePoint);
 
-        //swipeSound.Play(0);
+        swipeSound.Play(0);
         Collider[] hitColliders = Physics.OverlapBox(damageBox.position, damageBox.localScale / 2, Quaternion.identity);
 
         int i = 0;
