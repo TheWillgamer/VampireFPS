@@ -39,6 +39,7 @@ public class AbilityFramework : MonoBehaviour
         }
 
         AssignAbility(gameObject.GetComponent<BasicAttack>(), 0);
+        AssignAbility(gameObject.GetComponent<Melee>(), 1);
         AssignAbility(gameObject.GetComponent<Dash>(), 2);
         AssignAbility(gameObject.GetComponent<Blast>(), 3);
     }
@@ -48,6 +49,7 @@ public class AbilityFramework : MonoBehaviour
     {
         // ability is activated;
         input[0] = Input.GetButton("Fire1");
+        input[1] = Input.GetButtonDown("Melee");
         input[2] = Input.GetButtonDown("Fire3");
         input[3] = Input.GetButtonDown("Fire4");
 
@@ -75,7 +77,7 @@ public class AbilityFramework : MonoBehaviour
         {
             if (input[i])
             {
-                if ((i == 0 && Time.time > basicatktimer) || i > 1)
+                if ((i == 0 && Time.time > basicatktimer) || i > 0)
                 {
                     abilityList[i].UseAbility();
                     ph.TakeDamage(abilityList[i].bloodCost);
