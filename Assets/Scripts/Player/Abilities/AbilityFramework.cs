@@ -68,6 +68,8 @@ public class AbilityFramework : MonoBehaviour
                 InputCheck(i);
             }
         }
+
+        UpdateAbilities();
     }
 
     // Performs ability associated with input when valid
@@ -88,8 +90,6 @@ public class AbilityFramework : MonoBehaviour
                     }
 
                     abilityList[i].charges -= 1;
-
-                    //icons[i].GetChild(4).GetChild(1).GetComponent<Text>().text = abilityList[i].charges.ToString();
                 }
             }
         }
@@ -100,16 +100,34 @@ public class AbilityFramework : MonoBehaviour
 
             offcd[i] = Time.time + abilityList[i].cd;
         }
-
-        if (abilityList[i].charges < abilityList[i].maxCharges)
-        {
-            icons[i].GetChild(1).GetComponent<Image>().fillAmount = (offcd[i] - Time.time) / abilityList[i].cd;
-        }
     }
 
     void UpdateAbilities()
     {
+        icons[3].GetComponent<Image>().fillAmount = 1 - (offcd[3] - Time.time) / abilityList[3].cd;
+        if (abilityList[3].charges == abilityList[3].maxCharges)
+            icons[3].GetComponent<Image>().fillAmount = 1;
 
+        float dash_ch = 0f;         // fill amount for the dash meter on the crosshair
+        if (abilityList[2].charges > 0)
+        {
+            dash_ch = .25f;
+            icons[1].GetComponent<Image>().fillAmount = 1;
+            icons[2].GetComponent<Image>().fillAmount = 1 - (offcd[2] - Time.time) / abilityList[2].cd;
+        }
+        else
+        {
+            icons[1].GetComponent<Image>().fillAmount = 1 - (offcd[2] - Time.time) / abilityList[2].cd;
+            icons[2].GetComponent<Image>().fillAmount = 0;
+        }
+
+        dash_ch += (1 - (offcd[2] - Time.time) / abilityList[2].cd) / 4;
+        if (abilityList[2].charges == abilityList[2].maxCharges)
+        {
+            icons[2].GetComponent<Image>().fillAmount = 1;
+            dash_ch = .5f;
+        }
+        icons[0].GetComponent<Image>().fillAmount = dash_ch;
     }
 
     public void AssignAbility(Ability a, int i)
