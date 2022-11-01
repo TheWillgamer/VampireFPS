@@ -6,7 +6,7 @@ public class EnemyHitDetection : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     int currentHealth;
-    bool alive;
+    public bool alive;
 
     //public Transform hp_bar;
     private Rigidbody rb;

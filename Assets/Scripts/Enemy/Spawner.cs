@@ -6,6 +6,20 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject spawning;
     private GameObject spawned;
+    public bool alive = false;
+    private EnemyHitDetection ehd = null;
+
+    void Update()
+    {
+        if (spawned != null)
+        {
+            if (ehd == null)
+                ehd = spawned.transform.GetChild(0).GetComponent<EnemyHitDetection>();
+
+            alive = ehd.alive;
+        }
+            
+    }
 
     public void Spawn()
     {
@@ -14,6 +28,7 @@ public class Spawner : MonoBehaviour
 
     public void DestroySpawned()
     {
+        ehd = null;
         if (spawned != null)
             Destroy(spawned);
     }

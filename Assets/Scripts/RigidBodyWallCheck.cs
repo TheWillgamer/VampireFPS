@@ -23,7 +23,7 @@ public class RigidBodyWallCheck : MonoBehaviour
         //Determine how far object should travel this frame.
         float travelDistance = (velocity.magnitude * Time.deltaTime);
         //Set trace distance to be travel distance + collider radius.
-        float traceDistance = travelDistance + _colliderRadius;
+        float traceDistance = travelDistance + _colliderRadius * 2;
 
         // only checks for walls
         int layerMask = 1 << 6;
@@ -38,7 +38,7 @@ public class RigidBodyWallCheck : MonoBehaviour
                 hit.collider.gameObject.GetComponent<DestructibleWall>().Destroy();
             }
             else
-                rb.velocity = rb.velocity / 10;
+                rb.velocity = rb.velocity.normalized;
         }
     }
 }

@@ -17,6 +17,9 @@ public class GameplayManager : MonoBehaviour
     private GameObject player;
     private GameObject playerInstance;
 
+    public delegate void OnReset();
+    public static event OnReset DoReset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,5 +75,8 @@ public class GameplayManager : MonoBehaviour
         if (playerInstance != null)
             Destroy(playerInstance);
         playerInstance = Instantiate(player, transform.position, transform.rotation);
+
+        if (DoReset != null)
+            DoReset();
     }
 }
