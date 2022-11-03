@@ -17,7 +17,6 @@ public class ActivationGate : MonoBehaviour
             if (requirements[i].alive)
                 deactivate = false;
         }
-        Debug.Log(requirements[0].alive);
 
         gameObject.SetActive(!deactivate);
     }

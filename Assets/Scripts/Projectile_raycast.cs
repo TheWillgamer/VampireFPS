@@ -7,6 +7,7 @@ public class Projectile_raycast : MonoBehaviour
     [SerializeField] float speed = 30.0f;
     [SerializeField] float aliveTime = 5.0f;
     [SerializeField] float knockback = 1000f;
+    private bool active;
     public int damage = 5;
     float deathTime;
 
@@ -14,6 +15,8 @@ public class Projectile_raycast : MonoBehaviour
     void Start()
     {
         deathTime = Time.time + aliveTime;
+
+        active = true;
     }
 
     // Update is called once per frame
@@ -24,6 +27,12 @@ public class Projectile_raycast : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (active)
+            MoveProjectile();
+    }
+
+    void MoveProjectile()
+    {
         //Determine how far object should travel this frame.
         float travelDistance = (speed * Time.deltaTime);
 
@@ -39,7 +48,7 @@ public class Projectile_raycast : MonoBehaviour
                 //Invoke("DestroyProjectile", 1.5f);
                 //active = false;
             }
-            Destroy(gameObject);
+            active = false;
         }
 
         transform.position += transform.forward * travelDistance;

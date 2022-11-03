@@ -11,6 +11,7 @@ public class WizardAI : EnemyAI
     
     [SerializeField] private Transform proj;
     [SerializeField] private Transform rangedSpawn;
+    [SerializeField] private GameObject deathParticles;
     private Transform player;
     private bool active;
     private bool coolingDown;
@@ -21,7 +22,7 @@ public class WizardAI : EnemyAI
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player").transform.GetChild(1);
         active = true;
         charge = 0;
         coolingDown = false;
@@ -31,41 +32,51 @@ public class WizardAI : EnemyAI
     void Update()
     {
         Vector3 relLoc = player.position - transform.position;
+        relLoc.y = 0;
 
-        if (active && !coolingDown && relLoc.magnitude < alertRadius)
+        if (active && relLoc.magnitude < alertRadius)
         {
-            transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, Vector3.up);
+            transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
+            if (!coolingDown)
             {
-                if (hit.collider.tag == "Player")
+                RaycastHit hit;
+                if (Physics.Raycast(rangedSpawn.position, player.position - rangedSpawn.position, out hit, attackRange))
                 {
-                    charge += Time.deltaTime;
-                    if (charge > attackChargeTime)
-                        Fire();
-                }
-                else
-                {
-                    charge = 0;
+                    if (hit.collider.tag == "Player")
+                    {
+                        charge += Time.deltaTime;
+                        if (charge > attackChargeTime)
+                            Fire();
+                    }
+                    else
+                    {
+                        charge = 0;
+                    }
                 }
             }
-        }
-        else if (coolingDown)
-        {
-            charge += Time.deltaTime;
-            if (charge > attackCooldownTime)
+            else
             {
-                charge = 0;
-                coolingDown = false;
+                charge += Time.deltaTime;
+                if (charge > attackCooldownTime)
+                {
+                    charge = 0;
+                    coolingDown = false;
+                }
             }
         }
     }
     void Fire()
     {
         charge = 0;
-        Instantiate(proj, rangedSpawn.position, rangedSpawn.rotation);
+        Instantiate(proj, rangedSpawn.position, Quaternion.LookRotation(player.position - rangedSpawn.position, Vector3.up));
         fire.Play();
         coolingDown = true;
+    }
+
+    public override void Death()
+    {
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

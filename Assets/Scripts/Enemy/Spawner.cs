@@ -14,10 +14,12 @@ public class Spawner : MonoBehaviour
         if (spawned != null)
         {
             if (ehd == null)
-                ehd = spawned.transform.GetChild(0).GetComponent<EnemyHitDetection>();
+                ehd = spawned.GetComponent<EnemyHitDetection>();
 
             alive = ehd.alive;
         }
+        else
+            alive = false;
             
     }
 
