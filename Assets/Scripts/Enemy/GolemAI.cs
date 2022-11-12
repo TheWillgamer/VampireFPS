@@ -28,12 +28,14 @@ public class GolemAI : EnemyAI
     private bool ranged;         // attack has started
 
     private bool canMove;           // there is space in front of the enemy to move
+    private Animator anim;
 
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         active = true;
         canMove = true;
@@ -48,13 +50,15 @@ public class GolemAI : EnemyAI
 
         rb.AddForce(Vector3.down * Time.deltaTime * extraGravity);      // Extra Gravity
         Vector3 relLoc = player.position - transform.position;
+        anim.SetBool("Walking", false);
 
         if (active && relLoc.magnitude < alertRadius)
         {
             if (!attacking)
             {
-                if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange, layerMask))
+                if (Physics.SphereCast(transform.position, 1, transform.forward, out hit, attackRange, layerMask) && Time.time > timer)
                 {
+                    anim.SetTrigger("Attack");
                     attacking = true;
                     timer = Time.time + attackDelay;
                 }
@@ -62,7 +66,10 @@ public class GolemAI : EnemyAI
                 // Movement
                 relLoc.y = 0;
                 if (canMove)
+                {
                     transform.position = transform.position + transform.forward * moveSpeed * Time.deltaTime;
+                    anim.SetBool("Walking", true);
+                }
                 else if (!attacking)    // Checks if it can do a ranged attack
                 {
                     Vector3 relativePoint = transform.InverseTransformPoint(player.position);
@@ -83,6 +90,7 @@ public class GolemAI : EnemyAI
                     Attack();
                 attacking = false;
                 ranged = false;
+                timer = Time.time + 1.5f;
             }
             else
             {
@@ -98,7 +106,7 @@ public class GolemAI : EnemyAI
     //    base.Death();
     //}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.tag == "Ground")
             canMove = true;
