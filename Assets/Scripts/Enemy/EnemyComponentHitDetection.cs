@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHitDetection : MonoBehaviour
+public class EnemyComponentHitDetection : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     int currentHealth;

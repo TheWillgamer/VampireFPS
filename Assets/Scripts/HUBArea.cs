@@ -20,6 +20,8 @@ public class HUBArea : MonoBehaviour
         {
             if (currentArea == 0)
                 SetArea(1);
+            else if (currentArea == 1)
+                SetArea(2);
             else
                 SetArea(0);
         }
