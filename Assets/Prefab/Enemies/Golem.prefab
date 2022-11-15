@@ -61,7 +61,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7807427268855252385}
-  - {fileID: 476947313901045538}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1434649169819866973}
   m_Layer: 9
-  m_Name: boulderSpawn
+  m_Name: pullBack_loc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,13 +182,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434649169819866970}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.56, z: 1.84}
+  m_LocalRotation: {x: -0.00000011684806, y: -0.9994012, z: -0.03460124, w: 0.00000018567707}
+  m_LocalPosition: {x: 0, y: 0.0175, z: 0.00492}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7807427268855252385}
-  m_RootOrder: 3
+  m_Father: {fileID: 572610807877567061}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1434649171178942980
 GameObject:
@@ -251,12 +250,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708923041496585830}
   m_LocalRotation: {x: -0.70710677, y: 0.000000057601106, z: 0.000000057601188, w: 0.7071069}
-  m_LocalPosition: {x: 0, y: 0.95, z: -0}
+  m_LocalPosition: {x: 0, y: 0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 635856126806694729}
-  m_RootOrder: 1
+  m_Father: {fileID: 7807427268855252385}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8872650591841904166
 MeshFilter:
@@ -351,9 +350,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headTracker: {fileID: 6004779753634956125}
+  pullBackTracker: {fileID: 1434649169819866973}
   active: 0
   host: 1
   regenerateSpeed: 1
+  throwForce: 50
+  thrown: 0
+  damage: 5
+  knockback: 5
+  timer: 0
 --- !u!1 &2292490483522382769
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,8 +725,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6843218754213439116}
-  m_LocalRotation: {x: -0.00000011684807, y: -0.9994012, z: -0.034601208, w: 0.00000018567707}
-  m_LocalPosition: {x: 0, y: 0.016345724, z: 0.0012496838}
+  m_LocalRotation: {x: -0.000000116848085, y: -0.9994012, z: -0.03460124, w: 0.0000001856771}
+  m_LocalPosition: {x: 0, y: 0.016345724, z: 0.0012496912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -827,7 +832,7 @@ Transform:
   - {fileID: 5910432455754655856}
   - {fileID: 6906249925254292126}
   - {fileID: 1434649171178942983}
-  - {fileID: 1434649169819866973}
+  - {fileID: 476947313901045538}
   m_Father: {fileID: 635856126806694729}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -843,7 +848,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 5, z: 0.5}
-  m_Center: {x: 0, y: -1.5, z: 1.2}
+  m_Center: {x: 0, y: -1.5, z: 1.5}
 --- !u!54 &7807427268855252386
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -884,8 +889,6 @@ MonoBehaviour:
   rangedAttackUpForce: 40
   rangedAttackAngle: 1
   damageBox: {fileID: 1434649171178942983}
-  boulder: {fileID: 5981952311793313315, guid: 123355a5e3c381244892555c78c33348, type: 3}
-  boulderSpawn: {fileID: 1434649169819866973}
   head: {fileID: 3060642330923453997}
 --- !u!114 &7807427268855252384
 MonoBehaviour:
@@ -987,6 +990,7 @@ Transform:
   - {fileID: 849196307995899651}
   - {fileID: 5426107366814990894}
   - {fileID: 6004779753634956125}
+  - {fileID: 1434649169819866973}
   m_Father: {fileID: 6005615552310798636}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

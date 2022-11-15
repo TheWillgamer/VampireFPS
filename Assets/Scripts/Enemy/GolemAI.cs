@@ -16,8 +16,6 @@ public class GolemAI : EnemyAI
     [SerializeField] private float rangedAttackUpForce;
     [SerializeField] private float rangedAttackAngle;
     [SerializeField] private Transform damageBox;
-    [SerializeField] private Transform boulder;
-    [SerializeField] private Transform boulderSpawn;
     [SerializeField] private GolemHead head;
     private Transform player;
     private bool active;
@@ -74,9 +72,11 @@ public class GolemAI : EnemyAI
                 else if (!attacking)    // Checks if it can do a ranged attack
                 {
                     Vector3 relativePoint = transform.InverseTransformPoint(player.position);
-                    if (Time.time > timer && relativePoint.x > -rangedAttackAngle && relativePoint.x < rangedAttackAngle && relativePoint.z > 0)
+                    if (Time.time > timer && relativePoint.x > -rangedAttackAngle && relativePoint.x < rangedAttackAngle && relativePoint.z > 0 && head != null)
                     {
                         anim.SetTrigger("Throw");
+                        head.thrown = true;
+                        head.timer = 0f;
                         attacking = true;
                         ranged = true;
                         timer = Time.time + rangedAttackDelay;
@@ -104,7 +104,12 @@ public class GolemAI : EnemyAI
 
     public override void Death()
     {
-        head.host = false;
+        if (head != null)
+        {
+            head.host = false;
+            head.thrown = false;
+        }
+        
         base.Death();
     }
 
@@ -136,8 +141,8 @@ public class GolemAI : EnemyAI
 
     void RangedAttack()
     {
-        Transform b = Instantiate(boulder, boulderSpawn.position, Quaternion.identity);
-        b.GetComponent<Rigidbody>().AddForce((player.position - transform.position).normalized * rangedAttackForce + Vector3.up * rangedAttackUpForce, ForceMode.Impulse);
+        head.Throw((player.position - transform.position).normalized);
+        head = null;
     }
 
     void OnDrawGizmos()

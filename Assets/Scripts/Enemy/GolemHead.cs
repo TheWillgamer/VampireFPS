@@ -5,16 +5,27 @@ using UnityEngine;
 public class GolemHead : MonoBehaviour
 {
     [SerializeField] private Transform headTracker;
+    [SerializeField] private Transform pullBackTracker;     // Where the head is pulled back before the throw
     [SerializeField] private bool active;           // If full-sized head is on the golem
     public bool host;                               // if golem is alive
     [SerializeField] private float regenerateSpeed;           // How fast the head regenerates
-    private bool thrown;           // If the head was thrown by the golem
+    [SerializeField] private float throwForce;                // How fast the head is thrown
+    public bool thrown;           // If the head was thrown by the golem
     private float distanceToTracker;
     private Rigidbody rb;
+    [SerializeField] private int damage = 5;
+    [SerializeField] private float knockback = 5;
+
+    public float timer;        // Timer for head animations
+    private bool lifted;        // If head has been lifted
+    private bool pulled;        // If head has been pulled back
 
     // Start is called before the first frame update
     void Start()
     {
+        timer = Mathf.Infinity;
+        lifted = false;
+        pulled = false;
         rb = GetComponent<Rigidbody>();
         thrown = false;
         distanceToTracker = (headTracker.position - transform.position).magnitude;
@@ -23,6 +34,7 @@ public class GolemHead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         if (!thrown && host)
         {
             if (active)
@@ -34,6 +46,7 @@ public class GolemHead : MonoBehaviour
                 {
                     active = true;
                     transform.localScale = new Vector3(100, 100, 92.5f);
+                    transform.parent = transform.parent.parent;
                 }
                 else
                 {
@@ -49,5 +62,49 @@ public class GolemHead : MonoBehaviour
         {
             rb.AddForce(Vector3.down * Time.deltaTime * 2000f);
         }
+        else
+        {
+            if (!lifted && timer > .7f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, headTracker.position + new Vector3(0, .3f, 0), 1.5f * Time.deltaTime);
+                transform.rotation = headTracker.rotation * Quaternion.Euler(-90, 0, 0);
+
+                if (transform.position == headTracker.position + new Vector3(0, .3f, 0))
+                    lifted = true;
+            }
+            else if (!lifted)
+            {
+                transform.position = headTracker.position;
+                transform.rotation = headTracker.rotation * Quaternion.Euler(-90, 0, 0);
+            }
+            else if (!pulled)       // After head has been lifted
+            {
+                transform.position = Vector3.MoveTowards(transform.position, pullBackTracker.position, 2f * Time.deltaTime);
+                transform.rotation = headTracker.rotation * Quaternion.Euler(-90, 0, 0);
+
+                if (transform.position == pullBackTracker.position)
+                    pulled = true;
+            }
+            else
+            {
+                rb.AddForce(Vector3.down * Time.deltaTime * 2000f);
+            }
+            
+        }
+    }
+
+    public void Throw(Vector3 direction)
+    {
+        rb.AddForce(direction * throwForce, ForceMode.Impulse);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (thrown && collision.transform.tag == "Player")
+        {
+            collision.transform.GetComponent<PlayerHealth>().ProjectileHit(damage, rb.velocity.normalized, knockback);
+        }
+
+        Destroy(gameObject);
     }
 }
