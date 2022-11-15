@@ -18,6 +18,7 @@ public class GolemAI : EnemyAI
     [SerializeField] private Transform damageBox;
     [SerializeField] private Transform boulder;
     [SerializeField] private Transform boulderSpawn;
+    [SerializeField] private GolemHead head;
     private Transform player;
     private bool active;
     private bool falling;
@@ -101,11 +102,11 @@ public class GolemAI : EnemyAI
         }
     }
 
-    //public override void Death()
-    //{
-    //    Instantiate(grubExplosion, transform.position, transform.rotation);
-    //    base.Death();
-    //}
+    public override void Death()
+    {
+        head.host = false;
+        base.Death();
+    }
 
     void OnTriggerStay(Collider other)
     {
