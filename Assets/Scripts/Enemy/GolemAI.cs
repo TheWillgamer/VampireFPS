@@ -18,6 +18,7 @@ public class GolemAI : EnemyAI
     [SerializeField] private Transform damageBox;
     [SerializeField] private Transform boulder;
     [SerializeField] private Transform boulderSpawn;
+    [SerializeField] private GolemHead head;
     private Transform player;
     private bool active;
     private bool falling;
@@ -56,7 +57,7 @@ public class GolemAI : EnemyAI
         {
             if (!attacking)
             {
-                if (Physics.SphereCast(transform.position, 1, transform.forward, out hit, attackRange, layerMask) && Time.time > timer)
+                if (relLoc.magnitude < attackRange && Time.time > timer)
                 {
                     anim.SetTrigger("Attack");
                     attacking = true;
@@ -73,8 +74,9 @@ public class GolemAI : EnemyAI
                 else if (!attacking)    // Checks if it can do a ranged attack
                 {
                     Vector3 relativePoint = transform.InverseTransformPoint(player.position);
-                    if (relativePoint.x > -rangedAttackAngle && relativePoint.x < rangedAttackAngle && relativePoint.z > 0)
+                    if (Time.time > timer && relativePoint.x > -rangedAttackAngle && relativePoint.x < rangedAttackAngle && relativePoint.z > 0)
                     {
+                        anim.SetTrigger("Throw");
                         attacking = true;
                         ranged = true;
                         timer = Time.time + rangedAttackDelay;
@@ -90,7 +92,7 @@ public class GolemAI : EnemyAI
                     Attack();
                 attacking = false;
                 ranged = false;
-                timer = Time.time + 1.5f;
+                timer = Time.time + 1f;
             }
             else
             {
@@ -100,11 +102,11 @@ public class GolemAI : EnemyAI
         }
     }
 
-    //public override void Death()
-    //{
-    //    Instantiate(grubExplosion, transform.position, transform.rotation);
-    //    base.Death();
-    //}
+    public override void Death()
+    {
+        head.host = false;
+        base.Death();
+    }
 
     void OnTriggerStay(Collider other)
     {
