@@ -41,4 +41,10 @@ public class Spawner : MonoBehaviour
         if (spawned != null)
             Destroy(spawned);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position, Vector3.one);
+    }
 }
