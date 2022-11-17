@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
             if (ehd == null)
             {
                 ehd = spawned.GetComponent<EnemyHitDetection>();
-                if (ehd == null)
+                if (ehd == null && spawned.transform.childCount > 0)
                     ehd = spawned.transform.GetChild(0).GetComponent<EnemyHitDetection>();
             }
 

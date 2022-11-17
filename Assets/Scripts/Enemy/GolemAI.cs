@@ -141,7 +141,7 @@ public class GolemAI : EnemyAI
 
     void RangedAttack()
     {
-        head.Throw((player.position - transform.position).normalized);
+        head.Throw(((player.position - transform.position).normalized + Vector3.up * (player.position - transform.position).magnitude / 40f).normalized);
         head = null;
     }
 

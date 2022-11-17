@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GolemHead : MonoBehaviour
+public class GolemHead : EnemyAI
 {
     [SerializeField] private Transform headTracker;
     [SerializeField] private Transform pullBackTracker;     // Where the head is pulled back before the throw
@@ -14,7 +14,9 @@ public class GolemHead : MonoBehaviour
     private float distanceToTracker;
     private Rigidbody rb;
     [SerializeField] private int damage = 5;
+    [SerializeField] private int damageRadius = 5;
     [SerializeField] private float knockback = 5;
+    [SerializeField] private float playerKnockback = 5;
 
     public float timer;        // Timer for head animations
     private bool lifted;        // If head has been lifted
@@ -60,7 +62,7 @@ public class GolemHead : MonoBehaviour
         }
         else if (!host)
         {
-            rb.AddForce(Vector3.down * Time.deltaTime * 2000f);
+            rb.AddForce(Vector3.down * Time.deltaTime * 3000f);
         }
         else
         {
@@ -87,7 +89,7 @@ public class GolemHead : MonoBehaviour
             }
             else
             {
-                rb.AddForce(Vector3.down * Time.deltaTime * 2000f);
+                rb.AddForce(Vector3.down * Time.deltaTime * 3000f);
             }
             
         }
@@ -100,9 +102,34 @@ public class GolemHead : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (thrown && collision.transform.tag == "Player")
+        if (thrown)
         {
-            collision.transform.GetComponent<PlayerHealth>().ProjectileHit(damage, rb.velocity.normalized, knockback);
+            Death();
+            //collision.transform.GetComponent<PlayerHealth>().ProjectileHit(damage, rb.velocity.normalized, knockback);
+        }
+    }
+
+    public override void Death()
+    {
+        int layermask = 1 << 10;
+        layermask = ~layermask;
+
+        foreach (Collider col in Physics.OverlapSphere(transform.position, damageRadius, layermask))
+        {
+            if (col.tag == "Enemy")
+            {
+                EnemyHitDetection ehd = col.gameObject.GetComponent<EnemyHitDetection>();
+                ehd.TakeDamage(damage);
+                ehd.Knockback(knockback, (col.transform.position - transform.position).normalized);
+            }
+            else if (col.tag == "Player")
+            {
+                // Calculate Angle Between the collision point and the player
+                Vector3 dir = col.transform.position - transform.position;
+                // And finally we add force in the direction of dir and multiply it by force.
+                //  This will push back the player
+                col.gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * playerKnockback);
+            }
         }
 
         Destroy(gameObject);
