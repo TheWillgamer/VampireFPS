@@ -358,9 +358,10 @@ MonoBehaviour:
   throwForce: 80
   thrown: 0
   damage: 5
-  damageRadius: 50
+  damageRadius: 8
   knockback: 5
-  playerKnockback: 1500
+  playerKnockback: 2000
+  explosion: {fileID: 2648825654820905603, guid: 15df710f9d552e945b5f72373ca32132, type: 3}
   timer: 0
 --- !u!114 &5661892010826765329
 MonoBehaviour:

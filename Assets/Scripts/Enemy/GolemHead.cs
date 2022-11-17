@@ -17,6 +17,7 @@ public class GolemHead : EnemyAI
     [SerializeField] private int damageRadius = 5;
     [SerializeField] private float knockback = 5;
     [SerializeField] private float playerKnockback = 5;
+    [SerializeField] Transform explosion;
 
     public float timer;        // Timer for head animations
     private bool lifted;        // If head has been lifted
@@ -131,6 +132,8 @@ public class GolemHead : EnemyAI
                 col.gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * playerKnockback);
             }
         }
+
+        Instantiate(explosion, transform.position, transform.rotation);
 
         Destroy(gameObject);
     }
