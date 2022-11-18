@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GolemHead : EnemyAI
 {
-    [SerializeField] private Transform headTracker;
-    [SerializeField] private Transform pullBackTracker;     // Where the head is pulled back before the throw
-    [SerializeField] private bool active;           // If full-sized head is on the golem
+    public Transform headTracker;
+    public Transform pullBackTracker;     // Where the head is pulled back before the throw
+    public bool active;           // If full-sized head is on the golem
     public bool host;                               // if golem is alive
     [SerializeField] private float regenerateSpeed;           // How fast the head regenerates
     [SerializeField] private float throwForce;                // How fast the head is thrown
@@ -14,8 +14,9 @@ public class GolemHead : EnemyAI
     private float distanceToTracker;
     private Rigidbody rb;
     [SerializeField] private int damage = 5;
-    [SerializeField] private int damageRadius = 5;
+    [SerializeField] private float damageRadius = 5;
     [SerializeField] private float knockback = 5;
+    [SerializeField] private int playerDamage = 5;
     [SerializeField] private float playerKnockback = 5;
     [SerializeField] Transform explosion;
 
@@ -129,7 +130,8 @@ public class GolemHead : EnemyAI
                 Vector3 dir = col.transform.position - transform.position;
                 // And finally we add force in the direction of dir and multiply it by force.
                 //  This will push back the player
-                col.gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * playerKnockback);
+                //col.gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * playerKnockback);
+                col.gameObject.GetComponent<PlayerHealth>().ProjectileHit(playerDamage, dir.normalized, playerKnockback);
             }
         }
 

@@ -10,13 +10,20 @@ public class GolemAI : EnemyAI
     [SerializeField] private float alertRadius;     // how fast enemy turns towards the player
     [SerializeField] private float attackDelay;
     [SerializeField] private float attackRange;
-    [SerializeField] private float rangedAttackDelay;
+    [SerializeField] private float rangedAttackDelay;   // How long before the head fires out
+    [SerializeField] private float rangedAttackCD;      // How long before it can fire again
     [SerializeField] private float rangedAttackRange;
     [SerializeField] private float rangedAttackForce;
     [SerializeField] private float rangedAttackUpForce;
     [SerializeField] private float rangedAttackAngle;
     [SerializeField] private Transform damageBox;
     [SerializeField] private GolemHead head;
+    [SerializeField] private Transform headPrefab;
+    [SerializeField] private Transform headPrefabSpawn;
+    [SerializeField] private float headRegenTimeDelay;
+    [SerializeField] private Transform headTracker;
+    [SerializeField] private Transform pullBackTracker;     // Where the head is pulled back before the throw
+
     private Transform player;
     private bool active;
     private bool falling;
@@ -25,6 +32,7 @@ public class GolemAI : EnemyAI
     private float timer;            // for attack to initiate
     private bool attacking;         // attack has started
     private bool ranged;         // attack has started
+    private bool regening;         // head is currently regenning
 
     private bool canMove;           // there is space in front of the enemy to move
     private Animator anim;
@@ -39,6 +47,7 @@ public class GolemAI : EnemyAI
         active = true;
         canMove = true;
         ranged = false;
+        regening = false;
     }
 
     // Update is called once per frame
@@ -51,7 +60,13 @@ public class GolemAI : EnemyAI
         Vector3 relLoc = player.position - transform.position;
         anim.SetBool("Walking", false);
 
-        if (active && relLoc.magnitude < alertRadius)
+        if(head == null && !regening)
+        {
+            regening = true;
+            timer = Time.time + headRegenTimeDelay;
+        }
+
+        if (active && relLoc.magnitude < alertRadius && !regening)
         {
             if (!attacking)
             {
@@ -72,7 +87,7 @@ public class GolemAI : EnemyAI
                 else if (!attacking)    // Checks if it can do a ranged attack
                 {
                     Vector3 relativePoint = transform.InverseTransformPoint(player.position);
-                    if (Time.time > timer && relativePoint.x > -rangedAttackAngle && relativePoint.x < rangedAttackAngle && relativePoint.z > 0 && head != null)
+                    if (Time.time > timer && relativePoint.x > -rangedAttackAngle && relativePoint.x < rangedAttackAngle && relativePoint.z > 0 && head != null && head.active)
                     {
                         anim.SetTrigger("Throw");
                         head.thrown = true;
@@ -99,6 +114,25 @@ public class GolemAI : EnemyAI
                 relLoc.y = 0;
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(relLoc, Vector3.up), attackingTurnSpeed * Time.deltaTime);
             }
+        }
+        else if (regening)      // Regenerate the golem head
+        {
+            if (Time.time > timer)
+            {
+                Transform temp = Instantiate(headPrefab, headPrefabSpawn.position, headPrefabSpawn.rotation);
+                temp.parent = transform;
+                head = temp.GetComponent<GolemHead>();
+                head.headTracker = headTracker;
+                head.pullBackTracker = pullBackTracker;
+                timer = Time.time + rangedAttackCD;
+                regening = false;
+            }
+        }
+        else if (active && ranged && Time.time > timer)
+        {
+            RangedAttack();
+            attacking = false;
+            ranged = false;
         }
     }
 
