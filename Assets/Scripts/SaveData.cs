@@ -1,8 +1,9 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
+//using UnityEngine.Windows;
 
 public struct Level
 {
@@ -34,11 +35,12 @@ public class SaveData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        filePath = Application.persistentDataPath + "/gamedata.json";
+        filePath = Application.persistentDataPath + "/gamedata.txt";
 
         if (File.Exists(filePath))
         {
-
+            Debug.Log(Load().ToString());
+            Debug.Log(filePath);
         }
         else
         {
@@ -53,7 +55,7 @@ public class SaveData : MonoBehaviour
                 new Level ("Hellfall", false, 0, 0, 0)
             };
 
-            Debug.Log(Load(data.ToString()));
+            Save(data);
         }
         
     }
@@ -66,12 +68,13 @@ public class SaveData : MonoBehaviour
 
     void Save(PlayerData data)
     {
-
+        File.WriteAllText(filePath, data.ToString());
     }
 
-    PlayerData Load(string data)
+    PlayerData Load()
     {
         PlayerData pd = new PlayerData();
+        string data = File.ReadAllText(filePath);
 
         string[] dataChunks = data.Split("\n");
         pd.levelsCompleted = Convert.ToInt32(dataChunks[0].Split(":")[1]);
