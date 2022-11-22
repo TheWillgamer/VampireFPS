@@ -3,15 +3,14 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.Windows;
 
 public struct Level
 {
-    string name;
-    bool completed;
-    float fastestTime;
-    int enemiesKilled;
-    int secretsFound;
+    public string name;
+    public bool completed;
+    public float fastestTime;
+    public int enemiesKilled;
+    public int secretsFound;
 
     public Level(string n, bool c, float t, int e, int s)
     {
@@ -31,6 +30,7 @@ public struct Level
 public class SaveData : MonoBehaviour
 {
     string filePath;
+    public PlayerData playerData;
 
     // Start is called before the first frame update
     void Start()
@@ -39,23 +39,22 @@ public class SaveData : MonoBehaviour
 
         if (File.Exists(filePath))
         {
-            Debug.Log(Load().ToString());
-            Debug.Log(filePath);
+            playerData = Load();
         }
         else
         {
-            PlayerData data = new PlayerData();
-            data.levelsCompleted = 0;
-            data.timePlayed = 0f;
-            data.totalEnemiesKilled = 0;
-            data.totalSecretsFound = 0;
-            data.levels = new Level[]
+            playerData = new PlayerData();
+            playerData.levelsCompleted = 0;
+            playerData.timePlayed = 0f;
+            playerData.totalEnemiesKilled = 0;
+            playerData.totalSecretsFound = 0;
+            playerData.levels = new Level[]
             {
                 new Level ("Level0", false, 0, 0, 0),
                 new Level ("Hellfall", false, 0, 0, 0)
             };
 
-            Save(data);
+            Save(playerData);
         }
         
     }
@@ -105,7 +104,7 @@ public class PlayerData
     public override string ToString()
     {
         string toReturn = "LevelsCompleted:" + levelsCompleted.ToString() + "\n"
-            + "TimePlayed:" + timePlayed.ToString() + "\n"
+            + "TimeSpentInLevels:" + timePlayed.ToString() + "\n"
             + "EnemiesKilled:" + totalEnemiesKilled.ToString() + "\n"
             + "SecretsFound:" + totalSecretsFound.ToString() + "\n\n";
 
