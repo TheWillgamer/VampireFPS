@@ -59,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
 
     //GroundPound
     public float poundSpeed = 40;
+    public GameObject hardLandEffect;
+    private float priorDownSpeed;
+    public Transform feetLoc;
 
     //Input
     public float x, y;
@@ -72,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource Jumping;
     public AudioSource Slide;
     private bool sliding;
+    public AudioSource SoftLand;
+    public AudioSource HardLand;
 
     void Awake()
     {
@@ -93,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
         playerScale = transform.localScale;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        priorDownSpeed = 0;
     }
 
 
@@ -139,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
             }
             anim.SetBool("moving", false);
         }
+        priorDownSpeed = rb.velocity.y;
     }
 
     /// <summary>
@@ -408,6 +415,37 @@ public class PlayerMovement : MonoBehaviour
     {
         float angle = Vector3.Angle(Vector3.up, v);
         return angle < 95;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        bool hitFloor = false;
+
+        if (other.gameObject.tag == "Ground")
+        {
+            for (int i = 0; i < other.contactCount; i++)
+            {
+                Vector3 normal = other.contacts[i].normal;
+                //FLOOR
+                if (IsFloor(normal))
+                    hitFloor = true;
+            }
+        }
+
+        if (hitFloor)
+        {
+            // Hard Landing
+            if (priorDownSpeed < -45)
+            {
+                HardLand.Play(0);
+                Instantiate(hardLandEffect, feetLoc.position, feetLoc.rotation);
+            }
+            // Soft Landing
+            else if (priorDownSpeed < -10)
+            {
+                SoftLand.Play(0);
+            }
+        }
     }
 
     // Allows player to jump away from wall
