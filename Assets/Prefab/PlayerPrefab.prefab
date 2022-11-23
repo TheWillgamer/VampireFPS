@@ -4084,7 +4084,7 @@ GameObject:
   - component: {fileID: 7736701734570753331}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: CameraMan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4118,6 +4118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7736701735039780483}
+  active: 1
 --- !u!1 &7736701734796940568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4465,7 +4466,7 @@ GameObject:
   - component: {fileID: 7736701734935743640}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: PlayerUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
