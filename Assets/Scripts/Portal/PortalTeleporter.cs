@@ -11,7 +11,8 @@ public class PortalTeleporter : MonoBehaviour
         if (col.tag == "Player")
         {
             Transform player = col.transform;
-            player.position = receiver.position + player.position - transform.position;
+            if (Vector3.Dot(transform.up, player.position - transform.position) > 0f)
+                player.position = receiver.position + player.position - transform.position;
         }
     }
 }
