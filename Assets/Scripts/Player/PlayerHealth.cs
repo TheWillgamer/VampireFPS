@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 2000;
     public Transform hpMeter;
     public Image dmgScreen;
+    public Image blkScreen;
     private bool won;
 
     protected PlayerMovement pm;
@@ -131,6 +132,17 @@ public class PlayerHealth : MonoBehaviour
         {
             c.a = alpha;
             dmgScreen.color = c;
+            yield return null;
+        }
+    }
+
+    public IEnumerator FadeOut()
+    {
+        Color c = blkScreen.color;
+        for (float alpha = 0f; alpha <= 1f; alpha += 0.001f)
+        {
+            c.a = alpha;
+            blkScreen.color = c;
             yield return null;
         }
     }
