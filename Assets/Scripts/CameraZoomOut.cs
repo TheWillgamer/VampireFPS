@@ -34,6 +34,7 @@ public class CameraZoomOut : MonoBehaviour
         {
             camera = GameObject.FindWithTag("CameraMan").transform;
             camera.GetComponent<MoveCamera>().active = false;
+            StartCoroutine(camera.GetComponent<MoveCamera>().FadeOut());
             activated = true;
             tempPosition = camera.position;
             tempRotation = camera.rotation;
