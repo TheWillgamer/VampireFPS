@@ -78,11 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40900b61a42883f4ab2eb1a443450574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   damageRadius: 5
   knockback: 5
   playerDamage: 5
-  playerKnockback: 5
+  playerKnockback: 1500
   explosion: {fileID: 2648825654820905603, guid: 15df710f9d552e945b5f72373ca32132, type: 3}
 --- !u!1 &5606878040528123415
 GameObject:

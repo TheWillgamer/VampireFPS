@@ -42,6 +42,9 @@ public class EnemyHitDetection : MonoBehaviour
 
     public void Knockback(float amount, Vector3 direction)
     {
+        if (rb == null)
+            return;
+
         float startTime = Time.time;
 
         rb.AddForce(direction * amount);
