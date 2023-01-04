@@ -37,7 +37,7 @@ public class LightningAI : EnemyAI
                 int layerMask = 1 << 6;
                 RaycastHit hit;
 
-                if (Physics.Raycast(player.position, Vector3.down, out hit, traceDistance, layerMask))
+                if (Physics.Raycast(player.position, Vector3.down, out hit, 20, layerMask))
                 {
                     Attack(hit.point);
                     coolingDown = true;
@@ -62,7 +62,7 @@ public class LightningAI : EnemyAI
     void Attack(Vector3 loc)
     {
         charge = 0;
-        Instantiate(proj, loc, Vector3.zero);
+        Instantiate(lightning, loc, Quaternion.identity);
         l_sound.Play();
         coolingDown = true;
     }
