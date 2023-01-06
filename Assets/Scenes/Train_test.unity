@@ -5845,10 +5845,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020dd77a2cf0ee445bcea9f0893f7343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alertRadius: 10
-  attackCooldownTime: 5
-  lightning: {fileID: 0}
-  l_sound: {fileID: 0}
+  alertRadius: 50
+  attackCooldownTime: 2
+  lightning: {fileID: 8599674751661942263, guid: fd155a5252a335c43a6da31194ecdb1c, type: 3}
+  l_sound: {fileID: 6229388921857106095}
 --- !u!23 &6364262637450081603
 MeshRenderer:
   m_ObjectHideFlags: 0

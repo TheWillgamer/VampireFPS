@@ -11,7 +11,6 @@ public class LightningAI : EnemyAI
     private bool coolingDown;
     private float charge;
     private bool active;
-    private bool attacking;
 
     public AudioSource l_sound;
 
@@ -22,7 +21,6 @@ public class LightningAI : EnemyAI
         active = true;
         charge = 0;
         coolingDown = false;
-        attacking = false;
     }
 
     // Update is called once per frame
