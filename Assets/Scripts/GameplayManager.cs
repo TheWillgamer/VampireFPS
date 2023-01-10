@@ -17,8 +17,14 @@ public class GameplayManager : MonoBehaviour
     private GameObject player;
     private GameObject playerInstance;
 
+    public delegate void OnDespawn();
+    public static event OnDespawn Despawn;
+
     public delegate void OnReset();
     public static event OnReset DoReset;
+
+    public delegate void OnSpawn();
+    public static event OnSpawn Spawn;
 
     // Start is called before the first frame update
     void Start()
