@@ -9,6 +9,12 @@ public class Spawner : MonoBehaviour
     public bool alive = false;
     private EnemyHitDetection ehd = null;
 
+    void Start()
+    {
+        GameplayManager.Reset += DestroySpawned;
+        GameplayManager.Spawn += SpawnEnemy;
+    }
+
     void Update()
     {
         if (spawned != null)
@@ -30,7 +36,7 @@ public class Spawner : MonoBehaviour
             
     }
 
-    public void Spawn()
+    public void SpawnEnemy()
     {
         spawned = Instantiate(spawning, transform.position, transform.rotation);
     }

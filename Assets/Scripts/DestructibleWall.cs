@@ -6,7 +6,7 @@ public class DestructibleWall : MonoBehaviour
 {
     void Start()
     {
-        GameplayManager.DoReset += Reinstate;
+        GameplayManager.Reset += Reinstate;
     }
 
     // Start is called before the first frame update

@@ -17,11 +17,8 @@ public class GameplayManager : MonoBehaviour
     private GameObject player;
     private GameObject playerInstance;
 
-    public delegate void OnDespawn();
-    public static event OnDespawn Despawn;
-
     public delegate void OnReset();
-    public static event OnReset DoReset;
+    public static event OnReset Reset;
 
     public delegate void OnSpawn();
     public static event OnSpawn Spawn;
@@ -31,8 +28,8 @@ public class GameplayManager : MonoBehaviour
     {
         timer = 0f;
         timerActive = true;
-        Reset();
-        SpawnFrom(0);
+        DoReset();
+        Invoke(nameof(DoSpawn), 0.01f);
     }
 
     // Update is called once per frame
@@ -44,9 +41,8 @@ public class GameplayManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Reset();
-            Invoke(nameof(sp), 0.01f);
-            //SpawnFrom(0);
+            DoReset();
+            Invoke(nameof(DoSpawn), 0.01f);
         }
     }
 
@@ -57,32 +53,19 @@ public class GameplayManager : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    void sp()
+    public void DoReset()
     {
-        SpawnFrom(0);
-    }
-
-    // Spawns all enemies from the index
-    public void SpawnFrom(int index)
-    {
-        for(int i = index; i < spawns.Length; i++)
-        {
-            spawns[i].Spawn();
-        }
-    }
-
-    public void Reset()
-    {
-        for (int i = 0; i < spawns.Length; i++)
-        {
-            spawns[i].DestroySpawned();
-        }
-
         if (playerInstance != null)
             Destroy(playerInstance);
         playerInstance = Instantiate(player, transform.position, transform.rotation);
 
-        if (DoReset != null)
-            DoReset();
+        if (Reset != null)
+            Reset();
+    }
+
+    public void DoSpawn()
+    {
+        if (Spawn != null)
+            Spawn();
     }
 }
