@@ -21,7 +21,11 @@ public class PlayerMovement : MonoBehaviour
     private float xRotation;
     private float sensitivity;
 
-
+    //DashFOV
+    [SerializeField] private Camera camera;
+    public bool dynamicFOV;
+    [SerializeField] private float FOVincreaseAmount;
+    private float defaultFOV;
 
     //Movement
     public float moveSpeed = 4500;
@@ -91,6 +95,8 @@ public class PlayerMovement : MonoBehaviour
         stepping = false;
         sliding = false;
         onMovingPlatform = false;
+
+        defaultFOV = camera.fieldOfView;
     }
 
     void Start()
@@ -146,6 +152,8 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("moving", false);
         }
         priorDownSpeed = rb.velocity.y;
+
+        DashFOV();
     }
 
     /// <summary>
@@ -469,5 +477,15 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    
+    private void DashFOV()
+    {
+        if (dynamicFOV)
+        {
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, defaultFOV + FOVincreaseAmount, 10f * Time.deltaTime);
+        }
+        else
+        {
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, defaultFOV, 10 * Time.deltaTime);
+        }
+    }
 }

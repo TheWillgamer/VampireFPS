@@ -5670,7 +5670,6 @@ GameObject:
   - component: {fileID: 1768055200}
   - component: {fileID: 8737453131795872503}
   - component: {fileID: 7306288288531991779}
-  - component: {fileID: 825310750803543358}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -5796,6 +5795,9 @@ MonoBehaviour:
   paused: 0
   onMovingPlatform: 0
   prb: {fileID: 0}
+  camera: {fileID: 7736701735504802157}
+  dynamicFOV: 0
+  FOVincreaseAmount: 15
   moveSpeed: 8000
   maxSpeed: 23
   grounded: 0
@@ -6490,20 +6492,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 7736701735504802154}
---- !u!114 &825310750803543358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7736701735432866436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602e110f1bfe7e04792332ed63632e86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 7736701735504802157}
-  dynamicFOV: 1
 --- !u!1 &7736701735461634441
 GameObject:
   m_ObjectHideFlags: 0

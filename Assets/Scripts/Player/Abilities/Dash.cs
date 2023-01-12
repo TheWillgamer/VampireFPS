@@ -11,12 +11,12 @@ public class Dash : Ability
     {
         pm.disableCM = true;
         pm.disableAR = true;
-        //ps.canLook = false;
-        //ps.canMove = false;
-        //ps.SwitchToThird();
         sound.Play(0);
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        if (pm.y != 0 || pm.x == 0)      // For FOV change
+            pm.dynamicFOV = true;
 
         if (pm.y == 0 && pm.x == 0)
         {
@@ -39,5 +39,6 @@ public class Dash : Ability
 
         pm.disableCM = false;
         pm.disableAR = false;
+        pm.dynamicFOV = false;
     }
 }
