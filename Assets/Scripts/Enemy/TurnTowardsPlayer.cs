@@ -6,6 +6,7 @@ public class TurnTowardsPlayer : MonoBehaviour
 {
     [SerializeField] private float turnSpeed;
     [SerializeField] private float alertRadius;     // how fast enemy turns towards the player
+    [SerializeField] private bool disableVerticalTurn;     // how fast enemy turns towards the player
     private Transform player;
     private bool active;
 
@@ -20,6 +21,9 @@ public class TurnTowardsPlayer : MonoBehaviour
     void Update()
     {
         Vector3 relLoc = player.position - transform.position;
+
+        if (disableVerticalTurn)
+            relLoc = new Vector3(relLoc.x, 0, relLoc.z);
         
         if(active && relLoc.magnitude < alertRadius)
         {

@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpResetDelay = 6f;
     public float wallJumpUpModifier = 1.5f;
     public float wallJumpModifier = 1.5f;
+    public float coyoteTime = 3f;
 
     //GroundPound
     public float poundSpeed = 40;
@@ -293,6 +294,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector2.up * secondJumpForce * 2f);
                 jumpCharge--;
             }
+            grounded = false;
 
             //Audio
             Jumping.Play(0);
@@ -414,11 +416,6 @@ public class PlayerMovement : MonoBehaviour
         return new Vector2(xMag, yMag);
     }
 
-    private void OnCollisionExit(Collision other)
-    {
-        grounded = false;
-    }
-
     private bool IsFloor(Vector3 v)
     {
         float angle = Vector3.Angle(Vector3.up, v);
@@ -456,6 +453,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private bool cancellingGrounded;
+
     // Allows player to jump away from wall
     private void OnCollisionStay(Collision other)
     {
@@ -468,13 +467,25 @@ public class PlayerMovement : MonoBehaviour
                 if (IsFloor(normal))
                 {
                     grounded = true;
+                    cancellingGrounded = false;
                     normalVector = normal;
                     jumpCharge = 1;
+                    CancelInvoke(nameof(StopGrounded));
                 }
             }
             
         }
 
+        if (!cancellingGrounded)
+        {
+            cancellingGrounded = true;
+            Invoke(nameof(StopGrounded), Time.deltaTime * coyoteTime);
+        }
+    }
+
+    private void StopGrounded()
+    {
+        grounded = false;
     }
 
     private void DashFOV()
