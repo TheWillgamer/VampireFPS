@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpUpModifier = 1.5f;
     public float wallJumpModifier = 1.5f;
     public float coyoteTime = 3f;
+    private bool canGroundJump;
 
     //GroundPound
     public float poundSpeed = 40;
@@ -96,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
         stepping = false;
         sliding = false;
         onMovingPlatform = false;
+        canGroundJump = false;
 
         defaultFOV = camera.fieldOfView;
     }
@@ -276,13 +278,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if ((grounded || jumpCharge > 0) && readyToJump && !dead && !crouching)
+        if ((canGroundJump || jumpCharge > 0) && readyToJump && !dead && !crouching)
         {
             readyToJump = false;
 
             //Add jump forces
-            if (grounded)
+            if (canGroundJump)
             {
+                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
                 rb.AddForce(Vector2.up * jumpForce * wallJumpUpModifier);
                 if(Vector3.Angle(Vector2.up, normalVector) > 35)
                     rb.AddForce(normalVector * jumpForce * wallJumpModifier);
@@ -294,7 +297,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector2.up * secondJumpForce * 2f);
                 jumpCharge--;
             }
-            grounded = false;
 
             //Audio
             Jumping.Play(0);
@@ -453,7 +455,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool cancellingGrounded;
+    void CancelCoyoteTime()
+    {
+        canGroundJump = false;
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        grounded = false;
+        Invoke(nameof(CancelCoyoteTime), coyoteTime);
+    }
 
     // Allows player to jump away from wall
     private void OnCollisionStay(Collision other)
@@ -467,25 +478,14 @@ public class PlayerMovement : MonoBehaviour
                 if (IsFloor(normal))
                 {
                     grounded = true;
-                    cancellingGrounded = false;
+                    canGroundJump = true;
                     normalVector = normal;
                     jumpCharge = 1;
-                    CancelInvoke(nameof(StopGrounded));
                 }
             }
-            
+
         }
 
-        if (!cancellingGrounded)
-        {
-            cancellingGrounded = true;
-            Invoke(nameof(StopGrounded), Time.deltaTime * coyoteTime);
-        }
-    }
-
-    private void StopGrounded()
-    {
-        grounded = false;
     }
 
     private void DashFOV()

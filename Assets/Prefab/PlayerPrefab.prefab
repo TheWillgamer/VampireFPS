@@ -5208,7 +5208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!95 &7736701734994471686
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5225,7 +5225,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7736701735039780482
 GameObject:
   m_ObjectHideFlags: 0
@@ -5819,7 +5819,7 @@ MonoBehaviour:
   jumpResetDelay: 10
   wallJumpUpModifier: 1.9
   wallJumpModifier: 1.5
-  coyoteTime: 30
+  coyoteTime: 0.2
   poundSpeed: 47
   hardLandEffect: {fileID: 8084085040749045801, guid: d783a31bb7a8908409fb9cca17944d55, type: 3}
   feetLoc: {fileID: 5086671219659968553}
