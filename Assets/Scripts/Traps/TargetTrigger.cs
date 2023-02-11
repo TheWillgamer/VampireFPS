@@ -16,7 +16,6 @@ public class TargetTrigger : MonoBehaviour
         if (!hit)
         {
             hit = true;
-            Debug.Log("obj was hit");
         }
     }
 }

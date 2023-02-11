@@ -59,6 +59,13 @@ public class PlayerProjectile : MonoBehaviour
                 Invoke("DestroyProjectile", 1.5f);
                 active = false;
             }
+            else if (hit.transform.gameObject.tag == "Target")
+            {
+                hit.transform.gameObject.GetComponent<TargetTrigger>().Hit();
+                Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                Invoke("DestroyProjectile", 1.5f);
+                active = false;
+            }
         }
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
         {
