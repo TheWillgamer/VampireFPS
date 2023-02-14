@@ -11,6 +11,7 @@ public class WizardAI : EnemyAI
     
     [SerializeField] private Transform proj;
     [SerializeField] private Transform rangedSpawn;
+    [SerializeField] private Transform deathParticlesSpawn;
     [SerializeField] private GameObject deathParticles;
     private Transform player;
     private bool active;
@@ -76,7 +77,7 @@ public class WizardAI : EnemyAI
 
     public override void Death()
     {
-        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Instantiate(deathParticles, deathParticlesSpawn.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
