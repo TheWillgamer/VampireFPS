@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RigidBodyWallCheck : MonoBehaviour
 {
-    public Transform playerCam;
+    public Transform playerTop;
+    public Transform playerBot;
     private Rigidbody rb;
     private float _colliderRadius;
 
@@ -30,7 +31,7 @@ public class RigidBodyWallCheck : MonoBehaviour
         RaycastHit hit;
 
         // Does the ray intersect any walls
-        if (velocity.magnitude > 5f && Physics.SphereCast(playerCam.position, _colliderRadius, velocity, out hit, traceDistance, layerMask))
+        if (velocity.magnitude > 5f && Physics.SphereCast(playerTop.position, _colliderRadius, velocity, out hit, traceDistance, layerMask))
         {
             if(velocity.magnitude > 30f && hit.collider.tag == "Destructible")
             {
@@ -38,7 +39,14 @@ public class RigidBodyWallCheck : MonoBehaviour
                 hit.collider.gameObject.GetComponent<DestructibleWall>().Destroy();
             }
             else
-                rb.velocity = rb.velocity.normalized;
+                rb.velocity = rb.velocity / 2;
+        }
+        if (velocity.y < -45f && Physics.SphereCast(playerBot.position, _colliderRadius, velocity, out hit, traceDistance, layerMask))
+        {
+            if (hit.collider.tag == "Target")
+                hit.collider.gameObject.GetComponent<SlammableButton>().Slam();
+            GetComponent<PlayerMovement>().HardLanding();
+            rb.velocity = 3 * rb.velocity / 4;
         }
     }
 }

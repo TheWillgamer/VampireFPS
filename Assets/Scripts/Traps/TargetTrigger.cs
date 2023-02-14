@@ -1,21 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TargetTrigger : MonoBehaviour
 {
-    private bool hit;
-
-    void Start()
-    {
-        hit = false;
-    }
+    public UnityEvent hit = new UnityEvent();
 
     public void Hit()
     {
-        if (!hit)
-        {
-            hit = true;
-        }
+        hit.Invoke();
     }
 }

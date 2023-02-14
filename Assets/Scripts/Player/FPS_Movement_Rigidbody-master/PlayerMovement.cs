@@ -83,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
     private bool sliding;
     public AudioSource SoftLand;
     public AudioSource HardLand;
+    private bool hLand;         // checks if landing is hard
 
     void Awake()
     {
@@ -98,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         sliding = false;
         onMovingPlatform = false;
         canGroundJump = false;
+        hLand = false;
 
         defaultFOV = camera.fieldOfView;
     }
@@ -442,17 +444,24 @@ public class PlayerMovement : MonoBehaviour
         if (hitFloor)
         {
             // Hard Landing
-            if (priorDownSpeed < -45)
+            if (hLand)
             {
+                hLand = false;
                 HardLand.Play(0);
                 Instantiate(hardLandEffect, feetLoc.position, feetLoc.rotation);
             }
+
             // Soft Landing
             else if (priorDownSpeed < -10)
             {
                 SoftLand.Play(0);
             }
         }
+    }
+
+    public void HardLanding()
+    {
+        hLand = true;
     }
 
     void CancelCoyoteTime()
