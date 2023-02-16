@@ -6159,7 +6159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &6229388922011886488
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6286,6 +6286,7 @@ MonoBehaviour:
   alertRadius: 50
   attackCooldownTime: 2
   lightning: {fileID: 8599674751661942263, guid: fd155a5252a335c43a6da31194ecdb1c, type: 3}
+  spawnHeight: 20
   l_sound: {fileID: 6229388921857106095}
 --- !u!23 &6364262637450081603
 MeshRenderer:
