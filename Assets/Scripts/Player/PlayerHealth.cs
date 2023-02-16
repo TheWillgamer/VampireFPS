@@ -134,4 +134,12 @@ public class PlayerHealth : MonoBehaviour
             yield return null;
         }
     }
+
+    public void ChangeTickRate(float rate)
+    {
+        tick_cd = rate;
+        offcd = Time.time;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }
