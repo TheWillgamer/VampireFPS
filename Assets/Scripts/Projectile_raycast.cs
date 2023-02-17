@@ -8,6 +8,8 @@ public class Projectile_raycast : MonoBehaviour
     [SerializeField] float aliveTime = 5.0f;
     [SerializeField] float knockback = 1000f;
     [SerializeField] Transform hitExplosion;
+    [SerializeField] bool trail;
+
     private bool active;
     public int damage = 5;
     float deathTime;
@@ -50,9 +52,21 @@ public class Projectile_raycast : MonoBehaviour
                 //active = false;
             }
             Instantiate(hitExplosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+
+            if (trail)
+            {
+                active = false;
+                Invoke("DestroyProjectile", 1.5f);
+            }
+            else
+                Destroy(gameObject);
         }
 
         transform.position += transform.forward * travelDistance;
+    }
+
+    private void DestroyProjectile()
+    {
+        Destroy(gameObject);
     }
 }

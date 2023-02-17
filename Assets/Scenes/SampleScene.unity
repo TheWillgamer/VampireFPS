@@ -11381,7 +11381,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608697482}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -11456,7 +11456,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -36592,6 +36592,9 @@ MonoBehaviour:
   paused: 0
   onMovingPlatform: 0
   prb: {fileID: 0}
+  camera: {fileID: 0}
+  dynamicFOV: 0
+  FOVincreaseAmount: 0
   moveSpeed: 8000
   maxSpeed: 20
   grounded: 0
@@ -36613,6 +36616,7 @@ MonoBehaviour:
   jumpResetDelay: 10
   wallJumpUpModifier: 1.5
   wallJumpModifier: 1.5
+  coyoteTime: 3
   poundSpeed: 40
   hardLandEffect: {fileID: 0}
   feetLoc: {fileID: 0}
@@ -43119,6 +43123,8 @@ MonoBehaviour:
   speed: 300
   aliveTime: 5
   knockback: 1000
+  hitExplosion: {fileID: 0}
+  trail: 0
   damage: 100
 --- !u!199 &1369588277
 ParticleSystemRenderer:
@@ -58503,7 +58509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!95 &1543386904
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -58520,7 +58526,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1565953587
 GameObject:
   m_ObjectHideFlags: 0
@@ -83317,11 +83323,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!108 &1769188276 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 1769188276, guid: 25d33d8db444adf40b3ff44029531139, type: 3}
-  m_PrefabInstance: {fileID: 1760656963}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1771184083
 GameObject:
   m_ObjectHideFlags: 0
@@ -94143,7 +94144,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 0
-    light: {fileID: 1769188276}
+    light: {fileID: 0}
     randomDistribution: 1
     color: 1
     range: 1
