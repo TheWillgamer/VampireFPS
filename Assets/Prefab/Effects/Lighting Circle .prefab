@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4303471278739962837}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4853,7 +4853,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4303471279155099564}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4928,7 +4928,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9633,6 +9633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4303471279567719138}
+  - component: {fileID: 3795466880762970507}
   m_Layer: 0
   m_Name: 'Lighting Circle '
   m_TagString: Untagged
@@ -9657,3 +9658,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3795466880762970507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303471279567719141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ad248709255d045b13c010e1e51132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exploTime: 0.9
+  explosion: {fileID: 1507831456421943015, guid: ba68d4c8b37f6714b95c00c7e6524ee9, type: 3}
+  damageRadius: 3.5
+  damage: 5
+  knockback: 5
+  playerDamage: 5
+  playerKnockback: 5

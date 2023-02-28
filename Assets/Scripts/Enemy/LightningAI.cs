@@ -7,7 +7,6 @@ public class LightningAI : EnemyAI
     [SerializeField] private float alertRadius;
     [SerializeField] private float attackCooldownTime;
     [SerializeField] private Transform lightning;
-    [SerializeField] private float spawnHeight;
 
     private Transform player;
     private bool coolingDown;
@@ -62,7 +61,7 @@ public class LightningAI : EnemyAI
     void Attack(Vector3 loc)
     {
         charge = 0;
-        Instantiate(lightning, loc + new Vector3(0f, spawnHeight, 0f), Quaternion.Euler(90, 0, 0));
+        Instantiate(lightning, loc + new Vector3(0f,.1f,0f), Quaternion.identity);
         l_sound.Play();
         coolingDown = true;
     }
