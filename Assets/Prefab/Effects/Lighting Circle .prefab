@@ -9671,9 +9671,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exploTime: 0.9
+  exploDelay: 0.2
+  exploHeight: 0.6
   explosion: {fileID: 1507831456421943015, guid: ba68d4c8b37f6714b95c00c7e6524ee9, type: 3}
   damageRadius: 3.5
   damage: 5
   knockback: 5
-  playerDamage: 5
-  playerKnockback: 5
+  playerDamage: 500
+  playerKnockback: 5000
