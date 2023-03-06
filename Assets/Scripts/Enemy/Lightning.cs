@@ -5,6 +5,8 @@ using UnityEngine;
 public class Lightning : MonoBehaviour
 {
     [SerializeField] private float exploTime;       // how long before lightning explosion
+    [SerializeField] private float exploDelay;      // how long after lightning explosion before damage takes place
+    [SerializeField] private float exploHeight;     // dictates angle of player knockback
     [SerializeField] Transform explosion;
 
     [SerializeField] private float damageRadius = 1;     // size of lighting explosion
@@ -21,6 +23,12 @@ public class Lightning : MonoBehaviour
 
     void Explosion()
     {
+        Instantiate(explosion, transform.position + new Vector3(0f, 24f, 0f), transform.rotation);
+        Invoke("ExploDamage", exploDelay);
+    }
+
+    void ExploDamage()
+    {
         int layermask = 1 << 10;
         layermask = ~layermask;
 
@@ -30,20 +38,18 @@ public class Lightning : MonoBehaviour
             {
                 EnemyHitDetection ehd = col.gameObject.GetComponent<EnemyHitDetection>();
                 ehd.TakeDamage(damage);
-                ehd.Knockback(knockback, (col.transform.position - transform.position).normalized);
+                ehd.Knockback(knockback, (col.transform.position - (transform.position + new Vector3(0f, exploHeight, 0f))).normalized);
             }
             else if (col.tag == "Player")
             {
                 // Calculate Angle Between the collision point and the player
-                Vector3 dir = col.transform.position - transform.position;
+                Vector3 dir = col.transform.position - (transform.position + new Vector3(0f, exploHeight, 0f));
                 // And finally we add force in the direction of dir and multiply it by force.
                 //  This will push back the player
                 //col.gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * playerKnockback);
                 col.gameObject.GetComponent<PlayerHealth>().ProjectileHit(playerDamage, dir.normalized, playerKnockback);
             }
         }
-
-        Instantiate(explosion, transform.position + new Vector3(0f, 24f, 0f), transform.rotation);
 
         Destroy(gameObject);
     }
