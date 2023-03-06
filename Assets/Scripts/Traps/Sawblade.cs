@@ -15,12 +15,19 @@ public class Sawblade : MonoBehaviour
 
     void Start()
     {
+        GetPlayer();
+        offcd = Time.time;
+        disabled = false;
+
+        GameplayManager.Spawn += GetPlayer;
+    }
+
+    void GetPlayer()
+    {
         GameObject player = GameObject.FindWithTag("Player");
         ph = player.GetComponent<PlayerHealth>();
         rb = player.GetComponent<Rigidbody>();
         playerLoc = player.transform;
-        offcd = Time.time;
-        disabled = false;
     }
 
     void OnTriggerStay(Collider other)

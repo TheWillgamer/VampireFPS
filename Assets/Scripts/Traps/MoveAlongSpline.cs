@@ -7,12 +7,15 @@ public class MoveAlongSpline : MonoBehaviour
     [SerializeField] private int speed;
     
     private Transform playerLoc;
+    private Vector3 startingPos;
     private int next_point;     // where the sawblade is traveling to
 
     [SerializeField] private Transform[] points;        // points in the path of the sawblade
 
     void Start()
     {
+        GameplayManager.Reset += ResetPosition;
+        startingPos = transform.position;
         next_point = 0;
     }
 
@@ -26,6 +29,12 @@ public class MoveAlongSpline : MonoBehaviour
         }
 
         transform.position = Vector3.MoveTowards(transform.position, points[next_point].position, speed * Time.deltaTime);
+    }
+
+    void ResetPosition()
+    {
+        transform.position = startingPos;
+        next_point = 0;
     }
 }
   
