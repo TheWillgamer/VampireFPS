@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         onMovingPlatform = false;
         canGroundJump = false;
         hLand = false;
-        paused = true;
+        //paused = true;
 
         defaultFOV = camera.fieldOfView;
     }
