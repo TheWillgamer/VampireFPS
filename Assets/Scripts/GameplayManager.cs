@@ -6,8 +6,12 @@ using TMPro;
 public class GameplayManager : MonoBehaviour
 {
     public TMP_Text timerText;
+    [SerializeField] private GameObject startGamePanel;
     private float timer;
-    private bool timerActive;
+    private bool active;
+
+    [SerializeField]
+    private bool hubArea;
 
     // Everything that needs to be spawned in a level
     [SerializeField]
@@ -23,26 +27,45 @@ public class GameplayManager : MonoBehaviour
     public delegate void OnSpawn();
     public static event OnSpawn Spawn;
 
+    public delegate void OnStartGame();
+    public static event OnStartGame StartGame;
+
     // Start is called before the first frame update
     void Start()
     {
         timer = 0f;
-        timerActive = true;
+        active = hubArea;
+        Time.timeScale = hubArea ? 1f : 0f;
         DoReset();
         Invoke(nameof(DoSpawn), 0.01f);
+
+        if (hubArea)
+            Invoke(nameof(DoStartGame), 0.01f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timerActive)
-            timer += Time.deltaTime;
-        DisplayTime();
-
-        if (Input.GetKeyDown(KeyCode.J))
+        if (hubArea)
         {
-            DoReset();
-            Invoke(nameof(DoSpawn), 0.01f);
+            
+        }
+        else
+        {
+            if (active)
+                timer += Time.deltaTime;
+            DisplayTime();
+
+            if (active && Input.GetKeyDown(KeyCode.J))
+            {
+                DoReset();
+                Invoke(nameof(DoSpawn), 0.01f);
+            }
+
+            if (!active && Input.anyKey)
+            {
+                DoStartGame();
+            }
         }
     }
 
@@ -67,5 +90,15 @@ public class GameplayManager : MonoBehaviour
     {
         if (Spawn != null)
             Spawn();
+    }
+
+    public void DoStartGame()
+    {
+        startGamePanel.SetActive(false);
+        Time.timeScale = 1f;
+        playerInstance.transform.GetChild(0).GetComponent<PlayerMovement>().paused = false;
+        active = true;
+        if (StartGame != null)
+            StartGame();
     }
 }
