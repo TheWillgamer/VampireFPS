@@ -38,8 +38,7 @@ public class RigidBodyWallCheck : MonoBehaviour
                 rb.velocity = 2 * rb.velocity / 3;
                 hit.collider.gameObject.GetComponent<DestructibleWall>().Destroy();
             }
-            else
-                rb.velocity = rb.velocity / 2;
+                rb.velocity = rb.velocity.normalized;
         }
         if (velocity.y < -45f && Physics.SphereCast(playerBot.position, _colliderRadius, velocity, out hit, traceDistance, layerMask))
         {
