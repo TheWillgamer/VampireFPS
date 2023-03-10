@@ -51,7 +51,8 @@ public class Projectile_raycast : MonoBehaviour
                 //Invoke("DestroyProjectile", 1.5f);
                 //active = false;
             }
-            Instantiate(hitExplosion, transform.position, Quaternion.identity);
+            if (hitExplosion != null)
+                Instantiate(hitExplosion, transform.position, Quaternion.identity);
 
             if (trail)
             {
