@@ -4756,6 +4756,8 @@ MonoBehaviour:
   speed: 20000
   aliveTime: 20
   knockback: 5000
+  hitExplosion: {fileID: 0}
+  trail: 1
   damage: 200
 --- !u!199 &5929891771014108065
 ParticleSystemRenderer:
