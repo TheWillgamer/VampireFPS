@@ -6,8 +6,15 @@ using UnityEngine.SceneManagement;
 public class PauseScript : MonoBehaviour
 {
     public GameObject pauseScreen;
+    public GameObject optionsMenu;
     public Transform player;
     public AudioSource footsteps;
+    private GameplayManager gm;
+
+    void Awake()
+    {
+        gm = GameObject.FindWithTag("EventSystem").GetComponent<GameplayManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -39,12 +46,11 @@ public class PauseScript : MonoBehaviour
     public void RestartLevel()
     {
         ResumeGame();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gm.DoReset();
     }
-    public void MainMenu()
+    public void OptionsMenu()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
+        optionsMenu.SetActive(true);
     }
 
     public void QuitGame()

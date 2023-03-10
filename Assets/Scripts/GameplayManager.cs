@@ -36,8 +36,7 @@ public class GameplayManager : MonoBehaviour
         timer = 0f;
         active = hubArea;
         Time.timeScale = hubArea ? 1f : 0f;
-        DoReset();
-        Invoke(nameof(DoSpawn), 0.01f);
+        RestartLevel();
 
         if (hubArea)
             Invoke(nameof(DoStartGame), 0.01f);
@@ -56,10 +55,9 @@ public class GameplayManager : MonoBehaviour
                 timer += Time.deltaTime;
             DisplayTime();
 
-            if (active && Input.GetKeyDown(KeyCode.J))
+            if (active && Input.GetKeyDown(KeyCode.R))
             {
-                DoReset();
-                Invoke(nameof(DoSpawn), 0.01f);
+                RestartLevel();
             }
 
             if (!active && Input.anyKey)
@@ -67,6 +65,12 @@ public class GameplayManager : MonoBehaviour
                 DoStartGame();
             }
         }
+    }
+
+    public void RestartLevel()
+    {
+        DoReset();
+        Invoke(nameof(DoSpawn), 0.01f);
     }
 
     void DisplayTime()
