@@ -6,12 +6,13 @@ public class JumpPad : MonoBehaviour
 {
     [SerializeField] private float force;
     private bool disabled = false;
-
+    public AudioSource TriggerSound;
 
     void OnTriggerEnter(Collider other)
     {
         if (!disabled && other.tag == "Player")
         {
+            TriggerSound.Play();
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             Vector3 vel = rb.velocity;
             rb.velocity = new Vector3(vel.x, 0, vel.z);

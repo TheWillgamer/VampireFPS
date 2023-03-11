@@ -59,6 +59,29 @@ public class SettingsMenu : MonoBehaviour
         Debug.Log("Set sensitivity to " + val);
     }
 
+    public void SetDifficulty(int val)
+    {
+        if (! initialized) return;
+        if (! Application.isPlaying) return;
+
+
+        PlayerPrefs.SetInt("Difficulty", val);
+
+        switch (val) {
+            case 0:
+                Debug.Log("Set difficulty to Easy");
+                break;
+            case 1:
+                Debug.Log("Set difficulty to Normal");
+                break;
+            case 2:
+                Debug.Log("Set difficulty to Hard");
+                break;
+            default:
+                break;
+        }
+    }
+
     public void SetResolution (int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
