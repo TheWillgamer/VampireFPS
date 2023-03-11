@@ -509,4 +509,9 @@ public class PlayerMovement : MonoBehaviour
             camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, defaultFOV, 10 * Time.deltaTime);
         }
     }
+
+    public void ChangeSens(float sens)
+    {
+        sensitivity = sens;
+    }
 }

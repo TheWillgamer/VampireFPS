@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PauseScript : MonoBehaviour
 {
     public GameObject pauseScreen;
-    public GameObject optionsMenu;
     public Transform player;
     public AudioSource footsteps;
     private GameplayManager gm;
@@ -47,10 +46,6 @@ public class PauseScript : MonoBehaviour
     {
         ResumeGame();
         gm.DoReset();
-    }
-    public void OptionsMenu()
-    {
-        optionsMenu.SetActive(true);
     }
 
     public void QuitGame()
