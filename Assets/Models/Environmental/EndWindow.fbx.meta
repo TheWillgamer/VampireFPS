@@ -3,7 +3,12 @@ guid: 6970474d8856b604785a3d0e3fd57dbb
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Redwood
+    second: {fileID: 2100000, guid: 58ba0747414ad4c55b95e0d198789ec3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
