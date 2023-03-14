@@ -7,6 +7,15 @@ public class ActivationGate : MonoBehaviour
     [SerializeField]
     private Spawner[] requirements;
 
+    private Renderer r;
+    private Collider c;
+
+    void Start()
+    {
+        r = GetComponent<Renderer>();
+        c = GetComponent<Collider>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -18,6 +27,9 @@ public class ActivationGate : MonoBehaviour
                 deactivate = false;
         }
 
-        gameObject.SetActive(!deactivate);
+        if (r != null)
+            r.enabled = !deactivate;
+        if (c != null)
+            c.enabled = !deactivate;
     }
 }

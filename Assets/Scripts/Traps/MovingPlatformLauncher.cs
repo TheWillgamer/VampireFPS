@@ -51,12 +51,12 @@ public class MovingPlatformLauncher : MonoBehaviour
                 startwait = true;
                 rb.velocity = Vector3.zero;
             }
-            if(Time.time > offcd)
-            {
-                rb.velocity = (startPoint - transform.position).normalized * resetSpeed;
-                resetting = true;
-                startwait = false;
-            }
+        }
+        if (startwait && Time.time > offcd)
+        {
+            rb.velocity = (startPoint - transform.position).normalized * resetSpeed;
+            resetting = true;
+            startwait = false;
         }
         if (resetting && (transform.position - startPoint).magnitude < 1f)
         {
