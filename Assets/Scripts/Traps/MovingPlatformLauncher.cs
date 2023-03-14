@@ -9,6 +9,7 @@ public class MovingPlatformLauncher : MonoBehaviour
     [SerializeField] private float wait;      // How long to wait before resetting
     [SerializeField] private bool launcher;   // If the platform will launch the player
     [SerializeField] private Transform endPoint;
+    [SerializeField] private float reenableCMTime = 1;
 
     private Transform playerLoc;
     private Vector3 startPoint;
@@ -43,6 +44,7 @@ public class MovingPlatformLauncher : MonoBehaviour
                 {
                     pm.disableCM = true;
                     launched = true;
+                    Invoke("ReenableCM", reenableCMTime);
                 }
                     
                 offcd = Time.time + wait;
@@ -76,11 +78,9 @@ public class MovingPlatformLauncher : MonoBehaviour
                 other.gameObject.GetComponent<Rigidbody>().velocity += rb.velocity;
         }
     }
-    void OnCollisionExit(Collision other)
+
+    void ReenableCM()
     {
-        if (launcher && other.gameObject.tag == "Player")
-        {
-            pm.disableCM = false;
-        }
+        pm.disableCM = false;
     }
 }
