@@ -9,7 +9,6 @@ public class MovingPlatformLauncher : MonoBehaviour
     [SerializeField] private float wait;      // How long to wait before resetting
     [SerializeField] private bool launcher;   // If the platform will launch the player
     [SerializeField] private Transform endPoint;
-    [SerializeField] private float reenableCMTime = 1;
 
     private Transform playerLoc;
     private Vector3 startPoint;
@@ -42,9 +41,7 @@ public class MovingPlatformLauncher : MonoBehaviour
             {
                 if (launcher && !launched)       // allows player to be launched{
                 {
-                    pm.disableCM = true;
                     launched = true;
-                    Invoke("ReenableCM", reenableCMTime);
                 }
                     
                 offcd = Time.time + wait;
@@ -58,8 +55,10 @@ public class MovingPlatformLauncher : MonoBehaviour
             resetting = true;
             startwait = false;
         }
-        if (resetting && (transform.position - startPoint).magnitude < 1f)
+        
+        if (resetting && (transform.position - startPoint).magnitude < .2f)
         {
+            rb.velocity = Vector3.zero;
             resetting = false;
             launched = false;
             readyToLaunch = true;
@@ -76,6 +75,28 @@ public class MovingPlatformLauncher : MonoBehaviour
 
             if (launcher)       // Increases player velocity if launcher
                 other.gameObject.GetComponent<Rigidbody>().velocity += rb.velocity;
+        }
+    }
+
+    private bool cancellingLaunching;
+
+    /// <summary>
+    /// Handle ground detection
+    /// </summary>
+    private void OnCollisionStay(Collision other)
+    {
+        if (launcher && launched && !startwait && !resetting && other.gameObject.tag == "Player")
+        {
+            pm.disableCM = true;
+            cancellingLaunching = false;
+            CancelInvoke(nameof(ReenableCM));
+        }
+
+        float delay = 3f;
+        if (!cancellingLaunching)
+        {
+            cancellingLaunching = true;
+            Invoke(nameof(ReenableCM), Time.deltaTime * delay);
         }
     }
 
