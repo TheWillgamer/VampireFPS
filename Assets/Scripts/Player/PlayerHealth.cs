@@ -139,7 +139,5 @@ public class PlayerHealth : MonoBehaviour
     {
         tick_cd = rate;
         offcd = Time.time;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }
