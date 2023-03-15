@@ -35,7 +35,6 @@ public class GameplayManager : MonoBehaviour
     {
         timer = 0f;
         active = hubArea;
-        Time.timeScale = hubArea ? 1f : 0f;
         RestartLevel();
 
         if (hubArea)
@@ -85,6 +84,9 @@ public class GameplayManager : MonoBehaviour
         if (playerInstance != null)
             Destroy(playerInstance);
         playerInstance = Instantiate(player, transform.position, transform.rotation);
+        playerInstance.transform.GetChild(0).GetComponent<PlayerMovement>().paused = false;
+        timer = 0f;
+        active = false;
 
         if (Reset != null)
             Reset();
@@ -94,6 +96,10 @@ public class GameplayManager : MonoBehaviour
     {
         if (Spawn != null)
             Spawn();
+
+        startGamePanel.SetActive(true);
+        Debug.Log("spawn");
+        Time.timeScale = 0f;
     }
 
     public void DoStartGame()
@@ -102,6 +108,7 @@ public class GameplayManager : MonoBehaviour
         Time.timeScale = 1f;
         playerInstance.transform.GetChild(0).GetComponent<PlayerMovement>().paused = false;
         active = true;
+
         if (StartGame != null)
             StartGame();
     }

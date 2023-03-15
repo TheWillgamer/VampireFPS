@@ -13,6 +13,8 @@ public class PauseScript : MonoBehaviour
     void Awake()
     {
         gm = GameObject.FindWithTag("EventSystem").GetComponent<GameplayManager>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class PauseScript : MonoBehaviour
     public void RestartLevel()
     {
         ResumeGame();
-        gm.DoReset();
+        gm.RestartLevel();
     }
 
     public void QuitGame()
