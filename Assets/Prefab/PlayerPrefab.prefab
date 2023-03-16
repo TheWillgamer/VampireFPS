@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 5053198356703983653}
   - component: {fileID: 4004532073079925130}
   - component: {fileID: 6484438270789483978}
+  - component: {fileID: 6282793763774776257}
   m_Layer: 5
   m_Name: Health_bar
   m_TagString: Untagged
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5810a6320b6046e47986adfa3b6cc151, type: 3}
+  m_Sprite: {fileID: 1106240819, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -286,6 +287,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6282793763774776257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782340674123156351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7ef790b3ed859448ae590a2d74c797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Image: {fileID: 6484438270789483978}
+  m_SpriteArray:
+  - {fileID: 1106240819, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: 1096327137, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: -1216326905, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: 492406655, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: -2019550787, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: 1009054595, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: -1933309154, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: -495863584, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: -945111207, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: 240763163, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: -2022926682, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  - {fileID: -662019613, guid: c2fe5854048c1dc449fa8fbe889d6d2b, type: 3}
+  m_Speed: 0.001
 --- !u!1 &1049984698338367594
 GameObject:
   m_ObjectHideFlags: 0
@@ -3216,7 +3244,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 997425241c50f9444bab9a4f246450bf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f08cbdb74ba840a42b93d497694a4f2b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
