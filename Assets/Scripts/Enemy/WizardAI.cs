@@ -19,6 +19,7 @@ public class WizardAI : EnemyAI
     private float charge;
 
     public AudioSource fire;
+    public AudioSource death;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +79,9 @@ public class WizardAI : EnemyAI
     public override void Death()
     {
         Instantiate(deathParticles, deathParticlesSpawn.position, Quaternion.identity);
-        Destroy(gameObject);
+        Destroy(transform.GetChild(0).gameObject);
+        active = false;
+        GetComponent<Collider>().enabled = false;
+        death.Play();
     }
 }
