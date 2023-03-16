@@ -83,7 +83,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void UpdateUI()
     {
-        hpMeter.GetComponent<Image>().fillAmount = (float)hp / maxHealth;
+        RectTransform rt = hpMeter.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2 ((1000f * (float)hp / maxHealth) - 1000f, rt.anchoredPosition.y);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -17,7 +17,7 @@ public class AnimatedUIimagescript : MonoBehaviour
 
     public void Awake()
     {
-        Func_PlayAnimUI();
+        Func_PlayUIAnim();
     }
 
     public void Func_PlayUIAnim()
