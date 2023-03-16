@@ -44,6 +44,7 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(active);
         if (hubArea)
         {
             
@@ -58,8 +59,7 @@ public class GameplayManager : MonoBehaviour
             {
                 RestartLevel();
             }
-
-            if (!active && Input.anyKey)
+            else if (!active && Input.anyKeyDown)
             {
                 DoStartGame();
             }
@@ -98,7 +98,6 @@ public class GameplayManager : MonoBehaviour
             Spawn();
 
         startGamePanel.SetActive(true);
-        Debug.Log("spawn");
         Time.timeScale = 0f;
     }
 
