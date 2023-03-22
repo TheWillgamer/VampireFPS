@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     //Assingables
     public Transform playerCam;
     public Transform orientation;
+    public bool active;
 
     //Other
     private Rigidbody rb;
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody prb;       // rigidbody of the moving platform
 
     //Rotation and look
-    private float xRotation;
+    public float xRotation;
     private float sensitivity;
 
     //DashFOV
@@ -92,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
             sensitivity = PlayerPrefs.GetFloat("Sensitivity");
         }
         rb = GetComponent<Rigidbody>();
+        active = true;
         disableCM = false;
         disableAR = false;
         dead = false;
@@ -121,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!dead && !paused)
+        if (!dead && !paused && active)
         {
             MyInput();
             Look();

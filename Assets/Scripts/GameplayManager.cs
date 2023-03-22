@@ -44,7 +44,6 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(active);
         if (hubArea)
         {
             
