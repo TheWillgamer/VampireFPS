@@ -8,6 +8,9 @@ public class EnemyHitDetection : MonoBehaviour
     int currentHealth;
     public bool alive;
 
+    public float shakeDuration;
+    public float shakeMagnitude;
+
     //public Transform hp_bar;
     private Rigidbody rb;
 
@@ -32,6 +35,10 @@ public class EnemyHitDetection : MonoBehaviour
             GetComponent<EnemyAI>().Death();
             alive = false;
         }
+        else if (currentHealth > 0)
+        {
+            StartCoroutine(Shake(shakeDuration, shakeMagnitude));
+        }
     }
 
     //void UpdateHealth()
@@ -48,5 +55,25 @@ public class EnemyHitDetection : MonoBehaviour
         float startTime = Time.time;
 
         rb.AddForce(direction * amount);
+    }
+
+    IEnumerator Shake(float duration, float magnitude)
+    {
+        Vector3 originalPos = transform.GetChild(0).transform.localPosition;
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            float z = Random.Range(-1f, 1f) * magnitude;
+
+            transform.GetChild(0).transform.localPosition = new Vector3(x, y, z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.GetChild(0).transform.localPosition = originalPos;
     }
 }
