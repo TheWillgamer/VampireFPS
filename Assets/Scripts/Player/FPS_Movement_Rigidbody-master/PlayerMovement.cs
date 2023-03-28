@@ -118,7 +118,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Movement();
+        if (active)
+            Movement();
     }
 
     private void Update()

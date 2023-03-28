@@ -1,24 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Interact : MonoBehaviour
 {
     [SerializeField] private float zoomTime;
     [SerializeField] private float interactDistance;
     [SerializeField] private GameObject interactText;
+    [SerializeField] private GameObject dialogueCanvas;
     private GameObject UI;
 
     private PlayerMovement pm;
     private Rigidbody rb;
 
     private Transform newLoc;
+    private Transform npc;
     private bool activated;
     private bool reset;
     private Transform camera;
     private Vector3 tempPosition;
     private Quaternion tempRotation;
     private float startTime;
+    private bool dialogueStarted;
+
+    private TextAsset dialogue;     // What the NPC says
+
+    // UI
+    [SerializeField] private TMP_Text npc_dialogue;
 
     void Start()
     {
@@ -28,6 +37,7 @@ public class Interact : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody>();
         UI = GameObject.FindWithTag("PlayerUI");
+        dialogueStarted = false;
     }
 
     void Update()
@@ -38,6 +48,11 @@ public class Interact : MonoBehaviour
         {
             camera.position = Vector3.Lerp(tempPosition, newLoc.position, (Time.time - startTime) / zoomTime);
             camera.rotation = Quaternion.Slerp(tempRotation, newLoc.rotation, (Time.time - startTime) / zoomTime);
+            if (!dialogueStarted && Time.time - startTime > zoomTime)
+            {
+                dialogueStarted = true;
+                DialogueManager.GetInstance().EnterDialogueMode(dialogue);
+            }
         }
         else if (reset)
         {
@@ -56,10 +71,16 @@ public class Interact : MonoBehaviour
     void CheckInteract()
     {
         bool pressed = Input.GetKeyDown(KeyCode.F);
-        if (Input.GetKeyDown(KeyCode.G)) {
+        if (activated && Input.GetKeyDown(KeyCode.G)) {
+            transform.position = newLoc.position - 2f * Vector3.up;
+            Vector3 relLoc = npc.position - transform.position;
+            relLoc = new Vector3(relLoc.x, 0, relLoc.z);
+            transform.GetChild(0).localRotation = Quaternion.LookRotation(relLoc, Vector3.up);
+
             activated = false;
             reset = true;
             startTime = Time.time;
+            dialogueStarted = false;
         }
         bool canGrab = false;
 
@@ -67,7 +88,7 @@ public class Interact : MonoBehaviour
         int layerMask = 1 << 11;
         RaycastHit hit;
 
-        if (Physics.Raycast(camera.position, fwd, out hit, interactDistance, layerMask))
+        if (!DialogueManager.GetInstance().dialogueIsPlaying && Physics.Raycast(camera.position, fwd, out hit, interactDistance, layerMask))
         {
             canGrab = true;
             if (pressed)
@@ -76,12 +97,15 @@ public class Interact : MonoBehaviour
                 camera.GetComponent<MoveCamera>().active = false;
                 tempPosition = camera.position;
                 tempRotation = camera.rotation;
-                newLoc = hit.transform.GetChild(0);
+                npc = hit.transform;
+                dialogue = npc.GetComponent<NPCdialogue>().inkJson;
+                
+                newLoc = npc.GetChild(0);
                 startTime = Time.time;
                 UI.SetActive(false);
 
-                transform.position = newLoc.position;
                 rb.velocity = new Vector3(0f, 0f, 0f);
+                transform.position = newLoc.position - 2f * Vector3.up;
                 pm.active = false;
 
                 Vector3 relLoc = hit.transform.position - transform.position;

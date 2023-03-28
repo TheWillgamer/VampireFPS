@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPCdialogue : MonoBehaviour
 {
+    public TextAsset inkJson;
+
     // Start is called before the first frame update
     void Start()
     {

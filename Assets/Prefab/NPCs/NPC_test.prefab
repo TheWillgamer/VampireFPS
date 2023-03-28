@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1343664707953120217}
   - component: {fileID: 1343664707953120222}
   - component: {fileID: 2120477108}
+  - component: {fileID: 1807488990507447821}
   m_Layer: 11
   m_Name: NPC_test
   m_TagString: Untagged
@@ -199,6 +200,19 @@ MonoBehaviour:
   turnSpeed: 300
   alertRadius: 20
   disableVerticalTurn: 1
+--- !u!114 &1807488990507447821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343664707953120223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6919c9abc3f377e419b25982bf13f029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJson: {fileID: 4900000, guid: dad7432d1c1c1f7469b947ef84acfa67, type: 3}
 --- !u!1 &7739865686476321670
 GameObject:
   m_ObjectHideFlags: 0
