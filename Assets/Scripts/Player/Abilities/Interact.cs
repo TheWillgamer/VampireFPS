@@ -53,6 +53,20 @@ public class Interact : MonoBehaviour
                 dialogueStarted = true;
                 DialogueManager.GetInstance().EnterDialogueMode(dialogue);
             }
+
+            // Reset Camera when dialogue is over
+            if (dialogueStarted && !DialogueManager.GetInstance().dialogueIsPlaying)
+            {
+                transform.position = newLoc.position - 2f * Vector3.up;
+                Vector3 relLoc = npc.position - transform.position;
+                relLoc = new Vector3(relLoc.x, 0, relLoc.z);
+                transform.GetChild(0).localRotation = Quaternion.LookRotation(relLoc, Vector3.up);
+
+                activated = false;
+                reset = true;
+                startTime = Time.time;
+                dialogueStarted = false;
+            }
         }
         else if (reset)
         {
