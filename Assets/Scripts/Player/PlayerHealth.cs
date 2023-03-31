@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     private Rigidbody rb;
 
     // Blood ticking (decreases blood over time)
+    public bool healthDrainActive;
     public float tick_cd = 0.1f;
     private float offcd;
 
@@ -43,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        if(Time.time > offcd)
+        if (healthDrainActive && Time.time > offcd)
         {
             TakeDamage(1);
             offcd = Time.time + tick_cd;
@@ -134,6 +135,12 @@ public class PlayerHealth : MonoBehaviour
             dmgScreen.color = c;
             yield return null;
         }
+    }
+
+    public void EnableHPDrain()
+    {
+        healthDrainActive = true;
+        offcd = Time.time + tick_cd;
     }
 
     public void ChangeTickRate(float rate)

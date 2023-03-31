@@ -6,12 +6,8 @@ using TMPro;
 public class GameplayManager : MonoBehaviour
 {
     public TMP_Text timerText;
-    [SerializeField] private GameObject startGamePanel;
     private float timer;
     private bool active;
-
-    [SerializeField]
-    private bool hubArea;
 
     // Everything that needs to be spawned in a level
     [SerializeField]
@@ -34,34 +30,19 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         timer = 0f;
-        active = hubArea;
         RestartLevel();
-
-        if (hubArea)
-            Invoke(nameof(DoStartGame), 0.01f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hubArea)
-        {
-            
-        }
-        else
-        {
-            if (active)
-                timer += Time.deltaTime;
-            DisplayTime();
+        if (active)
+            timer += Time.deltaTime;
+        DisplayTime();
 
-            if (active && Input.GetKeyDown(KeyCode.R))
-            {
-                RestartLevel();
-            }
-            else if (!active && Input.anyKeyDown)
-            {
-                DoStartGame();
-            }
+        if (active && Input.GetKeyDown(KeyCode.R))
+        {
+            RestartLevel();
         }
     }
 
@@ -96,15 +77,10 @@ public class GameplayManager : MonoBehaviour
         if (Spawn != null)
             Spawn();
 
-        startGamePanel.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void DoStartGame()
     {
-        startGamePanel.SetActive(false);
-        Time.timeScale = 1f;
-        playerInstance.transform.GetChild(0).GetComponent<PlayerMovement>().paused = false;
         active = true;
 
         if (StartGame != null)
