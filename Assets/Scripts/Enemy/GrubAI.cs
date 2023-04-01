@@ -18,6 +18,7 @@ public class GrubAI : EnemyAI
     private bool attacking;         // attack has started
 
     [SerializeField] private GameObject grubExplosion;
+    private Animator anim;
 
 
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class GrubAI : EnemyAI
         player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
         active = true;
+        anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,12 +38,13 @@ public class GrubAI : EnemyAI
 
         rb.AddForce(Vector3.down * Time.deltaTime * extraGravity);      // Extra Gravity
         Vector3 relLoc = player.position - transform.position;
+        anim.SetBool("moving", false);
 
         if (active && relLoc.magnitude < alertRadius && !falling)
         {
             if (!attacking)
             {
-
+                anim.SetBool("moving", true);
                 if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange, layerMask))
                 {
                     attacking = true;
