@@ -7306,6 +7306,7 @@ GameObject:
   - component: {fileID: 7306288288531991779}
   - component: {fileID: 6247822666901021286}
   - component: {fileID: 7918430308871500215}
+  - component: {fileID: 2407837716527858606}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -8168,6 +8169,20 @@ MonoBehaviour:
   interactText: {fileID: 7623275828916399968}
   dialogueCanvas: {fileID: 2680077870477452320}
   npc_dialogue: {fileID: 843814953407761833}
+--- !u!114 &2407837716527858606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736701735432866436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39cad3c57f9d1394da30d650f44c310b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowAmt: 0.3
+  slowLength: 0.1
 --- !u!1 &7736701735461634441
 GameObject:
   m_ObjectHideFlags: 0
