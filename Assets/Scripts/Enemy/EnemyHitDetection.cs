@@ -35,7 +35,7 @@ public class EnemyHitDetection : MonoBehaviour
             GetComponent<EnemyAI>().Death();
             alive = false;
         }
-        else if (currentHealth > 0)
+        else if (transform.childCount > 0 && currentHealth > 0)
         {
             StartCoroutine(Shake(shakeDuration, shakeMagnitude));
         }

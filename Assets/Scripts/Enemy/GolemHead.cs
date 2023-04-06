@@ -46,7 +46,7 @@ public class GolemHead : EnemyAI
             
             else
             {
-                if ((headTracker.position - transform.position).magnitude < .01f)
+                if (headTracker.position.y - transform.position.y < 0f)
                 {
                     active = true;
                     transform.localScale = new Vector3(100, 100, 92.5f);

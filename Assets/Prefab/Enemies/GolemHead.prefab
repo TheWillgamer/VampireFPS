@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5653185517949403288
+--- !u!1 &4228134984365155232
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6871652160380441052}
-  - component: {fileID: 2513723830103896280}
-  - component: {fileID: 8385072747229564143}
-  - component: {fileID: 4469394522684178224}
-  - component: {fileID: 5763880508650424920}
-  - component: {fileID: 8339228136165398739}
-  - component: {fileID: 1679951496819507951}
+  - component: {fileID: 8104104593366644996}
+  - component: {fileID: 2291653424053493273}
+  - component: {fileID: 1504599860944262362}
   m_Layer: 10
-  m_Name: GolemHead
-  m_TagString: Enemy
+  m_Name: Mesh
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6871652160380441052
+--- !u!4 &8104104593366644996
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5653185517949403288}
-  m_LocalRotation: {x: -0.70710677, y: 0.000000057601106, z: 0.000000057601188, w: 0.7071069}
-  m_LocalPosition: {x: 0, y: 0.95, z: 0}
+  m_GameObject: {fileID: 4228134984365155232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6871652160380441052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2513723830103896280
+--- !u!33 &2291653424053493273
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5653185517949403288}
+  m_GameObject: {fileID: 4228134984365155232}
   m_Mesh: {fileID: -8839368762345780380, guid: 9a76d19a777ef22469ebc982f6c811ef, type: 3}
---- !u!23 &8385072747229564143
+--- !u!23 &1504599860944262362
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5653185517949403288}
+  m_GameObject: {fileID: 4228134984365155232}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -88,6 +84,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5653185517949403288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6871652160380441052}
+  - component: {fileID: 4469394522684178224}
+  - component: {fileID: 5763880508650424920}
+  - component: {fileID: 8339228136165398739}
+  - component: {fileID: 1679951496819507951}
+  m_Layer: 10
+  m_Name: GolemHead
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6871652160380441052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653185517949403288}
+  m_LocalRotation: {x: -0.70710677, y: 0.000000057601106, z: 0.000000057601188, w: 0.7071069}
+  m_LocalPosition: {x: 0, y: 0.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8104104593366644996}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4469394522684178224
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,3 +189,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 60
   alive: 0
+  shakeDuration: 0.15
+  shakeMagnitude: 0.001
