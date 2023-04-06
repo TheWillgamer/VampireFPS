@@ -321,8 +321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 4658737839570230351}
-  startGamePanel: {fileID: 0}
-  hubArea: 0
   spawns: []
   player: {fileID: 7736701736008638930, guid: 5dedd03a6af614548868623722df0810, type: 3}
 --- !u!114 &6275142270303904247
@@ -380,10 +378,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a45840efa373fc6419f03e155314d536, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

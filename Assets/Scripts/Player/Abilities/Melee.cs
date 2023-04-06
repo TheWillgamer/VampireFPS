@@ -11,12 +11,6 @@ public class Melee : Ability
     public int damage = 5;
     public float knockback = 10000f;
     public AudioSource swipeSound;
-    private HitSlowMo hsm;
-
-    void Start()
-    {
-        hsm = GetComponent<HitSlowMo>();
-    }
 
     public override void UseAbility()
     {
@@ -38,7 +32,6 @@ public class Melee : Ability
                 EnemyHitDetection ehd = col.gameObject.GetComponent<EnemyHitDetection>();
                 ehd.TakeDamage(damage);
                 ehd.Knockback(knockback, direction.normalized);
-                hsm.EnableSlowMo();
             }
             i++;
         }
