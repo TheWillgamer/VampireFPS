@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     {
         GameplayManager.Reset += DestroySpawned;
         GameplayManager.Spawn += SpawnEnemy;
+        SpawnEnemy();
     }
 
     void Update()

@@ -8,10 +8,6 @@ public class GameplayManager : MonoBehaviour
     public TMP_Text timerText;
     private float timer;
     private bool active;
-
-    // Everything that needs to be spawned in a level
-    [SerializeField]
-    private Spawner[] spawns;
     
     [SerializeField]
     private GameObject player;
