@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Throw : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class Throw : MonoBehaviour
     [SerializeField] private Transform camera;
     [SerializeField] private float grabRadius;
     [SerializeField] private float grabDistance;
-    [SerializeField] private GameObject grabText;
+    [SerializeField] private Image grabImg;
+    [SerializeField] private GameObject crosshair;
 
     public AudioSource Grabs;
     public AudioSource Throws;
@@ -52,6 +54,7 @@ public class Throw : MonoBehaviour
                 }
             }
         }
-        grabText.SetActive(canGrab);
+        grabImg.enabled = canGrab;
+        crosshair.SetActive(!canGrab);
     }
 }
