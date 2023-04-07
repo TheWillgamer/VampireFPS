@@ -8,7 +8,6 @@ public class Interact : MonoBehaviour
     [SerializeField] private float zoomTime;
     [SerializeField] private float interactDistance;
     [SerializeField] private GameObject interactText;
-    [SerializeField] private GameObject dialogueCanvas;
     private GameObject UI;
 
     private PlayerMovement pm;
@@ -25,9 +24,6 @@ public class Interact : MonoBehaviour
     private bool dialogueStarted;
 
     private TextAsset dialogue;     // What the NPC says
-
-    // UI
-    [SerializeField] private TMP_Text npc_dialogue;
 
     void Start()
     {
@@ -96,7 +92,7 @@ public class Interact : MonoBehaviour
             startTime = Time.time;
             dialogueStarted = false;
         }
-        bool canGrab = false;
+        bool canTalk = false;
 
         Vector3 fwd = camera.TransformDirection(Vector3.forward);
         int layerMask = 1 << 11;
@@ -104,7 +100,7 @@ public class Interact : MonoBehaviour
 
         if (!DialogueManager.GetInstance().dialogueIsPlaying && Physics.Raycast(camera.position, fwd, out hit, interactDistance, layerMask))
         {
-            canGrab = true;
+            canTalk = true;
             if (pressed)
             {
                 activated = true;
@@ -129,6 +125,6 @@ public class Interact : MonoBehaviour
             }
         }
 
-        interactText.SetActive(canGrab);
+        interactText.SetActive(canTalk);
     }
 }
