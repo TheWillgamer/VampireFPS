@@ -9,6 +9,8 @@ public class GrubAI : EnemyAI
     [SerializeField] private float alertRadius;     // how fast enemy turns towards the player
     [SerializeField] private float attackDelay;
     [SerializeField] private float attackRange;
+    [SerializeField] private int attackDamage;
+    [SerializeField] private float attackKnockback;
     private Transform player;
     private bool active;
     private bool falling;
@@ -48,6 +50,7 @@ public class GrubAI : EnemyAI
                 if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange, layerMask))
                 {
                     attacking = true;
+                    anim.SetTrigger("attacking");
                     timer = Time.time + attackDelay;
                 }
 
@@ -58,7 +61,14 @@ public class GrubAI : EnemyAI
             }
             else if (Time.time > timer)
             {
-                Debug.Log("attack");
+                // Attack
+                if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange, layerMask))
+                {
+                    if (hit.transform.gameObject.tag == "Player")
+                    {
+                        hit.transform.gameObject.GetComponent<PlayerHealth>().ProjectileHit(attackDamage, transform.forward, attackKnockback);
+                    }
+                }
                 attacking = false;
             }
         }

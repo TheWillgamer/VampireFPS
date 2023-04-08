@@ -19,8 +19,8 @@ public class PlayerHealth : MonoBehaviour
     public float tick_cd = 0.1f;
     private float offcd;
 
-    public GameObject gameOverScreen;
-    public GameObject victoryScreen;
+    private GameObject gameOverScreen;
+    private GameObject victoryScreen;
 
     //Audio
     public AudioSource hit;
@@ -31,6 +31,9 @@ public class PlayerHealth : MonoBehaviour
     {
         pm = GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody>();
+        gameOverScreen = GameObject.FindWithTag("SystemUI").transform.GetChild(3).gameObject;
+        victoryScreen = GameObject.FindWithTag("SystemUI").transform.GetChild(4).gameObject;
+
         deadPlayed = false;
         won = false;
     }

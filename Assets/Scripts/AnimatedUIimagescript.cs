@@ -15,7 +15,7 @@ public class AnimatedUIimagescript : MonoBehaviour
     Coroutine m_CorotineAnim;
     bool IsDone;
 
-    public void Start()
+    public void OnEnable()
     {
         Func_PlayUIAnim();
     }

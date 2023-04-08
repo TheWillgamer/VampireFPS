@@ -6,13 +6,12 @@ using UnityEngine.SceneManagement;
 public class PauseScript : MonoBehaviour
 {
     public GameObject pauseScreen;
-    public Transform player;
-    public AudioSource footsteps;
     private GameplayManager gm;
+    private GameObject PlayerUI;
 
     void Awake()
     {
-        gm = GameObject.FindWithTag("EventSystem").GetComponent<GameplayManager>();
+        gm = GetComponent<GameplayManager>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -29,20 +28,23 @@ public class PauseScript : MonoBehaviour
     void PauseGame()
     {
         pauseScreen.SetActive(true);
-        player.GetComponent<PlayerMovement>().paused = true;
+        PlayerUI = GameObject.FindWithTag("PlayerUI");
+        PlayerUI.SetActive(false);
+        //player.GetComponent<PlayerMovement>().paused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
-        footsteps.Pause();
+        //footsteps.Pause();
     }
     public void ResumeGame()
     {
         pauseScreen.SetActive(false);
-        player.GetComponent<PlayerMovement>().paused = false;
+        PlayerUI.SetActive(true);
+        //player.GetComponent<PlayerMovement>().paused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
-        footsteps.Play();
+        //footsteps.Play();
     }
     public void RestartLevel()
     {

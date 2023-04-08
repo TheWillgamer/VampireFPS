@@ -81,8 +81,10 @@ MonoBehaviour:
   moveSpeed: 2
   turnSpeed: 60
   alertRadius: 15
-  attackDelay: 2
-  attackRange: 3
+  attackDelay: 1.6
+  attackRange: 1
+  attackDamage: 5
+  attackKnockback: 50
   grubExplosion: {fileID: 4987810841699435982, guid: 7a3e646c54c3c1c48a29821b5af5abb3, type: 3}
 --- !u!114 &9029178521802902615
 MonoBehaviour:
