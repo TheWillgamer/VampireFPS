@@ -11,10 +11,18 @@ public class MoveAlongSpline : MonoBehaviour
     private int next_point;     // where the sawblade is traveling to
 
     [SerializeField] private Transform[] points;        // points in the path of the sawblade
+    
+    void OnEnable()
+    {
+        GameplayManager.Reset += ResetPosition;
+    }
+    void OnDisable()
+    {
+        GameplayManager.Reset -= ResetPosition;
+    }
 
     void Start()
     {
-        GameplayManager.Reset += ResetPosition;
         startingPos = transform.position;
         next_point = 0;
     }

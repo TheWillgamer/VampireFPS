@@ -38,6 +38,9 @@ public class Interact : MonoBehaviour
 
     void Update()
     {
+        if (camera == null)
+            camera = GameObject.FindWithTag("CameraMan").transform;
+
         CheckInteract();
 
         if (activated)

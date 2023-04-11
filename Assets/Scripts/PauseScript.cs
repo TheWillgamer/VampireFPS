@@ -8,6 +8,7 @@ public class PauseScript : MonoBehaviour
     public GameObject pauseScreen;
     private GameplayManager gm;
     private GameObject PlayerUI;
+    private bool paused;
 
     void Awake()
     {
@@ -21,12 +22,16 @@ public class PauseScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseGame();
+            if (!paused)
+                PauseGame();
+            else
+                ResumeGame();
         }
     }
 
     void PauseGame()
     {
+        paused = true;
         pauseScreen.SetActive(true);
         PlayerUI = GameObject.FindWithTag("PlayerUI");
         PlayerUI.SetActive(false);
@@ -38,6 +43,7 @@ public class PauseScript : MonoBehaviour
     }
     public void ResumeGame()
     {
+        paused = false;
         pauseScreen.SetActive(false);
         PlayerUI.SetActive(true);
         //player.GetComponent<PlayerMovement>().paused = false;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameplayManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
     private GameObject playerInstance;
+    [SerializeField] private Button restartButton;
 
     public delegate void OnReset();
     public static event OnReset Reset;
@@ -63,6 +65,7 @@ public class GameplayManager : MonoBehaviour
         playerInstance.transform.GetChild(0).GetComponent<PlayerMovement>().paused = false;
         timer = 0f;
         active = false;
+        restartButton.interactable = false;
 
         if (Reset != null)
             Reset();
@@ -78,6 +81,7 @@ public class GameplayManager : MonoBehaviour
     public void DoStartGame()
     {
         active = true;
+        restartButton.interactable = true;
 
         if (StartGame != null)
             StartGame();
