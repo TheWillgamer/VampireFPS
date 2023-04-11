@@ -78,6 +78,7 @@ public class GameplayManager : MonoBehaviour
 
     }
 
+    // When player has left the starting area
     public void DoStartGame()
     {
         active = true;
@@ -85,5 +86,12 @@ public class GameplayManager : MonoBehaviour
 
         if (StartGame != null)
             StartGame();
+    }
+    
+    // When player reached the goal
+    public void DoEndGame()
+    {
+        active = false;
+        restartButton.interactable = false;
     }
 }

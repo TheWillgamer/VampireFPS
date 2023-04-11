@@ -35,6 +35,9 @@ public class GrubAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
+        if (player == null)
+            return;
+
         RaycastHit hit;
         int layerMask = 1 << 3;
 

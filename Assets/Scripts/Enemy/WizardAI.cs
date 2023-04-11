@@ -33,6 +33,9 @@ public class WizardAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
+        if (player == null)
+            return;
+
         Vector3 relLoc = player.position - transform.position;
         relLoc.y = 0;
 
