@@ -9,7 +9,6 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 2000;
     public Transform hpMeter;
     public Image dmgScreen;
-    private bool won;
 
     protected PlayerMovement pm;
     private Rigidbody rb;
@@ -19,23 +18,28 @@ public class PlayerHealth : MonoBehaviour
     public float tick_cd = 0.1f;
     private float offcd;
 
-    private GameObject gameOverScreen;
-    private GameObject victoryScreen;
+    private GameplayManager gm;
 
     //Audio
     public AudioSource hit;
     public AudioSource dead;
     private bool deadPlayed;        // so that death audio doesn't play twice
 
+    void OnEnable()
+    {
+        GameplayManager.StartGame += EnableHPDrain;
+    }
+    void OnDisable()
+    {
+        GameplayManager.StartGame -= EnableHPDrain;
+    }
+
     void Awake()
     {
         pm = GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody>();
-        gameOverScreen = GameObject.FindWithTag("SystemUI").transform.GetChild(3).gameObject;
-        victoryScreen = GameObject.FindWithTag("SystemUI").transform.GetChild(4).gameObject;
 
         deadPlayed = false;
-        won = false;
     }
 
     // Start is called before the first frame update
@@ -43,6 +47,7 @@ public class PlayerHealth : MonoBehaviour
     {
         hp = maxHealth;
         offcd = Time.time;
+        gm = GameObject.FindWithTag("EventSystem").GetComponent<GameplayManager>();
     }
 
     void Update()
@@ -51,14 +56,6 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(1);
             offcd = Time.time + tick_cd;
-        }
-
-        // when player wins
-        if (won)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            victoryScreen.SetActive(true);
         }
     }
 
@@ -69,12 +66,11 @@ public class PlayerHealth : MonoBehaviour
         UpdateUI();
 
         // Player dies if they take too much dmg
-        if (hp <= 0 && !won)
+        if (hp <= 0)
         {
             pm.dead = true;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            gameOverScreen.SetActive(true);
+            gm.DoPlayerDeath();
+
             if (!deadPlayed)
             {
                 dead.Play(0);
@@ -107,11 +103,7 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(other.transform.parent.gameObject);
                 break;
             case "Killbox":
-                if(!won)
-                    TakeDamage(2000);
-                break;
-            case "Winbox":
-                won = true;
+                TakeDamage(10000);
                 break;
         }
     }

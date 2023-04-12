@@ -11,9 +11,18 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
+        SpawnEnemy();
+    }
+
+    void OnEnable()
+    {
         GameplayManager.Reset += DestroySpawned;
         GameplayManager.Spawn += SpawnEnemy;
-        SpawnEnemy();
+    }
+    void OnDisable()
+    {
+        GameplayManager.Reset -= DestroySpawned;
+        GameplayManager.Spawn -= SpawnEnemy;
     }
 
     void Update()

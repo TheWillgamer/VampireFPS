@@ -14,6 +14,8 @@ public class GameplayManager : MonoBehaviour
     private GameObject player;
     private GameObject playerInstance;
     [SerializeField] private Button restartButton;
+    [SerializeField] private GameObject deathScreen;
+    [SerializeField] private GameObject victoryScreen;
 
     public delegate void OnReset();
     public static event OnReset Reset;
@@ -47,7 +49,7 @@ public class GameplayManager : MonoBehaviour
     public void RestartLevel()
     {
         DoReset();
-        Invoke(nameof(DoSpawn), 0.01f);
+        Invoke(nameof(DoSpawn), 0.5f);
     }
 
     void DisplayTime()
@@ -93,5 +95,11 @@ public class GameplayManager : MonoBehaviour
     {
         active = false;
         restartButton.interactable = false;
+    }
+
+    // When player reached the goal
+    public void DoPlayerDeath()
+    {
+        active = false;
     }
 }
