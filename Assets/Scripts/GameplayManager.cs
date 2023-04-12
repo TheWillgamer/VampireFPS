@@ -101,5 +101,7 @@ public class GameplayManager : MonoBehaviour
     public void DoPlayerDeath()
     {
         active = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
