@@ -26,6 +26,9 @@ public class GameplayManager : MonoBehaviour
     public delegate void OnStartGame();
     public static event OnStartGame StartGame;
 
+    public delegate void OnEndGame();
+    public static event OnEndGame EndGame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +72,11 @@ public class GameplayManager : MonoBehaviour
         active = false;
         restartButton.interactable = false;
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        deathScreen.SetActive(false);
+        victoryScreen.SetActive(false);
+
         if (Reset != null)
             Reset();
     }
@@ -94,13 +102,27 @@ public class GameplayManager : MonoBehaviour
     public void DoEndGame()
     {
         active = false;
+        GameObject.FindWithTag("PlayerUI").SetActive(false);
         restartButton.interactable = false;
+        Invoke("ShowVictoryScreen", 1.2f);
+
+        if (EndGame != null)
+            EndGame();
     }
 
     // When player reached the goal
     public void DoPlayerDeath()
     {
         active = false;
+        GameObject.FindWithTag("PlayerUI").SetActive(false);
+        deathScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    void ShowVictoryScreen()
+    {
+        victoryScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

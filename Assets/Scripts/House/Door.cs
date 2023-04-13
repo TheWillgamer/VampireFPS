@@ -12,6 +12,27 @@ public class Door : MonoBehaviour
     private float startTime;
 
     private bool opening;
+    private bool started;   // if player went through the startgamegate
+
+    void OnEnable()
+    {
+        GameplayManager.Reset += EnableDoor;
+        GameplayManager.StartGame += DisableDoor;
+    }
+    void OnDisable()
+    {
+        GameplayManager.Reset -= EnableDoor;
+        GameplayManager.StartGame -= DisableDoor;
+    }
+
+    void EnableDoor()
+    {
+        started = false;
+    }
+    void DisableDoor()
+    {
+        started = true;
+    }
 
     void Start()
     {
@@ -19,6 +40,7 @@ public class Door : MonoBehaviour
         opening = false;
         startPos = door.position;
         startRot = door.rotation;
+        started = false;
     }
 
     void Update()
@@ -37,7 +59,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (!started && other.tag == "Player")
         {
             startTime = (Time.time - startTime > OCtime) ? Time.time : (2 * Time.time - startTime - OCtime);
             opening = true;
@@ -46,7 +68,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (!started && other.tag == "Player")
         {
             startTime = (Time.time - startTime > OCtime) ? Time.time : (2 * Time.time - startTime - OCtime);
             opening = false;

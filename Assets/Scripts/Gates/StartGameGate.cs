@@ -10,7 +10,16 @@ public class StartGameGate : MonoBehaviour
     void Start()
     {
         gm = GameObject.FindWithTag("EventSystem").GetComponent<GameplayManager>();
-        activated = false;
+    }
+
+    // So that it refreshes when starting the level
+    void OnEnable()
+    {
+        GameplayManager.Reset += DisableActivated;
+    }
+    void OnDisable()
+    {
+        GameplayManager.Reset -= DisableActivated;
     }
 
     void OnTriggerEnter(Collider col)
@@ -20,5 +29,10 @@ public class StartGameGate : MonoBehaviour
             gm.DoStartGame();
             activated = true;
         }
+    }
+
+    void DisableActivated()
+    {
+        activated = false;
     }
 }

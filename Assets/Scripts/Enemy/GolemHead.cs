@@ -6,7 +6,7 @@ public class GolemHead : EnemyAI
 {
     public Transform headTracker;
     public Transform pullBackTracker;     // Where the head is pulled back before the throw
-    public bool active;           // If full-sized head is on the golem
+    public bool onHead;           // If full-sized head is on the golem
     public bool host;                               // if golem is alive
     [SerializeField] private float regenerateSpeed;           // How fast the head regenerates
     [SerializeField] private float throwForce;                // How fast the head is thrown
@@ -41,14 +41,14 @@ public class GolemHead : EnemyAI
         timer += Time.deltaTime;
         if (!thrown && host)
         {
-            if (active)
+            if (onHead)
                 transform.position = headTracker.position;
             
             else
             {
                 if (headTracker.position.y - transform.position.y < 0f)
                 {
-                    active = true;
+                    onHead = true;
                     transform.localScale = new Vector3(100, 100, 92.5f);
                     transform.parent = transform.parent.parent;
                 }

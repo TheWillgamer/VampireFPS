@@ -12,7 +12,6 @@ public class GrubAI : EnemyAI
     [SerializeField] private int attackDamage;
     [SerializeField] private float attackKnockback;
     private Transform player;
-    private bool active;
     private bool falling;
     private Rigidbody rb;
     private float extraGravity = 2000;
@@ -28,14 +27,13 @@ public class GrubAI : EnemyAI
     {
         player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
-        active = true;
         anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player == null)
+        if (!active)
             return;
 
         RaycastHit hit;
@@ -45,7 +43,7 @@ public class GrubAI : EnemyAI
         Vector3 relLoc = player.position - transform.position;
         anim.SetBool("moving", false);
 
-        if (active && relLoc.magnitude < alertRadius && !falling)
+        if (relLoc.magnitude < alertRadius && !falling)
         {
             if (!attacking)
             {

@@ -14,7 +14,6 @@ public class WizardAI : EnemyAI
     [SerializeField] private Transform deathParticlesSpawn;
     [SerializeField] private GameObject deathParticles;
     private Transform player;
-    private bool active;
     private bool coolingDown;
     private float charge;
 
@@ -25,7 +24,6 @@ public class WizardAI : EnemyAI
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform.GetChild(1);
-        active = true;
         charge = 0;
         coolingDown = false;
     }
@@ -33,13 +31,13 @@ public class WizardAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
-        if (player == null)
+        if (!active)
             return;
 
         Vector3 relLoc = player.position - transform.position;
         relLoc.y = 0;
 
-        if (active && relLoc.magnitude < alertRadius)
+        if (relLoc.magnitude < alertRadius)
         {
             transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
 

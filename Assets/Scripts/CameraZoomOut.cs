@@ -6,12 +6,26 @@ public class CameraZoomOut : MonoBehaviour
 {
     [SerializeField] private float zoomOutTime;
     [SerializeField] private Transform newLoc;
-    [SerializeField] private GameObject display;
     private bool activated;
     private Transform camera;
     private Vector3 tempPosition;
     private Quaternion tempRotation;
     private float startTime;
+
+    // So that it refreshes when starting the level
+    void OnEnable()
+    {
+        GameplayManager.Reset += DisableActivated;
+    }
+    void OnDisable()
+    {
+        GameplayManager.Reset -= DisableActivated;
+    }
+
+    void DisableActivated()
+    {
+        activated = false;
+    }
 
     void Start()
     {
@@ -34,14 +48,12 @@ public class CameraZoomOut : MonoBehaviour
         {
             camera = GameObject.FindWithTag("CameraMan").transform;
             camera.GetComponent<MoveCamera>().active = false;
-            StartCoroutine(camera.GetComponent<MoveCamera>().FadeOut());
+            //StartCoroutine(camera.GetComponent<MoveCamera>().FadeOut());
             activated = true;
             tempPosition = camera.position;
             tempRotation = camera.rotation;
             startTime = Time.time;
             Destroy(other.gameObject);
-            display.SetActive(false);
-            GameObject.FindWithTag("PlayerUI").SetActive(false);
         }
     }
 }

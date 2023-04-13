@@ -66,16 +66,12 @@ public class PlayerHealth : MonoBehaviour
         UpdateUI();
 
         // Player dies if they take too much dmg
-        if (hp <= 0)
+        if (hp <= 0 && !deadPlayed)
         {
             pm.dead = true;
             gm.DoPlayerDeath();
-
-            if (!deadPlayed)
-            {
-                dead.Play(0);
-                deadPlayed = true;
-            }
+            dead.Play(0);
+            deadPlayed = true;
         }
         if (hp > maxHealth)
             hp = maxHealth;
@@ -113,7 +109,8 @@ public class PlayerHealth : MonoBehaviour
         TakeDamage(damage);
         hit.Play(0);
         rb.AddForce(direction * knockback + transform.up * knockback / 4);
-        StartCoroutine(Fade());
+        if (!deadPlayed)
+            StartCoroutine(Fade());
     }
 
     public void Knockback(float amount, Vector3 direction)
