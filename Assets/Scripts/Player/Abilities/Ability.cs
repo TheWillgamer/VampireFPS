@@ -20,7 +20,7 @@ public class Ability : MonoBehaviour
     public float cd = 5f;
     public int charges = 1;
     public int maxCharges = 3;
-    public int bloodCost = 3;
+    // public int bloodCost = 3;
 
     protected void Awake()
     {

@@ -9,18 +9,15 @@ public class Spawner : MonoBehaviour
     public bool alive = false;
     private EnemyHitDetection ehd = null;
 
-    void Start()
-    {
-        SpawnEnemy();
-    }
-
     void OnEnable()
     {
+        SpawnEnemy();
         GameplayManager.Reset += DestroySpawned;
         GameplayManager.Spawn += SpawnEnemy;
     }
     void OnDisable()
     {
+        DestroySpawned();
         GameplayManager.Reset -= DestroySpawned;
         GameplayManager.Spawn -= SpawnEnemy;
     }

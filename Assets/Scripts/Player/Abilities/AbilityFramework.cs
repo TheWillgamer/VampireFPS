@@ -15,7 +15,7 @@ public class AbilityFramework : MonoBehaviour
     private float basicatktimer = 0f;       // temp variable to fix animations
 
     protected PlayerMovement pm;    // to disable abilities when player is dead
-    protected PlayerHealth ph;      // blood cost for abilities
+    // protected PlayerHealth ph;      // blood cost for abilities
     public Animator anim;
 
     public AudioSource Blast_recharged;
@@ -24,7 +24,7 @@ public class AbilityFramework : MonoBehaviour
     void Awake()
     {
         pm = GetComponent<PlayerMovement>();
-        ph = GetComponent<PlayerHealth>();
+        //ph = GetComponent<PlayerHealth>();
         basicatktimer = Time.time;
     }
 
@@ -85,7 +85,7 @@ public class AbilityFramework : MonoBehaviour
                 if ((i == 0 && Time.time > basicatktimer) || i > 0)
                 {
                     abilityList[i].UseAbility();
-                    ph.TakeDamage(abilityList[i].bloodCost);
+                    //ph.TakeDamage(abilityList[i].bloodCost);
 
                     if (abilityList[i].charges == abilityList[i].maxCharges)
                     {
