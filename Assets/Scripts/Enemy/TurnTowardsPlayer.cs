@@ -7,25 +7,31 @@ public class TurnTowardsPlayer : MonoBehaviour
     [SerializeField] private float turnSpeed;
     [SerializeField] private float alertRadius;     // how fast enemy turns towards the player
     [SerializeField] private bool disableVerticalTurn;     // how fast enemy turns towards the player
-    private Transform player;
+    private GameObject player;
     private bool active;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player");
         active = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 relLoc = player.position - transform.position;
+        if (player == null)
+            player = GameObject.FindWithTag("Player");
+
+        if (!active || player == null)
+            return;
+        
+        Vector3 relLoc = player.transform.position - transform.position;
 
         if (disableVerticalTurn)
             relLoc = new Vector3(relLoc.x, 0, relLoc.z);
         
-        if(active && relLoc.magnitude < alertRadius)
+        if(relLoc.magnitude < alertRadius)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(relLoc, Vector3.up), turnSpeed * Time.deltaTime);
         }
