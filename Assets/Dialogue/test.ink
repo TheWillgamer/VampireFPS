@@ -1,3 +1,7 @@
+INCLUDE globals.ink
+
+{ name == "": -> main | -> already_chose }
+
 -> main
 
 === main ===
@@ -11,4 +15,9 @@ Which Zachary do you choose?
         
 === chosen(zach) ===
 He is {zach}!
+~ name = zach
+-> END
+
+=== already_chose ===
+Zachary is {name}!
 -> END
