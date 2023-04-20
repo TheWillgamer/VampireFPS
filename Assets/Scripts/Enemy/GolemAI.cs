@@ -24,8 +24,6 @@ public class GolemAI : EnemyAI
     [SerializeField] private Transform headTracker;
     [SerializeField] private Transform pullBackTracker;     // Where the head is pulled back before the throw
 
-    private Transform player;
-    private bool active;
     private bool falling;
     private Rigidbody rb;
     private float extraGravity = 2000;
@@ -41,10 +39,8 @@ public class GolemAI : EnemyAI
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        active = true;
         canMove = true;
         ranged = false;
         regening = false;
@@ -53,6 +49,12 @@ public class GolemAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
+        active = true;
+        if (player == null)
+            player = GameObject.FindWithTag("Player").transform;
+        if (!active || player == null)
+            return;
+
         RaycastHit hit;
         int layerMask = 1 << 3;
 
@@ -66,7 +68,7 @@ public class GolemAI : EnemyAI
             timer = Time.time + headRegenTimeDelay;
         }
 
-        if (active && relLoc.magnitude < alertRadius && !regening)
+        if (relLoc.magnitude < alertRadius && !regening)
         {
             if (!attacking)
             {

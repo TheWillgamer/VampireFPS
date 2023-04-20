@@ -11,8 +11,6 @@ public class SniperAI : EnemyAI
     [SerializeField] private Transform laserStart;
     [SerializeField] private Transform proj;
     [SerializeField] private Transform rangedSpawn;
-    private Transform player;
-    private bool active;
     private bool coolingDown;
     private float charge;
     LineRenderer lr;
@@ -23,8 +21,6 @@ public class SniperAI : EnemyAI
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
-        active = true;
         lr = GetComponent<LineRenderer>();
         points = new Vector3[2];
         charge = 0;
@@ -35,9 +31,15 @@ public class SniperAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
+        active = true;
+        if (player == null)
+            player = GameObject.FindWithTag("Player").transform;
+        if (!active || player == null)
+            return;
+
         Vector3 relLoc = player.position - transform.position;
 
-        if (active && !coolingDown && relLoc.magnitude < alertRadius)
+        if (!coolingDown && relLoc.magnitude < alertRadius)
         {
             transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, Vector3.up);
 

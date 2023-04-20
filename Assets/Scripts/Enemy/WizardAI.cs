@@ -13,7 +13,6 @@ public class WizardAI : EnemyAI
     [SerializeField] private Transform rangedSpawn;
     [SerializeField] private Transform deathParticlesSpawn;
     [SerializeField] private GameObject deathParticles;
-    private Transform player;
     private bool coolingDown;
     private float charge;
 
@@ -23,7 +22,6 @@ public class WizardAI : EnemyAI
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform.GetChild(1);
         charge = 0;
         coolingDown = false;
     }
@@ -31,10 +29,13 @@ public class WizardAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
-        if (!active)
+        active = true;
+        if (player == null)
+            player = GameObject.FindWithTag("Player").transform;
+        if (!active || player == null)
             return;
 
-        Vector3 relLoc = player.position - transform.position;
+        Vector3 relLoc = player.transform.GetChild(1).position - transform.position;
         relLoc.y = 0;
 
         if (relLoc.magnitude < alertRadius)
@@ -44,7 +45,7 @@ public class WizardAI : EnemyAI
             if (!coolingDown)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(rangedSpawn.position, player.position - rangedSpawn.position, out hit, attackRange))
+                if (Physics.Raycast(rangedSpawn.position, player.transform.GetChild(1).position - rangedSpawn.position, out hit, attackRange))
                 {
                     if (hit.collider.tag == "Player")
                     {
@@ -72,7 +73,7 @@ public class WizardAI : EnemyAI
     void Fire()
     {
         charge = 0;
-        Instantiate(proj, rangedSpawn.position, Quaternion.LookRotation(player.position - rangedSpawn.position, Vector3.up));
+        Instantiate(proj, rangedSpawn.position, Quaternion.LookRotation(player.transform.GetChild(1).position - rangedSpawn.position, Vector3.up));
         fire.Play();
         coolingDown = true;
     }

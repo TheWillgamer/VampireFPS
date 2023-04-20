@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public bool active;
+    public Transform player;
 
     void OnEnable()
     {
@@ -23,12 +24,13 @@ public class EnemyAI : MonoBehaviour
     }
     void DisableEnemy()
     {
-        active = false;
+        //active = false;
     }
 
     void Start()
     {
         active = true;
+        player = GameObject.FindWithTag("Player").transform;
     }
 
     public virtual void Death()

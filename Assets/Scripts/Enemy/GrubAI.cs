@@ -11,7 +11,6 @@ public class GrubAI : EnemyAI
     [SerializeField] private float attackRange;
     [SerializeField] private int attackDamage;
     [SerializeField] private float attackKnockback;
-    private Transform player;
     private bool falling;
     private Rigidbody rb;
     private float extraGravity = 2000;
@@ -25,7 +24,6 @@ public class GrubAI : EnemyAI
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
         anim = transform.GetChild(0).GetComponent<Animator>();
     }
@@ -33,7 +31,10 @@ public class GrubAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
-        if (!active)
+        active = true;
+        if (player == null)
+            player = GameObject.FindWithTag("Player").transform;
+        if (!active || player == null)
             return;
 
         RaycastHit hit;
