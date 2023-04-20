@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
-using Ink.UnityIntegration;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject[] choices;
     [SerializeField] private float typingSpeed;
-    [SerializeField] private InkFile globalsInkFile;
+    [SerializeField] private TextAsset loadGlobalsJSON;
 
     private Story currentStory;
     public bool dialogueIsPlaying;
@@ -31,7 +30,7 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("more than one DialogueManager found in the scene");
         instance = this;
 
-        dvars = new DialogueVariables(globalsInkFile.filePath);
+        dvars = new DialogueVariables(loadGlobalsJSON);
     }
 
     public static DialogueManager GetInstance()
@@ -134,7 +133,8 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator DisplayLine(string line)
     {
-        dialogueText.text = "";
+        dialogueText.text = line;
+        dialogueText.maxVisibleCharacters = 0;
         HideChoices();
 
         canContinueToNext = false;
@@ -143,11 +143,11 @@ public class DialogueManager : MonoBehaviour
         {
             if (finishDialogue)
             {
-                dialogueText.text = line;
+                dialogueText.maxVisibleCharacters = line.Length;
                 break;
             }
 
-            dialogueText.text += letter;
+            dialogueText.maxVisibleCharacters++;
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -197,5 +197,10 @@ public class DialogueManager : MonoBehaviour
         Ink.Runtime.Object variableValue = null;
         dvars.variables.TryGetValue(variableName, out variableValue);
         return variableValue;
+    }
+
+    public void OnApplicationQuit()
+    {
+        dvars.SaveVariables();
     }
 }
