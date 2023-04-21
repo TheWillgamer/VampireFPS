@@ -8,18 +8,14 @@ public class LightningAI : EnemyAI
     [SerializeField] private float attackCooldownTime;
     [SerializeField] private Transform lightning;
 
-    private Transform player;
     private bool coolingDown;
     private float charge;
-    private bool active;
 
     public AudioSource l_sound;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
-        active = true;
         charge = 0;
         coolingDown = false;
     }
@@ -27,6 +23,12 @@ public class LightningAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
+        active = true;
+        if (player == null)
+            player = GameObject.FindWithTag("Player").transform;
+        if (!active || player == null)
+            return;
+
         Vector3 relLoc = player.position - transform.position;
 
         if (active && !coolingDown && relLoc.magnitude < alertRadius)
