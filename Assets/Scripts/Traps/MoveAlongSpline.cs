@@ -14,11 +14,11 @@ public class MoveAlongSpline : MonoBehaviour
     
     void OnEnable()
     {
-        GameplayManager.Reset += ResetPosition;
+        GameplayManager.Spawn += ResetPosition;
     }
     void OnDisable()
     {
-        GameplayManager.Reset -= ResetPosition;
+        GameplayManager.Spawn -= ResetPosition;
     }
 
     void Start()
@@ -29,6 +29,7 @@ public class MoveAlongSpline : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(transform.position);
         if (transform.position == points[next_point].position)
         {
             next_point++;
