@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RangedAI : EnemyAI
 {
-    private Transform player;
     public Transform cbow;
 
     public float horRotSpeed;      // how fast enemies rotate towards the player horizontally
@@ -27,12 +26,17 @@ public class RangedAI : EnemyAI
     {
         offcd = Time.time + fireFrequency;
         dead = false;
-        player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
     }
     
     void Update()
     {
+        active = true;
+        if (player == null)
+            player = GameObject.FindWithTag("Player").transform;
+        if (!active || player == null)
+            return;
+
         if (!dead)
         {
             // rotates enemy and crossbow towards player
