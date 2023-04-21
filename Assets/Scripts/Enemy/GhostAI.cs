@@ -8,10 +8,20 @@ public class GhostAI : EnemyAI
     [SerializeField] private float turnSpeed;
     [SerializeField] private float alertRadius;     // how fast enemy turns towards the player
     [SerializeField] private int attackDamage;
+    [SerializeField] private float attackDelay;     // delay after attacking
     [SerializeField] private float attackKnockback;
-    [SerializeField] private float attackSelfKnockback;     // how far enemy gets knocked back after dealing damage
+    [SerializeField] private float attackSelfBackSpeed;     // how fast enemy gets knocked back after dealing damage
 
     [SerializeField] private GameObject ghostExplosion;
+
+    private float timer;
+    private bool alerted;           // when enemy sees player for the first time
+
+    void Start()
+    {
+        timer = -20f;
+        alerted = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,16 +32,42 @@ public class GhostAI : EnemyAI
         if (!active || player == null)
             return;
 
-        RaycastHit hit;
-        int layerMask = 1 << 3;
-
         Vector3 relLoc = player.position - transform.position;
-
-        if (relLoc.magnitude < alertRadius)
+        if (!alerted)
         {
-            // Movement
-            transform.position = transform.position + transform.forward * moveSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(relLoc, Vector3.up), turnSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, alertRadius))
+            {
+                if (hit.transform.gameObject.tag == "Player")
+                {
+                    alerted = true;
+                    Debug.Log("alerted!");
+                }
+            }
+        }
+        else
+        {
+            if (Time.time > timer)
+            {
+                // Movement
+                transform.position = transform.position + transform.forward * moveSpeed * Time.deltaTime;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(relLoc, Vector3.up), turnSpeed * Time.deltaTime);
+            }
+            else if (timer > Time.time)
+            {
+                transform.position = transform.position + -transform.forward * attackSelfBackSpeed * Time.deltaTime;
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player" && Time.time > timer)
+        {
+            other.gameObject.GetComponent<PlayerHealth>().ProjectileHit(attackDamage, (player.position - transform.position).normalized, attackKnockback);
+            timer = Time.time + attackDelay;
         }
     }
 
