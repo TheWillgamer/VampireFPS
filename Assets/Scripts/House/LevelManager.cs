@@ -21,8 +21,8 @@ public class LevelManager : MonoBehaviour
     
     void Start()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
-        currentScene = 1;
+        //SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        currentScene = 0;
     }
 
     void Update()
@@ -31,7 +31,8 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.GetKeyDown(keyCodes[i]))
             {
-                SceneManager.UnloadScene(currentScene);
+                if (currentScene != 0)
+                    SceneManager.UnloadScene(currentScene);
                 SceneManager.LoadScene(i + 1, LoadSceneMode.Additive);
                 currentScene = i + 1;
             }
