@@ -10,7 +10,7 @@ public class SniperAI : EnemyAI
     [SerializeField] private float attackCooldownTime;
     [SerializeField] private Transform laserStart;
     [SerializeField] private Transform proj;
-    [SerializeField] private Transform rangedSpawn;
+    [SerializeField] private Transform bunnyLights;
     private bool coolingDown;
     private float charge;
     LineRenderer lr;
@@ -41,17 +41,21 @@ public class SniperAI : EnemyAI
 
         if (!coolingDown && relLoc.magnitude < alertRadius)
         {
-            transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position, Vector3.up);
+            Debug.Log(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude));
+            bunnyLights.rotation = Quaternion.Euler(new Vector3(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude), 0f, 0f));
+            relLoc.y = 0;
+            transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
+            
 
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
+            if (Physics.Raycast(laserStart.position, transform.forward, out hit, attackRange))
             {
                 points[0] = laserStart.position;
                 if (hit.collider.tag == "Player")
                 {
                     charge += Time.deltaTime;
                     lr.endWidth = 1f - charge / attackChargeTime;
-                    points[1] = player.transform.position - transform.forward * .4f;
+                    points[1] = player.position - laserStart.forward * .4f;
                     if (charge > attackChargeTime)
                         Fire();
                 }
@@ -65,8 +69,8 @@ public class SniperAI : EnemyAI
             }
             else
             {
-                points[0] = transform.position;
-                points[1] = transform.position + transform.forward * attackRange;
+                points[0] = laserStart.position;
+                points[1] = laserStart.position + laserStart.forward * attackRange;
                 lr.SetPositions(points);
             }
         }
@@ -83,7 +87,7 @@ public class SniperAI : EnemyAI
     void Fire()
     {
         charge = 0;
-        Instantiate(proj, rangedSpawn.position, rangedSpawn.rotation);
+        Instantiate(proj, laserStart.position, laserStart.rotation);
         fire.Play();
         coolingDown = true;
         lr.endWidth = 0;
