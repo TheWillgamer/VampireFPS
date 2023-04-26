@@ -42,13 +42,13 @@ public class SniperAI : EnemyAI
         if (!coolingDown && relLoc.magnitude < alertRadius)
         {
             Debug.Log(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude));
-            bunnyLights.rotation = Quaternion.Euler(new Vector3(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude), 0f, 0f));
+            bunnyLights.localRotation = Quaternion.Euler(new Vector3(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude), 0f, 0f));
             relLoc.y = 0;
             transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
             
 
             RaycastHit hit;
-            if (Physics.Raycast(laserStart.position, transform.forward, out hit, attackRange))
+            if (Physics.Raycast(laserStart.position, laserStart.forward, out hit, attackRange))
             {
                 points[0] = laserStart.position;
                 if (hit.collider.tag == "Player")
