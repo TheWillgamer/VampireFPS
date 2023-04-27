@@ -41,7 +41,6 @@ public class SniperAI : EnemyAI
 
         if (!coolingDown && relLoc.magnitude < alertRadius)
         {
-            Debug.Log(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude));
             bunnyLights.localRotation = Quaternion.Euler(new Vector3(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude), 0f, 0f));
             relLoc.y = 0;
             transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
