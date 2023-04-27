@@ -15,8 +15,10 @@ public class SniperAI : EnemyAI
     private float charge;
     LineRenderer lr;
     Vector3[] points;
+    private bool dead;
 
     public AudioSource fire;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class SniperAI : EnemyAI
         charge = 0;
         coolingDown = false;
         lr.endWidth = 0;
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        dead = false;
     }
 
     // Update is called once per frame
@@ -34,18 +38,17 @@ public class SniperAI : EnemyAI
         active = true;
         if (player == null)
             player = GameObject.FindWithTag("Player").transform;
-        if (!active || player == null)
+        if (!active || player == null || dead)
             return;
 
         Vector3 relLoc = player.position - transform.position;
 
+        bunnyLights.localRotation = Quaternion.Euler(new Vector3(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude), 0f, 0f));
+        relLoc.y = 0;
+        transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
+
         if (!coolingDown && relLoc.magnitude < alertRadius)
         {
-            bunnyLights.localRotation = Quaternion.Euler(new Vector3(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude), 0f, 0f));
-            relLoc.y = 0;
-            transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
-            
-
             RaycastHit hit;
             if (Physics.Raycast(laserStart.position, laserStart.forward, out hit, attackRange))
             {
@@ -90,5 +93,13 @@ public class SniperAI : EnemyAI
         fire.Play();
         coolingDown = true;
         lr.endWidth = 0;
+    }
+
+    public override void Death()
+    {
+        anim.SetTrigger("Death");
+        active = false;
+        GetComponent<Collider>().enabled = false;
+        dead = true;
     }
 }
