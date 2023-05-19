@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private SuperTextMesh stext;
     [SerializeField] private GameObject[] choices;
     [SerializeField] private float typingSpeed;
     [SerializeField] private TextAsset loadGlobalsJSON;
@@ -64,7 +65,7 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             // When dialogue is finished
-            if (canContinueToNext)
+            if (!stext.reading)
             {
                 if (currentStory.currentChoices.Count == 0)
                     ContinueStory();
@@ -76,8 +77,14 @@ public class DialogueManager : MonoBehaviour
             // to speed up the dialogue
             else
             {
-                finishDialogue = true;
+                stext.SkipToEnd();
+                //finishDialogue = true;
             }
+        }
+
+        if (!canContinueToNext)
+        {
+
         }
 
         if (pressed && choiceIsMade)
@@ -118,11 +125,13 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            // Prevents lines from overlapping
-            if (displayLineCoroutine != null)
-                StopCoroutine(displayLineCoroutine);
+            //// Prevents lines from overlapping
+            //if (displayLineCoroutine != null)
+            //    StopCoroutine(displayLineCoroutine);
 
-            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
+            canContinueToNext = false;
+            stext.text = currentStory.Continue();
+            //displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
             //dialogueText.text = currentStory.Continue();
         }
         else
@@ -141,6 +150,7 @@ public class DialogueManager : MonoBehaviour
 
         foreach (char letter in line.ToCharArray())
         {
+            stext.Append(letter.ToString());
             if (finishDialogue)
             {
                 dialogueText.maxVisibleCharacters = line.Length;
