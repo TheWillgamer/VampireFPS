@@ -5784,8 +5784,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6db1176dbd3b2da4e8183197d8663cad, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9110,7 +9110,7 @@ MonoBehaviour:
   showAppearanceFoldout: 1
   showMaterialFoldout: 1
   showPositionFoldout: 1
-  showTimingFoldout: 0
+  showTimingFoldout: 1
   showFunctionalityFoldout: 0
   showAudioFoldout: 0
   showEventFoldout: 0
@@ -9137,7 +9137,7 @@ MonoBehaviour:
     delayData: {fileID: 0}
     waveData: {fileID: 11400000, guid: 5b9268e4d54e94aa997127932e4930ee, type: 2}
     jitterData: {fileID: 0}
-    readDelay: 0
+    readDelay: 0.05
     audioClipData: {fileID: 0}
     stopPreviousSound: 1
     pitchMode: 0
@@ -9169,7 +9169,7 @@ MonoBehaviour:
   _color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   forceAnimation: 0
   richText: 1
-  readDelay: 0
+  readDelay: 0.05
   speedReadScale: 2
   ignoreTimeScale: 1
   disableAnimatedText: 0
@@ -9254,7 +9254,7 @@ MonoBehaviour:
   debugMode: 0
   totalReadTime: 0.00001
   totalUnreadTime: 0.00001
-  currentReadTime: 4.278489
+  currentReadTime: 1833.4186
   autoRead: 1
   rememberReadPosition: 1
   autoQuality: 0

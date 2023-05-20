@@ -19,5 +19,5 @@ He is {zach}!
 -> END
 
 === already_chose ===
-Zachary is {name}!
+<c=rainbow><w>Zachary is {name}!
 -> END

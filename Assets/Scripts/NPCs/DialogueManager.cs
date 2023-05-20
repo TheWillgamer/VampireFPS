@@ -17,10 +17,8 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueIsPlaying;
     private Coroutine displayLineCoroutine;
     private TextMeshProUGUI[] choicesText;
-    private bool pressed;
     private bool choiceIsMade;
-    private bool canContinueToNext;     // if dialogue has finished typing
-    private bool finishDialogue;        // if dialogue has finished typing
+    private bool choicesDisplayed;
 
     private static DialogueManager instance;
     private DialogueVariables dvars;
@@ -43,10 +41,8 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
-        pressed = false;
         choiceIsMade = false;
-        canContinueToNext = false;
-        finishDialogue = false;
+        choicesDisplayed = false;
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -62,6 +58,12 @@ public class DialogueManager : MonoBehaviour
         if (!dialogueIsPlaying)
             return;
 
+        if (!stext.reading && !choicesDisplayed)
+        {
+            choicesDisplayed = true;
+            DisplayChoices();
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             // When dialogue is finished
@@ -69,28 +71,17 @@ public class DialogueManager : MonoBehaviour
             {
                 if (currentStory.currentChoices.Count == 0)
                     ContinueStory();
-                else
-                {
-                    pressed = true;
-                }
             }
             // to speed up the dialogue
             else
             {
                 stext.SkipToEnd();
-                //finishDialogue = true;
             }
         }
 
-        if (!canContinueToNext)
-        {
-
-        }
-
-        if (pressed && choiceIsMade)
+        if (choiceIsMade)
         {
             ContinueStory();
-            pressed = false;
             choiceIsMade = false;
         }
     }
@@ -125,45 +116,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            //// Prevents lines from overlapping
-            //if (displayLineCoroutine != null)
-            //    StopCoroutine(displayLineCoroutine);
-
-            canContinueToNext = false;
+            choicesDisplayed = false;
+            HideChoices();
             stext.text = currentStory.Continue();
-            //displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
-            //dialogueText.text = currentStory.Continue();
         }
         else
         {
             ExitDialogueMode();
         }
-    }
-
-    private IEnumerator DisplayLine(string line)
-    {
-        dialogueText.text = line;
-        dialogueText.maxVisibleCharacters = 0;
-        HideChoices();
-
-        canContinueToNext = false;
-
-        foreach (char letter in line.ToCharArray())
-        {
-            stext.Append(letter.ToString());
-            if (finishDialogue)
-            {
-                dialogueText.maxVisibleCharacters = line.Length;
-                break;
-            }
-
-            dialogueText.maxVisibleCharacters++;
-            yield return new WaitForSeconds(typingSpeed);
-        }
-
-        finishDialogue = false;
-        canContinueToNext = true;
-        DisplayChoices();
     }
 
     private void HideChoices()
@@ -195,7 +155,7 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        if (canContinueToNext)
+        if (choicesDisplayed)
         {
             currentStory.ChooseChoiceIndex(choiceIndex);
             choiceIsMade = true;
