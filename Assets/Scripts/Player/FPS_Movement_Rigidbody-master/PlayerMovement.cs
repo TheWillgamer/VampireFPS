@@ -498,7 +498,15 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+    }
 
+    // Direction Field that pushes player in a direction very fast
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "DirectionField")
+        {
+            rb.velocity = other.transform.GetComponent<DirectionField>().velocity;
+        }
     }
 
     private void DashFOV()
