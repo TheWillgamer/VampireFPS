@@ -3,7 +3,17 @@ guid: e71965180a841364b81eeaa601d1ac7b
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Heart material for seperation sake
+    second: {fileID: 2100000, guid: 0e23c3c649925ed479b9df238f254147, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Main Ghost Texture
+    second: {fileID: 2100000, guid: 9036d01fd33999048a028e9982d609ce, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

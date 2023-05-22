@@ -3,7 +3,17 @@ guid: 4aea2ed9c0dd09d4fa080e5f24291688
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: a5cf0023aaa902445b47fc1bfd1b327e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TieLightning
+    second: {fileID: 2100000, guid: 27a97162929c50b4dbb3c9ff00255dc7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
