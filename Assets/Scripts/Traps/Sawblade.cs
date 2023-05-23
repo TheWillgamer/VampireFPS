@@ -25,9 +25,12 @@ public class Sawblade : MonoBehaviour
     void GetPlayer()
     {
         GameObject player = GameObject.FindWithTag("Player");
-        ph = player.GetComponent<PlayerHealth>();
-        rb = player.GetComponent<Rigidbody>();
-        playerLoc = player.transform;
+        if (player != null)
+        {
+            ph = player.GetComponent<PlayerHealth>();
+            rb = player.GetComponent<Rigidbody>();
+            playerLoc = player.transform;
+        }
     }
 
     void OnTriggerStay(Collider other)
