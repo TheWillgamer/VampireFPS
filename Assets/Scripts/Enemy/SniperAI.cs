@@ -11,6 +11,9 @@ public class SniperAI : EnemyAI
     [SerializeField] private Transform laserStart;
     [SerializeField] private Transform proj;
     [SerializeField] private Transform bunnyLights;
+    [SerializeField] private Transform RabbitSpawnLoc;
+    [SerializeField] private Transform RabbitDeath;
+    [SerializeField] private Transform LightDeath;
     private bool coolingDown;
     private float charge;
     LineRenderer lr;
@@ -97,9 +100,8 @@ public class SniperAI : EnemyAI
 
     public override void Death()
     {
-        anim.SetTrigger("Death");
-        active = false;
-        GetComponent<Collider>().enabled = false;
-        dead = true;
+        Instantiate(RabbitDeath, RabbitSpawnLoc.position, RabbitSpawnLoc.rotation);
+        //Instantiate(LightDeath, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
