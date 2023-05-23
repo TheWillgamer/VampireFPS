@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
                 Step.Stop();
                 stepping = false;
             }
-            anim.SetBool("moving", true);
+            //anim.SetBool("moving", true);
         }
         else
         {
@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
                 Step.Stop();
                 stepping = false;
             }
-            anim.SetBool("moving", false);
+            //anim.SetBool("moving", false);
         }
         priorDownSpeed = rb.velocity.y;
 
