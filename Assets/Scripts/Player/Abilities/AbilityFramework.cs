@@ -56,7 +56,7 @@ public class AbilityFramework : MonoBehaviour
         input[2] = Input.GetButtonDown("Fire3");
         input[3] = Input.GetButtonDown("Fire4");
 
-        anim.SetBool("shooting", input[0] && !pm.dead && !pm.paused);
+        
 
         // when fire button is first used
         if (Input.GetButtonDown("Fire1"))

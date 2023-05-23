@@ -7,10 +7,15 @@ public class BasicAttack : Ability
     [SerializeField] Transform rangedAttack;
     public AudioClip shot;
     public AudioSource sound;
+    public Animator anim;
+
+    
 
     public override void UseAbility()
     {
         Instantiate(rangedAttack, pm.playerCam.transform.position, pm.playerCam.transform.rotation);
         sound.PlayOneShot(shot);
+
+        anim.SetTrigger("Shooting");
     }
 }
