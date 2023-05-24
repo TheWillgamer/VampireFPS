@@ -101,7 +101,7 @@ public class SniperAI : EnemyAI
     public override void Death()
     {
         Instantiate(RabbitDeath, RabbitSpawnLoc.position, RabbitSpawnLoc.rotation);
-        //Instantiate(LightDeath, transform.position, transform.rotation);
+        Instantiate(LightDeath, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }
