@@ -29,7 +29,6 @@ public class MoveAlongSpline : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(transform.position);
         if (transform.position == points[next_point].position)
         {
             next_point++;

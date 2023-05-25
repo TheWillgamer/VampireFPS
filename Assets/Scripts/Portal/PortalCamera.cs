@@ -8,6 +8,29 @@ public class PortalCamera : MonoBehaviour
     [SerializeField] Transform portal1;
     [SerializeField] Transform portal2;
 
+    private bool activated;
+
+    // So that it refreshes when starting the level
+    void OnEnable()
+    {
+        GameplayManager.Reset += DisableActivated;
+        GameplayManager.StartGame += EnableActivated;
+    }
+    void OnDisable()
+    {
+        GameplayManager.Reset -= DisableActivated;
+        GameplayManager.StartGame -= EnableActivated;
+    }
+
+    void DisableActivated()
+    {
+        activated = false;
+    }
+    void EnableActivated()
+    {
+        activated = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -17,10 +40,20 @@ public class PortalCamera : MonoBehaviour
         }
         else
         {
-            Vector3 offset = Camera.position - portal1.position;
-            transform.position = portal2.position + offset;
+            if (!activated)
+            {
+                Vector3 offset = Camera.position - portal1.position;
+                transform.position = portal2.position + offset;
 
-            transform.rotation = Camera.rotation;
+                transform.rotation = Camera.rotation;
+            }
+            else
+            {
+                Vector3 offset = Camera.position - portal2.position;
+                transform.position = portal1.position + offset;
+
+                transform.rotation = Camera.rotation;
+            }
         }
 
     }

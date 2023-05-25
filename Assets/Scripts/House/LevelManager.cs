@@ -31,11 +31,16 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.GetKeyDown(keyCodes[i]))
             {
-                if (currentScene != 0)
-                    SceneManager.UnloadScene(currentScene);
-                SceneManager.LoadScene(i + 1, LoadSceneMode.Additive);
-                currentScene = i + 1;
+                Load(i);
             }
         }
+    }
+
+    public void Load(int scene)
+    {
+        if (currentScene != 0)
+            SceneManager.UnloadScene(currentScene);
+        SceneManager.LoadScene(scene + 1, LoadSceneMode.Additive);
+        currentScene = scene + 1;
     }
 }
