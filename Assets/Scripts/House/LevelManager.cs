@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    private int loadNext;
+
     private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
          KeyCode.Alpha2,
@@ -23,6 +25,7 @@ public class LevelManager : MonoBehaviour
     {
         //SceneManager.LoadScene(1, LoadSceneMode.Additive);
         currentScene = 0;
+        loadNext = -1;
     }
 
     void Update()
@@ -34,6 +37,21 @@ public class LevelManager : MonoBehaviour
                 Load(i);
             }
         }
+    }
+
+    public void ShowStats(int scene)
+    {
+        loadNext = scene;
+    }
+
+    public void Load()
+    {
+        if (currentScene != 0)
+            SceneManager.UnloadScene(currentScene);
+        if (loadNext < 0)
+            return;
+        SceneManager.LoadScene(loadNext + 1, LoadSceneMode.Additive);
+        currentScene = loadNext + 1;
     }
 
     public void Load(int scene)
