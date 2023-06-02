@@ -31,7 +31,7 @@ public class WizardAI : EnemyAI
     {
         active = true;
         if (player == null)
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player");
         if (!active || player == null)
             return;
 

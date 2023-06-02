@@ -33,7 +33,7 @@ public class GrubAI : EnemyAI
     {
         active = true;
         if (player == null)
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player");
         if (!active || player == null)
             return;
 
@@ -41,7 +41,7 @@ public class GrubAI : EnemyAI
         int layerMask = 1 << 3;
 
         rb.AddForce(Vector3.down * Time.deltaTime * extraGravity);      // Extra Gravity
-        Vector3 relLoc = player.position - transform.position;
+        Vector3 relLoc = player.transform.position - transform.position;
         anim.SetBool("moving", false);
 
         if (relLoc.magnitude < alertRadius && !falling)

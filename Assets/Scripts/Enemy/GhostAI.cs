@@ -28,11 +28,11 @@ public class GhostAI : EnemyAI
     {
         active = true;
         if (player == null)
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player");
         if (!active || player == null)
             return;
 
-        Vector3 relLoc = player.position - transform.position;
+        Vector3 relLoc = player.transform.position - transform.position;
         if (!alerted)
         {
             transform.rotation = Quaternion.LookRotation(relLoc, Vector3.up);
@@ -66,7 +66,7 @@ public class GhostAI : EnemyAI
     {
         if (other.tag == "Player" && Time.time > timer)
         {
-            other.gameObject.GetComponent<PlayerHealth>().ProjectileHit(attackDamage, (player.position - transform.position).normalized, attackKnockback);
+            other.gameObject.GetComponent<PlayerHealth>().ProjectileHit(attackDamage, (player.transform.position - transform.position).normalized, attackKnockback);
             timer = Time.time + attackDelay;
         }
     }

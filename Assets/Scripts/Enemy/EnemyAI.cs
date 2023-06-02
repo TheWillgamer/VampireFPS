@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public bool active;
-    public Transform player;
+    public GameObject player;
 
     void OnEnable()
     {
@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         active = true;
-        player = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player");
     }
 
     public virtual void Death()

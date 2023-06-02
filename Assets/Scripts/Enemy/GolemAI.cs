@@ -51,7 +51,7 @@ public class GolemAI : EnemyAI
     {
         active = true;
         if (player == null)
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player");
         if (!active || player == null)
             return;
 
@@ -59,7 +59,7 @@ public class GolemAI : EnemyAI
         int layerMask = 1 << 3;
 
         rb.AddForce(Vector3.down * Time.deltaTime * extraGravity);      // Extra Gravity
-        Vector3 relLoc = player.position - transform.position;
+        Vector3 relLoc = player.transform.position - transform.position;
         anim.SetBool("Walking", false);
 
         if(head == null && !regening)
@@ -88,7 +88,7 @@ public class GolemAI : EnemyAI
                 }
                 else if (!attacking)    // Checks if it can do a ranged attack
                 {
-                    Vector3 relativePoint = transform.InverseTransformPoint(player.position);
+                    Vector3 relativePoint = transform.InverseTransformPoint(player.transform.position);
                     if (Time.time > timer && relativePoint.x > -rangedAttackAngle && relativePoint.x < rangedAttackAngle && relativePoint.z > 0 && head != null && head.active)
                     {
                         anim.SetTrigger("Throw");
@@ -177,7 +177,7 @@ public class GolemAI : EnemyAI
 
     void RangedAttack()
     {
-        head.Throw(((player.position - transform.position).normalized + Vector3.up * (player.position - transform.position).magnitude / 40f).normalized);
+        head.Throw(((player.transform.position - transform.position).normalized + Vector3.up * (player.transform.position - transform.position).magnitude / 40f).normalized);
         head = null;
     }
 

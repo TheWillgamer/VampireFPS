@@ -33,24 +33,24 @@ public class RangedAI : EnemyAI
     {
         active = true;
         if (player == null)
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player");
         if (!active || player == null)
             return;
 
         if (!dead)
         {
             // rotates enemy and crossbow towards player
-            var newRotation1 = Quaternion.LookRotation(player.position - transform.position);
+            var newRotation1 = Quaternion.LookRotation(player.transform.position - transform.position);
             newRotation1.x = 0;
             newRotation1.z = 0;
 
-            var newRotation2 = Quaternion.LookRotation(player.position - cbow.position);
+            var newRotation2 = Quaternion.LookRotation(player.transform.position - cbow.position);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation1, Time.deltaTime * horRotSpeed);
             cbow.rotation = Quaternion.Slerp(cbow.rotation, newRotation2, Time.deltaTime * verRotSpeed);
 
             // fires arrow
-            if(offcd < Time.time && Vector3.Distance(transform.position, player.position) < maxRange)
+            if(offcd < Time.time && Vector3.Distance(transform.position, player.transform.position) < maxRange)
             {
                 Invoke(nameof(FireArrow), Time.deltaTime * 3f);
                 tense.Play();

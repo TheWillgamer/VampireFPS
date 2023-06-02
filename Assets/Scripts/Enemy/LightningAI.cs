@@ -25,11 +25,11 @@ public class LightningAI : EnemyAI
     {
         active = true;
         if (player == null)
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player");
         if (!active || player == null)
             return;
 
-        Vector3 relLoc = player.position - transform.position;
+        Vector3 relLoc = player.transform.position - transform.position;
 
         if (active && !coolingDown && relLoc.magnitude < alertRadius)
         {
@@ -38,7 +38,7 @@ public class LightningAI : EnemyAI
                 int layerMask = 1 << 6;
                 RaycastHit hit;
 
-                if (Physics.Raycast(player.position, Vector3.down, out hit, 20, layerMask))
+                if (Physics.Raycast(player.transform.position, Vector3.down, out hit, 20, layerMask))
                 {
                     Attack(hit.point);
                     coolingDown = true;

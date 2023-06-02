@@ -40,11 +40,11 @@ public class SniperAI : EnemyAI
     {
         active = true;
         if (player == null)
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player");
         if (!active || player == null || dead)
             return;
 
-        Vector3 relLoc = player.position - transform.position;
+        Vector3 relLoc = player.transform.position - transform.position;
         
         bunnyLights.localRotation = Quaternion.Euler(new Vector3(Mathf.Rad2Deg * Mathf.Asin(relLoc.y / relLoc.magnitude), 0f, 0f));
         relLoc.y = 0;
@@ -60,7 +60,7 @@ public class SniperAI : EnemyAI
                 {
                     charge += Time.deltaTime;
                     lr.endWidth = 1f - charge / attackChargeTime;
-                    points[1] = player.position - laserStart.forward * .4f;
+                    points[1] = player.transform.position - laserStart.forward * .4f;
                     if (charge > attackChargeTime)
                         Fire();
                 }
