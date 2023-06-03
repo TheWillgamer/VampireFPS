@@ -6341,8 +6341,6 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Easy
-      m_Image: {fileID: 0}
     - m_Text: Normal
       m_Image: {fileID: 0}
     - m_Text: Hard
@@ -6354,18 +6352,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetDifficulty
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DifficultyChooser, Assembly-CSharp
-        m_MethodName: ChangeDifficulty
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9229,21 +9215,21 @@ MonoBehaviour:
   rawTopLeftBounds: {x: 0, y: 0, z: 0}
   rawBottomRightBounds: {x: -1760, y: 160, z: 0}
   rawBottomRightTextBounds: {x: 0.5, y: -32, z: 0}
-  topLeftBounds: {x: 47.127228, y: 452.5625, z: 0}
-  topRightBounds: {x: 1006.8728, y: 452.5625, z: 0}
-  bottomLeftBounds: {x: 47.127228, y: 365.313, z: 0}
-  bottomRightBounds: {x: 1006.8728, y: 365.313, z: 0}
-  centerBounds: {x: 527, y: 408.93774, z: 0}
-  topLeftTextBounds: {x: 47.127228, y: 452.5625, z: 0}
-  topRightTextBounds: {x: 47.399902, y: 452.5625, z: 0}
-  bottomLeftTextBounds: {x: 47.127228, y: 435.1128, z: 0}
-  bottomRightTextBounds: {x: 47.399902, y: 435.1128, z: 0}
-  centerTextBounds: {x: 47.263565, y: 443.83765, z: 0}
-  finalTopLeftTextBounds: {x: 47.127228, y: 452.5625, z: 0}
-  finalTopRightTextBounds: {x: 47.399902, y: 452.5625, z: 0}
-  finalBottomLeftTextBounds: {x: 47.127228, y: 435.1128, z: 0}
-  finalBottomRightTextBounds: {x: 47.399902, y: 435.1128, z: 0}
-  finalCenterTextBounds: {x: 47.263565, y: 443.83765, z: 0}
+  topLeftBounds: {x: 7.127228, y: 452.5625, z: 0}
+  topRightBounds: {x: 966.8728, y: 452.5625, z: 0}
+  bottomLeftBounds: {x: 7.127228, y: 365.313, z: 0}
+  bottomRightBounds: {x: 966.8728, y: 365.313, z: 0}
+  centerBounds: {x: 487, y: 408.93774, z: 0}
+  topLeftTextBounds: {x: 7.127228, y: 452.5625, z: 0}
+  topRightTextBounds: {x: 7.3999023, y: 452.5625, z: 0}
+  bottomLeftTextBounds: {x: 7.127228, y: 435.1128, z: 0}
+  bottomRightTextBounds: {x: 7.3999023, y: 435.1128, z: 0}
+  centerTextBounds: {x: 7.263565, y: 443.83765, z: 0}
+  finalTopLeftTextBounds: {x: 7.127228, y: 452.5625, z: 0}
+  finalTopRightTextBounds: {x: 7.3999023, y: 452.5625, z: 0}
+  finalBottomLeftTextBounds: {x: 7.127228, y: 435.1128, z: 0}
+  finalBottomRightTextBounds: {x: 7.3999023, y: 435.1128, z: 0}
+  finalCenterTextBounds: {x: 7.263565, y: 443.83765, z: 0}
   unwrappedBottomRightTextBounds: {x: 0, y: -32, z: 0}
   onCompleteEvent:
     m_PersistentCalls:
@@ -9269,7 +9255,7 @@ MonoBehaviour:
   debugMode: 0
   totalReadTime: 0.00001
   totalUnreadTime: 0.00001
-  currentReadTime: 0.52580667
+  currentReadTime: 62.465164
   autoRead: 1
   rememberReadPosition: 1
   autoQuality: 0

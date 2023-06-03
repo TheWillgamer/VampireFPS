@@ -56,6 +56,11 @@ public class SettingsMenu : MonoBehaviour
 
 
         PlayerPrefs.SetFloat("Sensitivity", val);
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovement>().ChangeSens(val);
+        }
         Debug.Log("Set sensitivity to " + val);
     }
 
@@ -69,12 +74,9 @@ public class SettingsMenu : MonoBehaviour
 
         switch (val) {
             case 0:
-                Debug.Log("Set difficulty to Easy");
-                break;
-            case 1:
                 Debug.Log("Set difficulty to Normal");
                 break;
-            case 2:
+            case 1:
                 Debug.Log("Set difficulty to Hard");
                 break;
             default:
