@@ -5,12 +5,14 @@ using UnityEngine;
 public class MoveAlongSpline : MonoBehaviour
 {
     [SerializeField] private int speed;
-    
+
+    private float sawbladeScale;
     private Transform playerLoc;
     private Vector3 startingPos;
     private int next_point;     // where the sawblade is traveling to
 
     [SerializeField] private Transform[] points;        // points in the path of the sawblade
+    [SerializeField] private Transform line;            // Path of the sawblade
     
     void OnEnable()
     {
@@ -25,6 +27,11 @@ public class MoveAlongSpline : MonoBehaviour
     {
         startingPos = transform.position;
         next_point = 0;
+        sawbladeScale = transform.parent.localScale.x;
+
+        line.position = (points[0].position + points[1].position)/2;
+        line.LookAt(points[1], Vector3.up);
+        line.localScale = new Vector3(.2f / sawbladeScale, .2f / sawbladeScale, (points[0].position - points[1].position).magnitude / (2 * sawbladeScale));
     }
 
     void Update()

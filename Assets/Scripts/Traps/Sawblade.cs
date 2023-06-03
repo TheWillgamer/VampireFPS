@@ -37,11 +37,10 @@ public class Sawblade : MonoBehaviour
     {
         if (!disabled && Time.time > offcd && other.tag == "Player")
         {
-            ph.TakeDamage(damage);
             Vector3 direction = playerLoc.position - transform.position;
             direction = new Vector3(direction.x, 0, direction.z);
             rb.velocity = Vector3.zero;
-            rb.AddForce(direction.normalized * knockback + transform.up * knockback / 2);
+            ph.ProjectileHit(damage, direction.normalized, knockback);
             offcd = Time.time + cd;
         }
     }
