@@ -130,12 +130,6 @@ public class GolemAI : EnemyAI
                 regening = false;
             }
         }
-        else if (active && ranged && Time.time > timer)
-        {
-            RangedAttack();
-            attacking = false;
-            ranged = false;
-        }
     }
 
     public override void Death()

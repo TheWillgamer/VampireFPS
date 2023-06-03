@@ -161,17 +161,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd1599c90eeeb54ba96b70a3159e5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  player: {fileID: 0}
   headTracker: {fileID: 0}
   pullBackTracker: {fileID: 0}
-  active: 0
+  onHead: 0
   host: 1
   regenerateSpeed: 1
   throwForce: 80
   thrown: 0
-  damage: 5
+  damage: 80
   damageRadius: 6
   knockback: 5
-  playerDamage: 5
+  playerDamage: 400
   playerKnockback: 2000
   explosion: {fileID: 2648825654820905603, guid: 15df710f9d552e945b5f72373ca32132, type: 3}
   timer: 0

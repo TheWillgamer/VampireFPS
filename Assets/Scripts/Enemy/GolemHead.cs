@@ -38,6 +38,7 @@ public class GolemHead : EnemyAI
     // Update is called once per frame
     void Update()
     {
+        active = true;
         timer += Time.deltaTime;
         if (!thrown && host)
         {

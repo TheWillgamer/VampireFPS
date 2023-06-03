@@ -771,10 +771,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d637f6ae98168b946a07acca2443ab40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  player: {fileID: 0}
   moveSpeed: 6
   turnSpeed: 140
   attackingTurnSpeed: 100
-  alertRadius: 20
+  alertRadius: 100
   attackDelay: 0.2
   attackRange: 3
   rangedAttackDelay: 1.2

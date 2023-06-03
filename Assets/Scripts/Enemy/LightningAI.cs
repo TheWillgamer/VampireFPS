@@ -12,12 +12,14 @@ public class LightningAI : EnemyAI
     private float charge;
 
     public AudioSource l_sound;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         charge = 0;
         coolingDown = false;
+        anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -66,5 +68,6 @@ public class LightningAI : EnemyAI
         Instantiate(lightning, loc + new Vector3(0f,.1f,0f), Quaternion.identity);
         l_sound.Play();
         coolingDown = true;
+        anim.SetTrigger("Striking");
     }
 }
