@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 5763880508650424920}
   - component: {fileID: 8339228136165398739}
   - component: {fileID: 1679951496819507951}
+  - component: {fileID: 4555998749323710744}
   m_Layer: 10
   m_Name: GolemHead
   m_TagString: Enemy
@@ -172,7 +173,7 @@ MonoBehaviour:
   thrown: 0
   damage: 80
   damageRadius: 6
-  knockback: 5
+  knockback: 500
   playerDamage: 400
   playerKnockback: 2000
   explosion: {fileID: 2648825654820905603, guid: 15df710f9d552e945b5f72373ca32132, type: 3}
@@ -193,3 +194,15 @@ MonoBehaviour:
   alive: 0
   shakeDuration: 0.15
   shakeMagnitude: 0.001
+--- !u!114 &4555998749323710744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653185517949403288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fdcd5ccd5bed74186ccb8e0a01aa31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

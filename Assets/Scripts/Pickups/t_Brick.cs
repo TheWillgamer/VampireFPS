@@ -7,12 +7,19 @@ public class t_Brick : MonoBehaviour
     [SerializeField] float speed = 30.0f;
     [SerializeField] float aliveTime = 5.0f;
     [SerializeField] float spinSpeed = 5.0f;
+    [SerializeField] bool explosive;
     public int damage = 5;
     float deathTime;
     private float _colliderRadius;
     private bool active;
     public GameObject deathParticles;
     public GameObject hitEffect;
+
+    // Only for explosive
+    [SerializeField] private float damageRadius = 5;
+    [SerializeField] private float knockback = 5;
+    [SerializeField] private int playerDamage = 5;
+    [SerializeField] private float playerKnockback = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -54,22 +61,49 @@ public class t_Brick : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Enemy")
             {
-                hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
                 Instantiate(deathParticles, hit.point, Quaternion.LookRotation(hit.normal));
                 Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                if (explosive)
+                    Explode();
+                else
+                    hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
                 Destroy(gameObject);
             }
         }
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, traceDistance))
         {
-            if (hit.transform.gameObject.tag != "Enemy")
+            if (hit.transform.gameObject.tag != "Enemy" && hit.transform.gameObject.tag != "Player")
             {
                 Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                if (explosive)
+                    Explode();
                 Destroy(gameObject);
             }
         }
 
         transform.position += transform.forward * travelDistance;
         transform.GetChild(0).Rotate(spinSpeed * Time.deltaTime, -spinSpeed * Time.deltaTime / 1.5f, 0f, Space.Self);
+    }
+
+    void Explode()
+    {
+        foreach (Collider col in Physics.OverlapSphere(transform.position, damageRadius))
+        {
+            if (col.tag == "Enemy")
+            {
+                EnemyHitDetection ehd = col.gameObject.GetComponent<EnemyHitDetection>();
+                ehd.TakeDamage(damage);
+                ehd.Knockback(knockback, (col.transform.position - transform.position).normalized);
+            }
+            else if (col.tag == "Player")
+            {
+                // Calculate Angle Between the collision point and the player
+                Vector3 dir = col.transform.position - transform.position;
+                // And finally we add force in the direction of dir and multiply it by force.
+                //  This will push back the player
+                //col.gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * playerKnockback);
+                col.gameObject.GetComponent<PlayerHealth>().ProjectileHit(playerDamage, dir.normalized, playerKnockback);
+            }
+        }
     }
 }

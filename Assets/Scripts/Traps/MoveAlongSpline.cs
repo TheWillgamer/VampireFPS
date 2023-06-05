@@ -27,11 +27,15 @@ public class MoveAlongSpline : MonoBehaviour
     {
         startingPos = transform.position;
         next_point = 0;
-        sawbladeScale = transform.parent.localScale.x;
 
-        line.position = (points[0].position + points[1].position)/2;
-        line.LookAt(points[1], Vector3.up);
-        line.localScale = new Vector3(.2f / sawbladeScale, .2f / sawbladeScale, (points[0].position - points[1].position).magnitude / (2 * sawbladeScale));
+        if (line != null)
+        {
+            sawbladeScale = transform.parent.localScale.x;
+            line.position = (points[0].position + points[1].position) / 2;
+            line.LookAt(points[1], Vector3.up);
+            line.localScale = new Vector3(.2f / sawbladeScale, .2f / sawbladeScale, (points[0].position - points[1].position).magnitude / (2 * sawbladeScale));
+
+        }
     }
 
     void Update()

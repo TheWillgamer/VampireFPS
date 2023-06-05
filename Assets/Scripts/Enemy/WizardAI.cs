@@ -83,7 +83,10 @@ public class WizardAI : EnemyAI
         Instantiate(deathParticles, deathParticlesSpawn.position, Quaternion.identity);
         Destroy(transform.GetChild(0).gameObject);
         active = false;
-        GetComponent<Collider>().enabled = false;
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = false;
+        }
         death.Play();
     }
 }
