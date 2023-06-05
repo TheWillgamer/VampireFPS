@@ -204,6 +204,8 @@ GameObject:
   - component: {fileID: 2041474471551850302}
   - component: {fileID: 2041474471551850272}
   - component: {fileID: 2041474471551850273}
+  - component: {fileID: 3062750761639353740}
+  - component: {fileID: 2611511313063185928}
   m_Layer: 0
   m_Name: scatter_wizard
   m_TagString: Enemy
@@ -243,6 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7dbf0de8efa134ba21940181237481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  player: {fileID: 0}
   alertRadius: 100
   attackRange: 100
   attackChargeTime: 0.1
@@ -299,6 +303,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &3062750761639353740
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041474471551850301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.49
+  m_Height: 3
+  m_Direction: 0
+  m_Center: {x: 0, y: 0.52, z: 0}
+--- !u!136 &2611511313063185928
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041474471551850301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.49
+  m_Height: 3.95
+  m_Direction: 0
+  m_Center: {x: 0, y: 3.97, z: 0}
 --- !u!1 &2141895063345456644
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +538,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d68eed58ca3b31b45aa404bbcf70992b, type: 2}
+  - {fileID: 2100000, guid: ba67b71fa5160cd49821d3f6b83032b4, type: 2}
   - {fileID: 2100000, guid: 09d689fffc8ae4e19a0c30d4470c8a1a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

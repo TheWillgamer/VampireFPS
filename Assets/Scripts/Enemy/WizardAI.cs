@@ -29,7 +29,7 @@ public class WizardAI : EnemyAI
     // Update is called once per frame
     void Update()
     {
-        active = true;
+        //active = true;
         if (player == null)
             player = GameObject.FindWithTag("Player");
         if (!active || player == null)
