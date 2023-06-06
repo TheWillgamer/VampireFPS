@@ -40,7 +40,7 @@ public class GolemHead : EnemyAI
     {
         active = true;
         timer += Time.deltaTime;
-        if (!thrown && host)
+        if (!thrown && host && headTracker != null)
         {
             if (onHead)
                 transform.position = headTracker.position;
@@ -63,15 +63,12 @@ public class GolemHead : EnemyAI
 
             transform.rotation = headTracker.rotation * Quaternion.Euler(-90, 0, 0);
         }
-        else if (!host)
+        else if (!host || headTracker == null)
         {
             rb.AddForce(Vector3.down * Time.deltaTime * 3000f);
         }
         else
         {
-            if (headTracker == null || pullBackTracker == null)
-                return;
-
             if (!lifted && timer > .7f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, headTracker.position + new Vector3(0, .3f, 0), 1.5f * Time.deltaTime);
