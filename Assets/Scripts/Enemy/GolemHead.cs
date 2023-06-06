@@ -69,6 +69,9 @@ public class GolemHead : EnemyAI
         }
         else
         {
+            if (headTracker == null || pullBackTracker == null)
+                return;
+
             if (!lifted && timer > .7f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, headTracker.position + new Vector3(0, .3f, 0), 1.5f * Time.deltaTime);

@@ -52,7 +52,19 @@ public class GameplayManager : MonoBehaviour
     public void RestartLevel()
     {
         DoReset();
-        Invoke(nameof(DoSpawn), 0.5f);
+        Invoke(nameof(DoSpawn), 0.1f);
+    }
+
+    public void NextLevel()
+    {
+        DoReset();
+        Invoke(nameof(DoSpawn), 0.1f);
+        Invoke(nameof(GoToNextLevel), 0.5f);
+    }
+
+    private void GoToNextLevel()
+    {
+        GetComponent<LevelManager>().LoadNext();
     }
 
     void DisplayTime()

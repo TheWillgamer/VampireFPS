@@ -5,23 +5,43 @@ using UnityEngine;
 public class PortalTeleporter : MonoBehaviour
 {
     [SerializeField] Transform receiver;
+    [SerializeField] private float teleportDistance;
     private GameplayManager gm;
-    
+    private GameObject player;
+    private bool active;
+
+    void OnEnable()
+    {
+        GameplayManager.Spawn += Activate;
+    }
+    void OnDisable()
+    {
+        GameplayManager.Spawn -= Activate;
+    }
+
     void Start()
     {
         gm = GameObject.FindWithTag("EventSystem").GetComponent<GameplayManager>();
+        active = true;
     }
 
-    void OnTriggerEnter(Collider col)
+    void Update()
     {
-        if (col.tag == "Player")
+        if (player == null)
+            player = GameObject.FindWithTag("Player");
+        if (!active || player == null)
+            return;
+
+        if (player.transform.position.z > (transform.position.z + teleportDistance))
         {
-            Transform player = col.transform;
-            if (Vector3.Dot(transform.up, player.position - transform.position) > 0f)
-            {
-                player.position = receiver.position + player.position - transform.position;
-                gm.DoStartGame();
-            }
+            player.transform.position = receiver.position + player.transform.position - transform.position;
+            gm.DoStartGame();
+            active = false;
         }
+    }
+
+    void Activate()
+    {
+        active = true;
     }
 }

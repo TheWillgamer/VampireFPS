@@ -71,6 +71,7 @@ public class SettingsMenu : MonoBehaviour
 
 
         PlayerPrefs.SetInt("Difficulty", val);
+        Debug.Log(val);
 
         switch (val) {
             case 0:

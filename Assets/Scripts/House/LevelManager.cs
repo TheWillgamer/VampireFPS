@@ -7,36 +7,12 @@ public class LevelManager : MonoBehaviour
 {
     private int loadNext;
 
-    private KeyCode[] keyCodes = {
-         KeyCode.Alpha1,
-         KeyCode.Alpha2,
-         KeyCode.Alpha3,
-         KeyCode.Alpha4,
-         KeyCode.Alpha5,
-         KeyCode.Alpha6,
-         KeyCode.Alpha7,
-         KeyCode.Alpha8,
-         KeyCode.Alpha9,
-     };
-
     private int currentScene;
     
     void Start()
     {
-        //SceneManager.LoadScene(1, LoadSceneMode.Additive);
         currentScene = 0;
         loadNext = -1;
-    }
-
-    void Update()
-    {
-        for (int i = 0; i < keyCodes.Length; i++)
-        {
-            if (Input.GetKeyDown(keyCodes[i]))
-            {
-                Load(i);
-            }
-        }
     }
 
     public void ShowStats(int scene)
@@ -60,5 +36,14 @@ public class LevelManager : MonoBehaviour
             SceneManager.UnloadScene(currentScene);
         SceneManager.LoadScene(scene + 1, LoadSceneMode.Additive);
         currentScene = scene + 1;
+    }
+
+    public void LoadNext()
+    {
+        SceneManager.UnloadScene(currentScene);
+        if (currentScene == 8)
+            currentScene = 0;
+        currentScene++;
+        SceneManager.LoadScene(currentScene, LoadSceneMode.Additive);
     }
 }

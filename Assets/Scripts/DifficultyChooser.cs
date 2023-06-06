@@ -19,8 +19,8 @@ public class DifficultyChooser : MonoBehaviour
             difficulty = PlayerPrefs.GetInt("Difficulty");
         else
         {
-            PlayerPrefs.SetInt("Difficulty", 1);
-            difficulty = 1;
+            PlayerPrefs.SetInt("Difficulty", 0);
+            difficulty = 0;
         }
 
         ph.ChangeTickRate(difficultyScalings[difficulty]);
