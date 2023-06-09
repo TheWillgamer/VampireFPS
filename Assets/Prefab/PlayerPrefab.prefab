@@ -1208,7 +1208,7 @@ ParticleSystemForceField:
   m_Parameters:
     m_Shape: 0
     m_StartRange: 0
-    m_EndRange: 4
+    m_EndRange: 20
     m_Length: 1
     m_GravityFocus: 0
     m_RotationRandomness: {x: 0, y: 0}
@@ -3490,7 +3490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7736701734994471690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4047,7 +4047,7 @@ MonoBehaviour:
   jumpResetDelay: 10
   wallJumpUpModifier: 1.9
   wallJumpModifier: 1.5
-  coyoteTime: 0.2
+  coyoteTime: 1
   poundSpeed: 47
   hardLandEffect: {fileID: 8084085040749045801, guid: d783a31bb7a8908409fb9cca17944d55, type: 3}
   feetLoc: {fileID: 5086671219659968553}
@@ -4155,9 +4155,9 @@ MonoBehaviour:
   cd: 5
   charges: 1
   maxCharges: 1
-  movementReductionMultiplier: 0.2
+  movementReductionMultiplier: 1
   dashSpeed: 3800
-  activateTime: 0.3
+  activateTime: 0.1
   blastEffect: {fileID: 1571783785209145467, guid: d53b3b2a53269c04f9b86cc7f41730ed, type: 3}
   blastPoint: {fileID: 2894598573385347633}
   radius: 3

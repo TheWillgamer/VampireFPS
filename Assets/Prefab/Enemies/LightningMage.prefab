@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719238b3515c2124e8ed561b6d8dd580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 10
   alive: 0
   shakeDuration: 0.15
   shakeMagnitude: 0.06
@@ -161,8 +161,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2826b7294c1f113448dba80b024ebbdb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.353
-  m_Pitch: 1
+  m_Volume: 0.095
+  m_Pitch: 0.77
   Loop: 0
   Mute: 0
   Spatialize: 0
