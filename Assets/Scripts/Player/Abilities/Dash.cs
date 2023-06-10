@@ -5,6 +5,7 @@ public class Dash : Ability
 {
     public float dashSpeed = 2000f;
     public float dashTime = 0.1f;
+    public float endDashSlowdown = 0.5f;
     public AudioSource sound;
 
     public override void UseAbility()
@@ -35,7 +36,7 @@ public class Dash : Ability
 
     void EndDash()
     {
-        rb.velocity = rb.velocity / 3;
+        rb.velocity = rb.velocity * endDashSlowdown;
 
         pm.disableCM = false;
         pm.disableAR = false;
