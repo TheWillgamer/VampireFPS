@@ -8,6 +8,7 @@ public class EnemyHitDetection : MonoBehaviour
     int currentHealth;
     public bool alive;
 
+    [SerializeField] private Transform HitEffect;
     public float shakeDuration;
     public float shakeMagnitude;
 
@@ -37,6 +38,8 @@ public class EnemyHitDetection : MonoBehaviour
         }
         else if (transform.childCount > 0 && currentHealth > 0)
         {
+            if (HitEffect != null)
+                Instantiate(HitEffect, transform.position, transform.rotation);
             StartCoroutine(Shake(shakeDuration, shakeMagnitude));
         }
     }
