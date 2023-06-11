@@ -3,7 +3,17 @@ guid: 8d7ddbbf437c972458043f8a16a0c24e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sniper UV
+    second: {fileID: 2100000, guid: d7db7a4e25e43424c97015fa4c7723f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Spotlight
+    second: {fileID: 2100000, guid: b3830c9b65bb4524786904e74b3d450d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
