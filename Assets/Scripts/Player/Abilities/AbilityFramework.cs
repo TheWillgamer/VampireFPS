@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AbilityFramework : MonoBehaviour
 {
@@ -11,8 +12,10 @@ public class AbilityFramework : MonoBehaviour
     private float[] offcd;
     private bool[] input;
     public Transform[] icons;
+    public TextMeshProUGUI blastCDText;
 
     private float basicatktimer = 0f;       // temp variable to fix animations
+    public int blastTracker;                // keeps track of number of enemies to refresh blast
 
     protected PlayerMovement pm;    // to disable abilities when player is dead
     // protected PlayerHealth ph;      // blood cost for abilities
@@ -26,6 +29,7 @@ public class AbilityFramework : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         //ph = GetComponent<PlayerHealth>();
         basicatktimer = Time.time;
+        blastTracker = 0;
     }
 
     void Start()
@@ -82,7 +86,7 @@ public class AbilityFramework : MonoBehaviour
         {
             if (input[i])
             {
-                if ((i == 0 && Time.time > basicatktimer) || i > 0)
+                if ((i == 0 && Time.time > basicatktimer) || (i == 3 && blastTracker <= 0) || (i > 0 && i != 3))
                 {
                     abilityList[i].UseAbility();
                     //ph.TakeDamage(abilityList[i].bloodCost);
@@ -93,6 +97,11 @@ public class AbilityFramework : MonoBehaviour
                     }
 
                     abilityList[i].charges -= 1;
+                    if (i == 3)
+                    {
+                        blastTracker = ((Blast)abilityList[i]).enemyKillRecharge;
+                    }
+                        
                 }
             }
         }
@@ -111,13 +120,16 @@ public class AbilityFramework : MonoBehaviour
 
     void UpdateAbilities()
     {
-        icons[3].GetComponent<Image>().fillAmount = 1 - (offcd[3] - Time.time) / abilityList[3].cd;
+        icons[3].GetComponent<Image>().fillAmount = 0;
         icons[5].GetComponent<Image>().fillAmount = 0;
-        if (abilityList[3].charges == abilityList[3].maxCharges)
+        blastCDText.text = "";
+        if (blastTracker <= 0)
         {
             icons[3].GetComponent<Image>().fillAmount = 1;
             icons[5].GetComponent<Image>().fillAmount = 1;
         }
+        else
+            blastCDText.text = blastTracker.ToString();
 
         if (abilityList[2].charges > 0)
         {

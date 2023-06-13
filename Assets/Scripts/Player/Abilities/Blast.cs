@@ -12,6 +12,7 @@ public class Blast : Ability
     [SerializeField] Transform blastPoint;      // where the blast effect spawns
     [SerializeField] private float radius;
     [SerializeField] private float range;
+    public int enemyKillRecharge;
 
     public int minDamage = 5;
     public int maxDamage = 5;

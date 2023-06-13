@@ -9,6 +9,7 @@ public class EnemyDeathHandler : MonoBehaviour
     
     public void TriggerDeath()
     {
+        transform.GetComponent<AbilityFramework>().blastTracker -= 1;
         StartCoroutine(UIDeathMarker());
     }
 
