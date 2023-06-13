@@ -35,6 +35,8 @@ public class EnemyAI : MonoBehaviour
 
     public virtual void Death()
     {
+        player.GetComponent<EnemyDeathHandler>().TriggerDeath();
         Destroy(gameObject);
     }
+
 }

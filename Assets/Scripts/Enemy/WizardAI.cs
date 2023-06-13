@@ -88,5 +88,7 @@ public class WizardAI : EnemyAI
             c.enabled = false;
         }
         death.Play();
+
+        base.Death();
     }
 }
