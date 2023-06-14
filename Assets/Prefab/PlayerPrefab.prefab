@@ -4312,6 +4312,7 @@ MonoBehaviour:
   - {fileID: 3316120813847033879}
   - {fileID: 325313326218313634}
   blastCDText: {fileID: 5459835117321051125}
+  blastTracker: 0
   anim: {fileID: 7736701734994471686}
   Blast_recharged: {fileID: 2551465338548113874}
   Dash_recharged: {fileID: 4797472080866593302}
@@ -4378,7 +4379,8 @@ MonoBehaviour:
   blastPoint: {fileID: 2894598573385347633}
   radius: 3
   range: 15
-  enemyKillRecharge: 5
+  directionModifier: 35
+  enemyKillRecharge: 0
   minDamage: 100
   maxDamage: 200
   minKnockback: 5000

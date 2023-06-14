@@ -12,6 +12,7 @@ public class Blast : Ability
     [SerializeField] Transform blastPoint;      // where the blast effect spawns
     [SerializeField] private float radius;
     [SerializeField] private float range;
+    [SerializeField] private float directionModifier;
     public int enemyKillRecharge;
 
     public int minDamage = 5;
@@ -35,8 +36,20 @@ public class Blast : Ability
         Instantiate(blastEffect, blastPoint.position, blastPoint.rotation);
         shootSound.Play(0);
 
-        rb.velocity = rb.velocity * movementReductionMultiplier;
-        rb.AddForce(-pm.playerCam.transform.forward * dashSpeed);
+        Vector3 blastA = Vector3.Project(pm.playerCam.transform.forward, rb.velocity);      // Parallel direction
+        Vector3 blastE = pm.playerCam.transform.forward - blastA;
+        float modifier = 1f + rb.velocity.magnitude / directionModifier;
+
+        if (rb.velocity.magnitude > 1f)
+        {
+            if (Vector3.Dot(rb.velocity, blastA) > 0)
+                rb.AddForce(-blastE * dashSpeed - blastA * dashSpeed * modifier);       // blast in direction of movement
+            else
+                rb.AddForce(-blastE * dashSpeed - blastA * dashSpeed / modifier);
+
+        }
+        else
+            rb.AddForce(-pm.playerCam.transform.forward * dashSpeed);       // player is still
 
         RaycastHit[] hits;
         hits = Physics.SphereCastAll(pm.playerCam.transform.position, radius, pm.playerCam.transform.forward, range);
