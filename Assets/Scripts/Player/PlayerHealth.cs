@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 2000;
     public Transform hpMeter;
     public Image dmgScreen;
+    public bool invulnerability;
 
     protected PlayerMovement pm;
     private Rigidbody rb;
@@ -40,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         deadPlayed = false;
+        invulnerability = false;
     }
 
     // Start is called before the first frame update
@@ -106,6 +108,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void ProjectileHit(int damage, Vector3 direction, float knockback)
     {
+        if (invulnerability)
+            return;
         TakeDamage(damage);
         hit.Play(0);
         rb.AddForce(direction * knockback + transform.up * knockback / 4);

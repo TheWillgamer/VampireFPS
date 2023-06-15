@@ -80,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource Step;
     private bool stepping;
     public AudioSource Jumping;
+    public AudioSource DoubleJumping;
     public AudioSource Slide;
     private bool sliding;
     public AudioSource SoftLand;
@@ -185,6 +186,9 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 rb.velocity = new Vector3(0, -poundSpeed, 0);
+                jumpCharge = 1;
+                readyToJump = false;
+                Invoke(nameof(ResetJump), jumpCooldown);
             }
         }
         if (Input.GetKeyUp(KeyCode.LeftControl) && crouching)
@@ -291,6 +295,7 @@ public class PlayerMovement : MonoBehaviour
             //Add jump forces
             if (canGroundJump)
             {
+                Jumping.Play(0);
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
                 rb.AddForce(Vector2.up * jumpForce * wallJumpUpModifier);
                 if(Vector3.Angle(Vector2.up, normalVector) > 35)
@@ -300,12 +305,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                DoubleJumping.Play(0);
                 rb.AddForce(Vector2.up * secondJumpForce * 2f);
                 jumpCharge--;
             }
 
             //Audio
-            Jumping.Play(0);
             Step.Stop();
             stepping = false;
 

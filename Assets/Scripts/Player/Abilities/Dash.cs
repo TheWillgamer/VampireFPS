@@ -30,6 +30,7 @@ public class Dash : Ability
             rb.AddForce(orientation.transform.forward * temp.y * dashSpeed);
             rb.AddForce(orientation.transform.right * temp.x * dashSpeed);
         }
+        GetComponent<PlayerHealth>().invulnerability = true;
 
         Invoke(nameof(EndDash), dashTime);
     }
@@ -37,6 +38,7 @@ public class Dash : Ability
     void EndDash()
     {
         rb.velocity = rb.velocity * endDashSlowdown;
+        GetComponent<PlayerHealth>().invulnerability = false;
 
         pm.disableCM = false;
         pm.disableAR = false;
