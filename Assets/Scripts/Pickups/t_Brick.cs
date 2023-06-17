@@ -8,6 +8,7 @@ public class t_Brick : MonoBehaviour
     [SerializeField] float aliveTime = 5.0f;
     [SerializeField] float spinSpeed = 5.0f;
     [SerializeField] bool explosive;
+    [SerializeField] bool enemy;
     public int damage = 5;
     float deathTime;
     private float _colliderRadius;
@@ -67,6 +68,10 @@ public class t_Brick : MonoBehaviour
                     Explode();
                 else
                     hit.transform.gameObject.GetComponent<EnemyHitDetection>().TakeDamage(damage);
+
+                if (enemy)
+                    GameObject.FindWithTag("Player").GetComponent<EnemyDeathHandler>().TriggerDeath();
+
                 Destroy(gameObject);
             }
         }
@@ -77,6 +82,10 @@ public class t_Brick : MonoBehaviour
                 Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 if (explosive)
                     Explode();
+
+                if (enemy)
+                    GameObject.FindWithTag("Player").GetComponent<EnemyDeathHandler>().TriggerDeath();
+
                 Destroy(gameObject);
             }
         }

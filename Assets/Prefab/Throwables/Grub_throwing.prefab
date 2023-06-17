@@ -50,9 +50,15 @@ MonoBehaviour:
   speed: 100
   aliveTime: 5
   spinSpeed: 700
+  explosive: 0
+  enemy: 1
   damage: 40
   deathParticles: {fileID: 8651867629727471927, guid: 2b145dbca0eabc64dae43ead3704c526, type: 3}
   hitEffect: {fileID: 4987810841699435982, guid: 7a3e646c54c3c1c48a29821b5af5abb3, type: 3}
+  damageRadius: 5
+  knockback: 5
+  playerDamage: 5
+  playerKnockback: 5
 --- !u!135 &4758203898385732563
 SphereCollider:
   m_ObjectHideFlags: 0

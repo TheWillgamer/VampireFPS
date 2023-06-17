@@ -102,6 +102,7 @@ public class SniperAI : EnemyAI
     {
         Instantiate(RabbitDeath, RabbitSpawnLoc.position, RabbitSpawnLoc.rotation);
         Instantiate(LightDeath, transform.position, transform.rotation);
+        player.GetComponent<EnemyDeathHandler>().TriggerDeath();
         Destroy(gameObject);
     }
 }
