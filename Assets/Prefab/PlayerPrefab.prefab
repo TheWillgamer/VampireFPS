@@ -4371,7 +4371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 2
-  cd: 0
+  cd: 1
   charges: 1
   maxCharges: 1
   movementReductionMultiplier: 0.6
@@ -4382,7 +4382,7 @@ MonoBehaviour:
   radius: 3
   range: 15
   directionModifier: 35
-  enemyKillRecharge: 0
+  enemyKillRecharge: 5
   minDamage: 100
   maxDamage: 200
   minKnockback: 5000
