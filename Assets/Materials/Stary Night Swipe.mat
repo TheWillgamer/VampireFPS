@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Stary Night
-  m_Shader: {fileID: -6465566751694194690, guid: 3edaf8c87b3883f4aba6f09fe18cda01, type: 3}
+  m_Name: Stary Night Swipe
+  m_Shader: {fileID: -6465566751694194690, guid: 5cc3fbfb4f0432e40bf554189ff6bd73, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -35,12 +35,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelPower: 6
-    - _NoiseScale: 9000
+    - _NoiseScale: 167.75
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ScrollSpeed: -0.0001
+    - _ScrollSpeed: 1.09
     m_Colors:
-    - _InnerColor: {r: 0.990566, g: 0.9634014, b: 0.07008721, a: 0}
+    - _InnerColor: {r: 1, g: 0.9998595, b: 0.995283, a: 0}
     - _OuterColor: {r: 0, g: 1, b: 0.8638129, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3112979356371579679

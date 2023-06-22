@@ -642,14 +642,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2345482663127168272}
-  m_LocalRotation: {x: 0, y: 0, z: -0.14815469, w: 0.9889642}
-  m_LocalPosition: {x: 0, y: -0.5, z: -1}
+  m_LocalRotation: {x: 0.6690633, y: 0.2288106, z: -0.2288106, w: 0.6690633}
+  m_LocalPosition: {x: 0.12, y: 0.08, z: 0.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7736701735504802154}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -17.04}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -37.76}
 --- !u!1 &2779019938962919224
 GameObject:
   m_ObjectHideFlags: 0
@@ -4405,7 +4405,7 @@ MonoBehaviour:
   cd: 1
   charges: 1
   maxCharges: 1
-  swipeEffect: {fileID: 2547267295588557905, guid: a4d52214ecc84a14d9a6463fc3f2c532, type: 3}
+  swipeEffect: {fileID: 3578261123532960654, guid: a37d66b171216d4458ab6bb457bc65bc, type: 3}
   swipePoint: {fileID: 6580446589932089278}
   damageBox: {fileID: 8503183866199863700}
   damage: 40
