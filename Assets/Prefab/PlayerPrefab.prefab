@@ -1208,7 +1208,7 @@ ParticleSystemForceField:
   m_Parameters:
     m_Shape: 0
     m_StartRange: 0
-    m_EndRange: 10
+    m_EndRange: 3.07
     m_Length: 1
     m_GravityFocus: 0
     m_RotationRandomness: {x: 0, y: 0}
@@ -3304,7 +3304,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3988b3ba3a71c8f4cb3c63c4b2101acb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.244
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3703,7 +3703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7736701734994471690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4261,7 +4261,7 @@ MonoBehaviour:
   jumpResetDelay: 10
   wallJumpUpModifier: 1.9
   wallJumpModifier: 1.5
-  coyoteTime: 0.3
+  coyoteTime: 0.15
   poundSpeed: 70
   hardLandEffect: {fileID: 8084085040749045801, guid: d783a31bb7a8908409fb9cca17944d55, type: 3}
   feetLoc: {fileID: 5086671219659968553}
@@ -4335,7 +4335,7 @@ MonoBehaviour:
   charges: 1
   maxCharges: 1
   rangedAttack: {fileID: 3079862118213235695, guid: 25d33d8db444adf40b3ff44029531139, type: 3}
-  shot: {fileID: 8300000, guid: fe2af5520bae8184aa9bd1e468e8a8e1, type: 3}
+  shot: {fileID: 8300000, guid: 0f8fb50f3c642b049885f92687925062, type: 3}
   sound: {fileID: 7736701734796940566}
   anim: {fileID: 7736701734994471686}
 --- !u!114 &7736701735432866492
@@ -4382,7 +4382,7 @@ MonoBehaviour:
   radius: 3
   range: 15
   directionModifier: 35
-  enemyKillRecharge: 3
+  enemyKillRecharge: 2
   minDamage: 100
   maxDamage: 200
   minKnockback: 5000
