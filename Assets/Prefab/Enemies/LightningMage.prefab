@@ -82,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   alive: 0
+  HitEffect: {fileID: 0}
   shakeDuration: 0.15
   shakeMagnitude: 0.06
 --- !u!114 &4753306376960063857
@@ -159,10 +160,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2826b7294c1f113448dba80b024ebbdb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a97ea139575fb4d449c6b1c0fa207763, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.095
-  m_Pitch: 0.77
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
